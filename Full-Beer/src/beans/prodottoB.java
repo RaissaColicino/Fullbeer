@@ -7,11 +7,11 @@ public class prodottoB {
 	}
 
 
-	public String getId() {
-		return id;
+	public String getIdProdotto() {
+		return idProdotto;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setIdProdotto(String id) {
+		this.idProdotto = id;
 	}
 	public String getNome() {
 		return nome;
@@ -45,7 +45,7 @@ public class prodottoB {
 	}
 
 
-	private String id;  //variabile d'istanza id
+	private String idProdotto;  //variabile d'istanza id
 	private String nome; //variabile d'istanza nome
 	private int qt; //variabile d'istanza quantità
 	private double prezzo; //variabile d'istanza prezzo
