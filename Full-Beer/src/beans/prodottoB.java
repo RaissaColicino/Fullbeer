@@ -1,8 +1,8 @@
 package beans;
 
-public class prodotto {
+public class prodottoB {
 
-	public prodotto() {
+	public prodottoB() {
 		
 	}
 
