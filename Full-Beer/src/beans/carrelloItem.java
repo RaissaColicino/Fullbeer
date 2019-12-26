@@ -29,7 +29,18 @@ public class carrelloItem {
 	public void setQt(int qt) {
 		this.qt = qt;
 	}
-
+	/**
+	 * Permette di confrontare due prodotti per verificare che essi siano uguali 
+	 */
+	@Override
+	public boolean equals(Object item) {
+		if(!(item instanceof carrelloItem) || item==null)
+			return false;
+		
+		carrelloItem carrelloItem=(carrelloItem) item;
+		
+		return prodotto.getId().equals(carrelloItem.getProdotto().getId());
+	}
 private int qt;
 private prodottoB prodotto; 
 }

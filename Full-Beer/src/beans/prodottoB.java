@@ -7,10 +7,10 @@ public class prodottoB {
 	}
 
 
-	public String getIdProdotto() {
+	public String getId() {
 		return idProdotto;
 	}
-	public void setIdProdotto(String id) {
+	public void setId(String id) {
 		this.idProdotto = id;
 	}
 	public String getNome() {
