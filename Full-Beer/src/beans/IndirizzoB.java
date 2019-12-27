@@ -1,8 +1,8 @@
 package beans;
 
-public class indirizzoB {
+public class IndirizzoB {
 
-	public indirizzoB() {
+	public IndirizzoB() {
 		// TODO Auto-generated constructor stub
 	}
 private String username;

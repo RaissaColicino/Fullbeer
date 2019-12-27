@@ -2,22 +2,22 @@ package beans;
 /**
  * Questa classe modella gli elementi del carrello
  */
-public class carrelloItem {
+public class CarrelloItem {
 
 	/**costruttore carrelloItem*/
-	public carrelloItem(){
+	public CarrelloItem(){
 		
 		int qt = 1;
 	}
 /**
  * permette do ottenere la variabile d'istanza che moedella il prodotto*/
-	public prodottoB getProdotto() {
+	public ProdottoB getProdotto() {
 		return prodotto;
 	}
 	
 /**
  * permette di settare la variabile d'istanza che modella il prodotto*/	
-	public void setProdotto(prodottoB prodotto) {
+	public void setProdotto(ProdottoB prodotto) {
 		this.prodotto = prodotto;
 	}
 
@@ -34,13 +34,13 @@ public class carrelloItem {
 	 */
 	@Override
 	public boolean equals(Object item) {
-		if(!(item instanceof carrelloItem) || item==null)
+		if(!(item instanceof CarrelloItem) || item==null)
 			return false;
 		
-		carrelloItem carrelloItem=(carrelloItem) item;
+		CarrelloItem carrelloItem=(CarrelloItem) item;
 		
 		return prodotto.getId().equals(carrelloItem.getProdotto().getId());
 	}
 private int qt;
-private prodottoB prodotto; 
+private ProdottoB prodotto; 
 }

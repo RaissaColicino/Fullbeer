@@ -3,11 +3,11 @@ package beans;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Ordine {
+public class OrdineB {
 
-	public Ordine(){
+	public OrdineB(){
 		
-		composizione=new LinkedHashSet<Composizione>();
+		composizione=new LinkedHashSet<ComposizioneB>();
 	}
 	
 	public String getStato() {
@@ -50,15 +50,15 @@ public class Ordine {
 	}
 
 	//permette di aggiungere un prodotto nella composizione dell'ordine
-	public void addProdotto(composizioneB prodotto) {
+	public void addProdotto(ComposizioneB prodotto) {
 		composizione.add(prodotto);
 	}
 	//permette di modificare il valore della variabile d'istanza che modella la composizione dell'ordine
-	public void setComposizione(Set<composizioneB> composizione) {
+	public void setComposizione(Set<ComposizioneB> composizione) {
 		this.composizione = composizione;
 	}
 	//permette di ottenre il valore della variabile che modella la composizione dell'ordine
-	public Set<composizioneB> getComposizione() {
+	public Set<ComposizioneB> getComposizione() {
 		return composizione;
 	}
 	private int n_fattura;
@@ -66,7 +66,7 @@ public class Ordine {
 	private float importo;
 	private String username;
 	private String stato;
-	private Set<composizioneB> composizione;
+	private Set<ComposizioneB> composizione;
 	/**
 	 * Variabili statiche che descrivono i possibili stati di un ordine
 	 * Un ordine è attivo se stato=ELABORAZIONE oppure stato=SPEDIZIONE, altrimenti è chiuso

@@ -4,39 +4,39 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class catalogoB {
+public class CatalogoB {
 
-	public catalogoB() {
-		this.catalogo=new LinkedHashSet<prodottoB>();
+	public CatalogoB() {
+		this.catalogo=new LinkedHashSet<ProdottoB>();
 	}
 	
 //permette di ottenere il valore della variabile d'istanza catalogo
-public Collection<prodottoB> getCatalogo() {
+public Collection<ProdottoB> getCatalogo() {
 		return catalogo;
 	}
 
 //permette di settare il valore della variabile d'istanza catalogo
-public void setCatalogo(Set<prodottoB> catalogo) {
+public void setCatalogo(Set<ProdottoB> catalogo) {
 		this.catalogo = catalogo;
 	}
 
 //permette di aggiungere un prodotto al catalogo
-public void addProdotto(prodottoB prodotto){
+public void addProdotto(ProdottoB prodotto){
 	catalogo.add(prodotto);
 }
 
 //permette di rimuovere un prodotto dal catalogo
-public void removeProdotto(prodottoB prodotto){
+public void removeProdotto(ProdottoB prodotto){
 	catalogo.remove(prodotto);
 }
 
 //permette di ottenere un prodotto presente nel catalogo specificando il codice del prodottoù
-public prodottoB getProdotto(String codiceProdotto){
-	for(prodottoB p:catalogo)
+public ProdottoB getProdotto(String codiceProdotto){
+	for(ProdottoB p:catalogo)
 		if(p.getId().equals(codiceProdotto))
 			return p;
 	return null;
 	}
 
-private Set<prodottoB> catalogo;
+private Set<ProdottoB> catalogo;
 }

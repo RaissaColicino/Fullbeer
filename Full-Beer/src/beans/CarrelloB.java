@@ -11,25 +11,25 @@ public class CarrelloB {
 	/*** Costruttore***/
 		public CarrelloB(){
 			
-			carrello=new LinkedHashSet<carrelloItem>();
+			carrello=new LinkedHashSet<CarrelloItem>();
 		}
 		
 //permette di inserire un elemento nel carrello
-public void addProdotto(carrelloItem carrelloItem){
+public void addProdotto(CarrelloItem carrelloItem){
 	carrello.add(carrelloItem);
 }
 
 //permette di inserire un elemento nel carrello se già presente aumentandone la quantità
-public void reAddProdotto(carrelloItem carrelloItem){
-	for(carrelloItem item:carrello){
+public void reAddProdotto(CarrelloItem carrelloItem){
+	for(CarrelloItem item:carrello){
 		if(item.equals(carrelloItem))
 			item.setQt(item.getQt()+1);
 	}
 }
 
 //permette di ottenere un elemento del carrello specificandone il codice
-public carrelloItem getProdotto(String codiceProdotto){
-	for(carrelloItem item :carrello){
+public CarrelloItem getProdotto(String codiceProdotto){
+	for(CarrelloItem item :carrello){
 		if(item.getProdotto().getId().equals(codiceProdotto))
 			return item;
 	}
@@ -37,9 +37,9 @@ public carrelloItem getProdotto(String codiceProdotto){
 }
 
 //permette di rimuovere un elemento dal carrello
-public void removeProdotto(carrelloItem carrelloItem){
-	ArrayList<carrelloItem> array=new ArrayList<carrelloItem>();
-	for(carrelloItem item:carrello){
+public void removeProdotto(CarrelloItem carrelloItem){
+	ArrayList<CarrelloItem> array=new ArrayList<CarrelloItem>();
+	for(CarrelloItem item:carrello){
 		array.add(item);
 	}
 	for(int i=0; i<array.size();i++){
@@ -48,14 +48,14 @@ public void removeProdotto(carrelloItem carrelloItem){
 	}
 	svuotaCarrello(); //svuota il set per poterlo aggiornare
 	
-	for(carrelloItem item:array){
+	for(CarrelloItem item:array){
 		carrello.add(item);
 	}
 	
 }
 
 //permette di ottenere il valore della variabile d'istanza che modella il carrello
-public Set<carrelloItem> getCarrello(){
+public Set<CarrelloItem> getCarrello(){
 	return carrello;
 }
 
@@ -68,8 +68,8 @@ public Set<carrelloItem> getCarrello(){
 	 * Permette di verificare che un elemento sia gia presente nel carrello
 	 *  @return true se il prodotto è già nel carrello, altrimenti false
 	 */
-	public boolean contains(carrelloItem carrelloItem) {
-		for(carrelloItem item: carrello)
+	public boolean contains(CarrelloItem carrelloItem) {
+		for(CarrelloItem item: carrello)
 			if(item.equals(carrelloItem))
 				return true;
 
@@ -84,13 +84,13 @@ public Set<carrelloItem> getCarrello(){
 		return false;
 	}
 	//Permette di modificare il valore della variabile d'istanza carrello
-	public void setCarrello(Set<carrelloItem> carrello) {
+	public void setCarrello(Set<CarrelloItem> carrello) {
 		this.carrello=carrello;
 	}
 	
 //permette di aumentare o diminuire di un unità la quantità di un elemento nel carrello
 	public void modificaQT(String codiceProdotto, String action){
-		for(carrelloItem item:carrello){
+		for(CarrelloItem item:carrello){
 			if(item.getProdotto().getId().equals(codiceProdotto))
 				if(action.equals("plus"))
 					item.setQt(item.getQt()+1);
@@ -99,5 +99,5 @@ public Set<carrelloItem> getCarrello(){
 				}
 					}
 	}
- private Set<carrelloItem> carrello;
+ private Set<CarrelloItem> carrello;
 }

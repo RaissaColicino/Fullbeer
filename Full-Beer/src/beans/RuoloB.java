@@ -1,8 +1,8 @@
 package beans;
 
-public class ruoloB {
+public class RuoloB {
 
-	public ruoloB() {
+	public RuoloB() {
 		// TODO Auto-generated constructor stub
 	}
 private String username;

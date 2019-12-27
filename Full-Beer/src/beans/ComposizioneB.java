@@ -1,8 +1,8 @@
 package beans;
 
-public class composizioneB {
+public class ComposizioneB {
 
-	public composizioneB(){
+	public ComposizioneB(){
 		
 		
 		
