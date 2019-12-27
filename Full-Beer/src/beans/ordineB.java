@@ -1,8 +1,8 @@
 package beans;
 
-public class Ordine {
+public class ordineB {
 
-	public Ordine(){
+	public ordineB(){
 		
 		
 	}
