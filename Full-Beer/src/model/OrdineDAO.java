@@ -11,9 +11,9 @@ import com.sun.istack.internal.logging.Logger;
 
 import beans.OrdineB;
 
-public class OrdineM {
+public class OrdineDAO {
 	static Logger log=Logger.getLogger("OrdineModelDebugger", null);
-	public OrdineM() {
+	public OrdineDAO() {
 		// TODO Auto-generated constructor stub
 	}
 

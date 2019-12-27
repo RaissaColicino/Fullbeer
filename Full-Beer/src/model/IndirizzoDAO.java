@@ -8,10 +8,10 @@ import com.sun.istack.internal.logging.Logger;
 import beans.IndirizzoB;
 import beans.UtenteB;
 
-public class IndirizzoM {
+public class IndirizzoDAO {
 	static Logger log=Logger.getLogger("IndirizzoMDebugger", null);
 	
-	public IndirizzoM() {
+	public IndirizzoDAO() {
 		// TODO Auto-generated constructor stub
 	}
 

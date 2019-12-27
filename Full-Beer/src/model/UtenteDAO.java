@@ -4,10 +4,10 @@ import com.sun.istack.internal.logging.Logger;
 
 import beans.UtenteB;
 
-public class UtenteM {
+public class UtenteDAO {
 	static Logger log=Logger.getLogger("UtenteMDebugger", null);
 	
-	public UtenteM() {
+	public UtenteDAO() {
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -2,9 +2,9 @@ package model;
 
 import com.sun.istack.internal.logging.Logger;
 
-public class ComposizioneM {
+public class ComposizioneDAO {
 	static Logger log=Logger.getLogger("ComposizioneMDebugger", null);
-	public ComposizioneM() {
+	public ComposizioneDAO() {
 		// TODO Auto-generated constructor stub
 	}
 

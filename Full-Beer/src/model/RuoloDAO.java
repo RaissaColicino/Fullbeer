@@ -8,10 +8,10 @@ import com.sun.javafx.collections.MappingChange.Map;
 import beans.RuoloB;
 import beans.UtenteB;
 
-public class RuoloM {
+public class RuoloDAO {
 	static Logger log=Logger.getLogger("RuoloMDebugger", null);
 
-	public RuoloM() {
+	public RuoloDAO() {
 		// TODO Auto-generated constructor stub
 	}
 //permette di salvare un ruolo
