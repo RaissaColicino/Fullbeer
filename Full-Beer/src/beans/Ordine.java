@@ -50,15 +50,15 @@ public class Ordine {
 	}
 
 	//permette di aggiungere un prodotto nella composizione dell'ordine
-	public void addProdotto(Composizione prodotto) {
+	public void addProdotto(composizioneB prodotto) {
 		composizione.add(prodotto);
 	}
 	//permette di modificare il valore della variabile d'istanza che modella la composizione dell'ordine
-	public void setComposizione(Set<Composizione> composizione) {
+	public void setComposizione(Set<composizioneB> composizione) {
 		this.composizione = composizione;
 	}
 	//permette di ottenre il valore della variabile che modella la composizione dell'ordine
-	public Set<Composizione> getComposizione() {
+	public Set<composizioneB> getComposizione() {
 		return composizione;
 	}
 	private int n_fattura;
@@ -66,7 +66,7 @@ public class Ordine {
 	private float importo;
 	private String username;
 	private String stato;
-	private Set<Composizione> composizione;
+	private Set<composizioneB> composizione;
 	/**
 	 * Variabili statiche che descrivono i possibili stati di un ordine
 	 * Un ordine è attivo se stato=ELABORAZIONE oppure stato=SPEDIZIONE, altrimenti è chiuso

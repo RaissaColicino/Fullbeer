@@ -1,8 +1,8 @@
 package beans;
 
-public class Utente {
+public class utenteB {
 	
-	public Utente(){
+	public utenteB(){
 		
 			
 		}
