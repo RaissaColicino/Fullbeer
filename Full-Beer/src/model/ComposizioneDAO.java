@@ -25,18 +25,24 @@ public class ComposizioneDAO {
 		PreparedStatement preparedStatement=null;
 		
 		String insertSQL="insert into " + ComposizioneDAO.TABLE_NAME
-				+ " (ordinen_fattura, prodotto_codice, nome_prodotto, prezzo, quantita) "
+				+ " (nome_prodotto, prezzo, quantita, prodottoCodice, ordinen_fattura) "
 				+ "values (?, ?, ?, ?, ?)";
 
 		try {
 			connection=DriverManagerConnectionPool.getConnection();
 			preparedStatement=connection.prepareStatement(insertSQL);
-
-			preparedStatement.setInt(1, composizione.getN_fattura());
-			preparedStatement.setString(2, composizione.getProdottoCodice());
-			preparedStatement.setString(3, composizione.getNome_prodotto());
-			preparedStatement.setDouble(4, composizione.getPrezzo());
-			preparedStatement.setInt(6, composizione.getQuantità());
+			
+			
+			
+			preparedStatement.setString(1, composizione.getNome_prodotto());
+			preparedStatement.setDouble(2, composizione.getPrezzo());
+			preparedStatement.setInt(3, composizione.getQuantità());
+			preparedStatement.setString(4, composizione.getProdottoCodice());
+			preparedStatement.setInt(5, composizione.getN_fattura());
+			
+			
+			
+			
 		
 
 			preparedStatement.executeUpdate();
@@ -72,9 +78,9 @@ public class ComposizioneDAO {
 					while(rs.next()) {
 							ComposizioneB bean=new ComposizioneB();
 						
-							bean.setN_fattura(rs.getInt("ordine"));
-							bean.setProdottoCodice(rs.getString("prodotto"));
-							bean.setNome_prodotto(rs.getString("nomeprodotto"));
+							bean.setN_fattura(rs.getInt("ordinen_fattura"));
+							bean.setProdottoCodice(rs.getString("prodottoCodice"));
+							bean.setNome_prodotto(rs.getString("nome_prodotto"));
 							bean.setPrezzo(rs.getDouble("prezzo"));
 							bean.setQuantità(rs.getInt("quantita"));
 							
