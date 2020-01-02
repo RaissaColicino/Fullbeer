@@ -70,13 +70,12 @@ public class ComposizioneDAO {
 					while(rs.next()) {
 							ComposizioneB bean=new ComposizioneB();
 						
-							bean.setOrdine(rs.getString("ordine"));
-							bean.setProdotto(rs.getString("prodotto"));
-							bean.setNomeProdotto(rs.getString("nomeprodotto"));
-							bean.setPrezzoVen(rs.getDouble("prezzoven"));
-							bean.setIvaVen(rs.getInt("ivaven"));
-							bean.setQt(rs.getInt("qt"));
-							bean.setTaglia(rs.getString("taglia"));
+							bean.setN_fattura(rs.getInt("ordine"));
+							bean.setProdottoCodice(rs.getString("prodotto"));
+							bean.setNome_prodotto(rs.getString("nomeprodotto"));
+							bean.setPrezzo(rs.getDouble("prezzo"));
+							bean.setQuantità(rs.getInt("quantita"));
+							
 							
 							composizione.add(bean);
 					}
