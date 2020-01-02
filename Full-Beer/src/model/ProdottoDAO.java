@@ -103,7 +103,7 @@ public ProdottoB doRetrieveByCodice(String codice) throws SQLException{
 	}
 
 //permette di aggiornare(salvare) un prodotto
-public void doUpdate(ProdottoB prodotto) {
+public void doUpdate(ProdottoB prodotto) throws SQLException {
 	Connection connection= null;
 	PreparedStatement preparedStatement = null;
 
@@ -133,7 +133,7 @@ public void doUpdate(ProdottoB prodotto) {
 							preparedStatement.close();
 				}
 				finally{
-					DriverManagerConnectionPool.releaseConnection(connection)
+					DriverManagerConnectionPool.releaseConnection(connection);
 					}
 			}
 	
