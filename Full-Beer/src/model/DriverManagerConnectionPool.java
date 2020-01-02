@@ -1,4 +1,4 @@
-   package Model;
+   package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DriverMaagerConnectionPool  {
+public class DriverManagerConnectionPool  {
 
 	private static List<Connection> freeDbConnections;
 
@@ -38,23 +38,23 @@ public class DriverMaagerConnectionPool  {
 
 		if (!freeDbConnections.isEmpty()) {
 			connection = (Connection) freeDbConnections.get(0);
-			DriverMaagerConnectionPool.freeDbConnections.remove(0);
+			DriverManagerConnectionPool.freeDbConnections.remove(0);
 
 			try {
 				if (connection.isClosed())
-					connection = DriverMaagerConnectionPool.getConnection();
+					connection = DriverManagerConnectionPool.getConnection();
 			} catch (SQLException e) {
 				connection.close();
-				connection = DriverMaagerConnectionPool.getConnection();
+				connection = DriverManagerConnectionPool.getConnection();
 			}
 		} else 
-			connection = DriverMaagerConnectionPool.createDBConnection();		
+			connection = DriverManagerConnectionPool.createDBConnection();		
 		
 
 		return connection;
 	}
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
-		DriverMaagerConnectionPool.freeDbConnections.add(connection);
+		DriverManagerConnectionPool.freeDbConnections.add(connection);
 	}
 }
