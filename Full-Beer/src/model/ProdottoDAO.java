@@ -4,9 +4,9 @@ import com.sun.istack.internal.logging.Logger;
 
 import beans.ProdottoB;
 
-public class ProdottoM {
+public class ProdottoDAO {
 	static Logger log=Logger.getLogger("ProdottoMDebugger", null);
-	public ProdottoM() {
+	public ProdottoDAO() {
 		// TODO Auto-generated constructor stub
 	}
 	

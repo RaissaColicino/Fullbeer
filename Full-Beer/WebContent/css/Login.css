@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+
+.btnn {
+  background-color: black;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+ 
+}
+
+.btnn:hover {
+  opacity: 1;
+}
+
+.img_container{
+	padding: 20px;
+	text-align:center;
+	margin: 24px 0 12px 0;
+}
+
+.container{
+	font-size:25px;
+	text-align:center;
+	margin: 24px 0 12px 0;
+	padding: 20px;
+	
+}
+
+
+.input-c {
+  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: black;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-f {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-f:focus {
+  border: 2px solid dodgerblue;
+}
+
