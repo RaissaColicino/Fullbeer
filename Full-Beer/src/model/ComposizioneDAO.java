@@ -2,7 +2,9 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.sun.istack.internal.logging.Logger;
@@ -47,24 +49,26 @@ public class ComposizioneDAO {
 			finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
+		}
+		}
 		public 	Set<ComposizioneB> doRetrieveByOrdine(OrdineB ordine) throws SQLException{
-				LinkedHashSet<ComposizioneBean> composizione=new LinkedHashSet<ComposizioneBean>();
+				LinkedHashSet<ComposizioneB> composizione=new LinkedHashSet<ComposizioneB>();
 
 				Connection connection=null;
 				PreparedStatement preparedStatement=null;
 				
-				String selectSQL="select * from " + ComposizioneModel.TABLE_NAME + " where ordinen_fattura=?";
+				String selectSQL="select * from " + ComposizioneDAO.TABLE_NAME + " where ordinen_fattura=?";
 				
 
 				try {
 					connection=DriverManagerConnectionPool.getConnection();
 					preparedStatement=connection.prepareStatement(selectSQL);
-					preparedStatement.setString(1, ordine.getNumero());
+					preparedStatement.setInt(1, ordine.getN_fattura());
 
 					ResultSet rs=preparedStatement.executeQuery();
 
 					while(rs.next()) {
-							ComposizioneBean bean=new ComposizioneBean();
+							ComposizioneB bean=new ComposizioneB();
 						
 							bean.setOrdine(rs.getString("ordine"));
 							bean.setProdotto(rs.getString("prodotto"));
@@ -89,7 +93,6 @@ public class ComposizioneDAO {
 				
 				return composizione;
 			}
-		}
+		
 	}
 	
-}
