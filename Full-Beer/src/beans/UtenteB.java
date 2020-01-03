@@ -1,5 +1,9 @@
 package beans;
 
+import java.util.Set;
+
+import com.sun.javafx.collections.MappingChange.Map;
+
 public class UtenteB {
 	
 	public UtenteB(){
@@ -42,18 +46,29 @@ public class UtenteB {
 		this.password = password;
 	}
 	
-	public String getData_nascita() {
-		return data_nascita;
-	}
-	public void setData_nascita(String data_nascita) {
-		this.data_nascita = data_nascita;
-	}
-	
-	
+	 
+		public void setIndirizzi(Set<IndirizzoB> indirizzi) {
+			this.indirizzi=indirizzi;
+		}
+		public IndirizzoB getIndirizzo(String codice) {
+			for(IndirizzoB indirizzo: indirizzi)
+				if(indirizzo.getUsername()==codice)
+					return indirizzo;
+			
+			return null;
+		}
+		public void addIndirizzo(IndirizzoB indirizzo) {
+			indirizzi.add(indirizzo);
+		}
+		public void removeIndirizzo(IndirizzoB indirizzo) {
+			indirizzi.remove(indirizzo);
+		}
+		
 	private String nome; //variabile d'istanza
 	private String cognome; //variabile d'istanza
 	private String username; //variabile d'istanza
 	private String mail; //variabile d'istanza
 	private String password; //variabile d'istanza
-	private String data_nascita; //variabile d'istanza
+	private Set<IndirizzoB> indirizzi;
+	private Map<String, RuoloB> ruoli;
 }

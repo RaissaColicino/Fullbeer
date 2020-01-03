@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.istack.internal.logging.Logger;
+
 /**
  * Servlet implementation class Login
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	Logger log=Logger.getLogger("LoginDebugger", null);
+	String UTENTE="Utente";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,7 +30,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -35,7 +38,12 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		String redirectedPage="";
+		
+	
+	
 	}
 
 }
