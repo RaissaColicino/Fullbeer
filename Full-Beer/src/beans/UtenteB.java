@@ -1,8 +1,11 @@
 package beans;
 
 import java.util.Set;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
-import com.sun.javafx.collections.MappingChange.Map;
 
 public class UtenteB {
 	
@@ -64,6 +67,21 @@ public class UtenteB {
 			indirizzi.remove(indirizzo);
 		}
 		
+		public Map<String, RuoloB> getRuolo() {
+			return ruoli;
+		}
+		
+		public void setRuolo(Map<String, RuoloB> ruoli) {
+			this.ruoli = ruoli;
+		}
+		
+		public void addRuolo(RuoloB ruolo) {
+			 ruoli.put(""+ruolo.getRuolo(),ruolo);
+		}
+		
+		public void removeRuolo(RuoloB ruolo) {
+			ruoli.remove(ruolo.getRuolo());
+		}
 	private String nome; //variabile d'istanza
 	private String cognome; //variabile d'istanza
 	private String username; //variabile d'istanza

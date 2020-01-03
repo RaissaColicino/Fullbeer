@@ -7,6 +7,8 @@ public class RuoloB {
 	}
 private String username;
 private String ruolo;
+
+
 public String getUsername() {
 	return username;
 }
