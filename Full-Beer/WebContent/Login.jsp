@@ -38,7 +38,7 @@
 	  <div align ="center">
 	 <button type="submit" class=btnn>Login</button> 
 	 <br><br>
-	 <button type="submit" class=btnn>Registrati</button>
+	 <button type="button"  onclick="location.href='Registrazione.jsp'" class=btnn>Registrati</button>
 		</div>
 
 </form>

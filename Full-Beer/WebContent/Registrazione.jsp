@@ -18,9 +18,9 @@
 <form action="" style="max-width:500px;margin:auto">
   <h2><strong>Registrazione Fullbeer</strong></h2>
   
-  <div align="right" class="img_c">
+   <div align="right" class="img_c">
 		<img src="img/registrazione.jpg">
-	</div>
+	</div> 
  
   
     <div class="input-container">
