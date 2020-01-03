@@ -11,14 +11,14 @@ import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 
 import beans.ComposizioneB;
 import beans.OrdineB;
 
 public class OrdineDAO {
 	private static final String TABLE_NAME="ordine";
-	static Logger log=Logger.getLogger("OrdineDAODebugger", null);
+	static Logger log=Logger.getLogger("OrdineDAODebugger");
 	public OrdineDAO() {
 		// TODO Auto-generated constructor stub
 	}

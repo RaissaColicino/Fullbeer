@@ -8,15 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import com.sun.istack.internal.logging.Logger;
-
+import java.util.logging.Logger;
 import beans.ComposizioneB;
 import beans.OrdineB;
 
 public class ComposizioneDAO {
 	private static final String TABLE_NAME="composizione";
-	static Logger log=Logger.getLogger("ComposizioneDAODebugger", null);
+	static Logger log=Logger.getLogger("ComposizioneDAODebugger");
 	public ComposizioneDAO() {
 		// TODO Auto-generated constructor stub
 	}

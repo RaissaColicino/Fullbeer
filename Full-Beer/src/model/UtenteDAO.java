@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.sun.istack.internal.logging.Logger;
-
 import beans.UtenteB;
-
+import java.util.logging.Logger;
 public class UtenteDAO {
-	static Logger log=Logger.getLogger("UtenteDAODebugger", null);
+	static Logger log=Logger.getLogger("UtenteDAODebugger");
 	private static final String TABLE_NAME="utente";
 	public UtenteDAO() {
 		// TODO Auto-generated constructor stub

@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 
 import beans.IndirizzoB;
 import beans.UtenteB;
 
 public class IndirizzoDAO {
 	private static final String TABLE_NAME="indirizzo";
-	static Logger log=Logger.getLogger("IndirizzoMDebugger", null);
+	static Logger log=Logger.getLogger("IndirizzoMDebugger");
 	
 	public IndirizzoDAO() {
 		// TODO Auto-generated constructor stub

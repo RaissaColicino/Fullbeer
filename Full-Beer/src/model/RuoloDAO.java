@@ -6,17 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 import com.sun.javafx.collections.MappingChange.Map;
 
 import beans.RuoloB;
 import beans.UtenteB;
-
+import java.util.logging.*;
 public class RuoloDAO {
 	
 	private static final String TABLE_NAME="ruolo";
-	static Logger log=Logger.getLogger("RuoloDAODebugger", null);
+	static Logger log=Logger.getLogger("RuoloDAODebugger");
 
 	public RuoloDAO() {
 		

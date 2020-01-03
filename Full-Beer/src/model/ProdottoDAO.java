@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 
 import beans.ProdottoB;
 
 public class ProdottoDAO {
 	private static final String TABLE_NAME="prodotto";
-	static Logger log=Logger.getLogger("ProdottoMDebugger", null);
+	static Logger log=Logger.getLogger("ProdottoMDebugger");
 	
 	
 	public ProdottoDAO() {
