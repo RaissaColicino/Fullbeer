@@ -98,6 +98,6 @@ public class ComposizioneDAO {
 					}
 				}
 				
-				return composizione;;
+				return composizione;
 		}	
 }
