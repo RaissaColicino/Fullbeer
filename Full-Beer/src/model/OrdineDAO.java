@@ -94,21 +94,21 @@ public void modificaStato(OrdineB ordine, String stato) throws SQLException {
 }
 
 //permette di pttenere un ordine specificando il numero
-public OrdineB doRetrieveByNumero(String numero) throws SQLException {
+public OrdineB doRetrieveByNumero(int numero) throws SQLException {
 	
 	OrdineB bean=new OrdineB();
 	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
-	ComposizioneDAO composizioneModel=new ComposizioneDAO();
+	ComposizioneDAO composizioneDAO=new ComposizioneDAO();
 	
 	String selectSQL = "select * from " + OrdineDAO.TABLE_NAME + " where fattura=?";
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(selectSQL);
-		preparedStatement.setString(1, numero);
+		preparedStatement.setInt(1, numero);
 
 		ResultSet rs=preparedStatement.executeQuery();
 
@@ -118,8 +118,8 @@ public OrdineB doRetrieveByNumero(String numero) throws SQLException {
 			bean.setImporto(rs.getFloat("importo"));
 			bean.setUsername(rs.getString("username"));
 			bean.setStato(rs.getString("Stato"));
-			ComposizioneDAO composizioneDAO=null;
-			bean.setComposizione(composizioneDAO.doRetrieveByOrdine(bean));
+			ComposizioneDAO composizioneDAO1=null;
+			bean.setComposizione(composizioneDAO1.doRetrieveByOrdine(bean));
 		}
 	} 
 	finally {

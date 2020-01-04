@@ -16,7 +16,7 @@ public class ProdottoDAOStub {
 		}
 		
 		public Set<ProdottoB> doRetrieveAll(){
-			
+			log.info("Metodo: doRetrieveAll -> ottengo le birre");
 			LinkedHashSet<ProdottoB> catalogo= new LinkedHashSet<ProdottoB>();
 			log.info("Aggiungo prodotti ed eseguo simulazione");
 			
@@ -28,9 +28,32 @@ public class ProdottoDAOStub {
 			prodottoA.setQt(40);
 			prodottoA.setDescrizione("La birra Peroni è una birra lager italiana prodotta dall'omonimo birrificio a partire dal 1846. Dall'ottobre 2016 fa parte del gruppo giapponese Asahi Breweries. Viene prodotta negli stabilimenti del gruppo situati a Roma, Padova e Bari, mentre il malto proviene dalla Malteria Saplo di Pomezia.");
 			prodottoA.setImmagine("peroni.jpg");
+				
 			
 			
+			ProdottoB prodottoB= new ProdottoB();
 			
+			prodottoB.setId("002");
+			prodottoB.setNome("Nastro Azzurro");
+			prodottoB.setPrezzo(1.50);
+			prodottoB.setQt(40);
+			prodottoB.setDescrizione("La birra Nastro Azzurro è una birra lager italiana prodotta dall'omonimo birrificio a partire dal 1846. Dall'ottobre 2016 fa parte del gruppo giapponese Asahi Breweries. Viene prodotta negli stabilimenti del gruppo situati a Roma, Padova e Bari, mentre il malto proviene dalla Malteria Saplo di Pomezia.");
+			prodottoB.setImmagine("nastro.jpg");
+				
+			return catalogo;
+			}
+		
+		public ProdottoB doRetrieveByCodice(String codiceProdotto) {
+			CatalogoB catalogo=new CatalogoB();
+			catalogo.setCatalogo(doRetrieveAll());
 			
+			log.info("Cerco il prodotto");
+			for(ProdottoB prodotto: catalogo.getCatalogo()) {
+				if(prodotto.getId().equals(codiceProdotto))
+					return prodotto;
+			}
+			
+			return null;
 		}
+		
 }
