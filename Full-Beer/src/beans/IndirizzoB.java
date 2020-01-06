@@ -3,7 +3,7 @@ package beans;
 public class IndirizzoB {
 
 	public IndirizzoB() {
-		// TODO Auto-generated constructor stub
+		
 	}
 private String username;
 private String citta;
@@ -53,7 +53,7 @@ public void setCap(String cap) {
 
 @Override
 public String toString() {
-	return citta + ", " + via + " ";
+	return citta + ", " + via + ", " + cap + ", " + username;
 }
 
 }

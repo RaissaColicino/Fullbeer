@@ -20,10 +20,10 @@ public class IndirizzoDAOStub {
 		LinkedHashSet<IndirizzoB> indirizzi=new LinkedHashSet<IndirizzoB>();
 
 		IndirizzoB indirizzoA=new IndirizzoB();
-		indirizzoA.setUsername(user.getUsername());
-		indirizzoA.setCap("83040");
 		indirizzoA.setCittà("Montemarano");
 		indirizzoA.setVia("C/da Macchia del monte,14");
+		indirizzoA.setCap("83040");
+		indirizzoA.setUsername(user.getUsername());
 		indirizzi.add(indirizzoA);
 		
 		IndirizzoB indirizzoB=new IndirizzoB();
