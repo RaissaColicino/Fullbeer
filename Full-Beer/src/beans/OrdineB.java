@@ -10,12 +10,7 @@ public class OrdineB {
 		composizione=new LinkedHashSet<ComposizioneB>();
 	}
 	
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
-	}
+
 	public String getStato() {
 		return stato;
 	}
@@ -73,7 +68,6 @@ public class OrdineB {
 	private float importo;
 	private String username;
 	private String stato;
-	private String indirizzo;
 	private Set<ComposizioneB> composizione;
 	/**
 	 * Variabili statiche che descrivono i possibili stati di un ordine
