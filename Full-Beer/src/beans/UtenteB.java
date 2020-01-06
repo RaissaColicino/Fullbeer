@@ -11,7 +11,8 @@ public class UtenteB {
 	
 	public UtenteB(){
 		
-			
+		indirizzi=new LinkedHashSet<IndirizzoB>();
+		ruoli=new LinkedHashMap<String, RuoloB>();	
 		}
 	
 	public String getNome() {
