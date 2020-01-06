@@ -35,7 +35,7 @@ public class Ruolo extends HttpServlet {
 				redirectedPage="/OrdiniAttivi";
 			else if(permesso.equals(CATALOGO)) {
 				log.info("Vado alla pagina di gestione del catalogo");
-				redirectedPage="/GestioneCatalogo?tipo=Divisa&order=nome";
+				redirectedPage="/GestioneCatalogo";
 			}
 			else {
 				log.info("Vado alla Home Page");
