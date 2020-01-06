@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Logger;
-
-import Model.DriverMaagerConnectionPool;
-import Model.Product;
+import model.DriverManagerConnectionPool;
 import beans.ProdottoB;
-
+import java.util.LinkedHashSet;
+import java.util.Set;
 public class ProdottoDAO {
 	private static final String TABLE_NAME="prodotto";
 	static Logger log=Logger.getLogger("ProdottoMDebugger");
@@ -183,7 +181,7 @@ public Set <ProdottoB> doRetrieveAll() throws SQLException {
 	String selectSQL = "SELECT * FROM" + ProdottoDAO.TABLE_NAME;
 
 	try {
-		Connection connection = DriverManagerConnectionPool.getConnection();
+		 connection = DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(selectSQL);
 		
 		
