@@ -88,8 +88,8 @@ public class UtenteDAOStub {
 		log.info("Ottengo ruoli per root");
 		LinkedHashMap<String, RuoloB> ruoliRoot=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(root);
 		root.addRuolo(ruoliRoot.get("Utente"));
-		root.addRuolo(ruoliRoot.get("Catalogo"));
-		root.addRuolo(ruoliRoot.get("Ordini"));
+		root.addRuolo(ruoliRoot.get("GestoreCatalogo"));
+		root.addRuolo(ruoliRoot.get("GestoreOrdini"));
 		
 		log.info("Inserisco: " + root.getUsername() + ", " + root.getPassword());
 		users.put("" + root.getUsername(), root);
