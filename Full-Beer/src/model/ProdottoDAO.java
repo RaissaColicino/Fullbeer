@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import Model.DriverMaagerConnectionPool;
+import Model.Product;
 import beans.ProdottoB;
 
 public class ProdottoDAO {
@@ -170,4 +172,48 @@ public boolean doDelete(ProdottoB prodotto) throws SQLException {
 	
 		return result!=0;
 	}
+
+//funzione che permette di prelevare tutti i prodotti
+public Set <ProdottoB> doRetrieveAll() throws SQLException {
+	
+	LinkedHashSet<ProdottoB> prodotti = new LinkedHashSet<ProdottoB>();
+	Connection connection=null;
+	PreparedStatement preparedStatement=null;
+	
+	String selectSQL = "SELECT * FROM" + ProdottoDAO.TABLE_NAME;
+
+	try {
+		Connection connection = DriverManagerConnectionPool.getConnection();
+		preparedStatement=connection.prepareStatement(selectSQL);
+		
+		
+
+		ResultSet rs = preparedStatement.executeQuery();	
+		
+		while (rs.next()) {
+			ProdottoB bean= new ProdottoB();
+
+			bean.setId(rs.getString("codice"));
+			bean.setPrezzo(rs.getDouble("prezzo"));
+			bean.setNome(rs.getString("nome"));
+			bean.setDescrizione(rs.getString("descrizione"));
+			bean.setImmagine(rs.getString("img"));
+			bean.setQt(rs.getInt("qt"));
+			
+			prodotti.add(bean);
+				}
+			} 
+				finally {
+						
+						try {
+								if(preparedStatement!=null)
+									preparedStatement.close();
+					} 
+						finally {
+								DriverManagerConnectionPool.releaseConnection(connection);
+						}
+					}
+	
+							return prodotti;
+}
 }
