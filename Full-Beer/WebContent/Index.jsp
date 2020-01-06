@@ -10,5 +10,6 @@
 </head>
 <body>
 <h1>HELLO,</h1>
+	 <button type="button"  onclick="location.href='Logout'" class=btnn>Logout</button>
 </body>
 </html>
