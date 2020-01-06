@@ -123,7 +123,7 @@ private OrdineB createOrdine(UtenteB user, String username, int numero, String s
 	ordA.setUsername(user.getUsername());
 	ordA.setN_fattura(numero);
 	ordA.setStato(stato);
-	ordA.setIndirizzo(user.getIndirizzo(username));
+
 	
 	log.info("Gestisco le date");
 	ordA.setDate(generatoreSottomissione());
