@@ -53,6 +53,7 @@ public class UtenteB {
 		public void setIndirizzi(Set<IndirizzoB> indirizzi) {
 			this.indirizzi=indirizzi;
 		}
+		
 		public IndirizzoB getIndirizzo(String username) {
 			for(IndirizzoB indirizzo: indirizzi)
 				if(indirizzo.getUsername()==username)
@@ -60,6 +61,7 @@ public class UtenteB {
 			
 			return null;
 		}
+		
 		public void addIndirizzo(IndirizzoB indirizzo) {
 			indirizzi.add(indirizzo);
 		}

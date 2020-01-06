@@ -14,7 +14,7 @@
 <%@ include file="Nav_bar.jsp" %>
 </header>
 
-<form action="Login" method="post" style="max-width:500px;margin:auto">
+<form action="Login" method="post"  style="max-width:500px;margin:auto">
 	
 <h2 text-align="center"><strong>Accedi a Fullbeer</strong></h2>
 

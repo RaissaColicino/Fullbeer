@@ -20,7 +20,7 @@ public class UtenteDAOStub {
 		
 	}
 
-	public UtenteB validate(UtenteB user)throws SQLException {
+	public UtenteB validate(UtenteB user) {
 		log.info("Metodo: validate -> metodo: doRetrieveAll");
 		LinkedHashMap<String, UtenteB> users=(LinkedHashMap<String, UtenteB>) doRetrieveAll();
 		
@@ -36,7 +36,7 @@ public class UtenteDAOStub {
 		return null;
 	}
 
-	public Map<String, UtenteB> doRetrieveAll() throws SQLException{
+	public Map<String, UtenteB> doRetrieveAll(){
 		log.info("Metodo: doRetrieveAll -> UtenteDAOStub");
 		RuoloDAOStub ruoloDAO=new RuoloDAOStub();
 		IndirizzoDAOStub indirizzoDAO=new IndirizzoDAOStub();
