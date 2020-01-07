@@ -30,7 +30,7 @@ public void removeProdotto(ProdottoB prodotto){
 	catalogo.remove(prodotto);
 }
 
-//permette di ottenere un prodotto presente nel catalogo specificando il codice del prodottoù
+//permette di ottenere un prodotto presente nel catalogo specificando il codice del prodotto
 public ProdottoB getProdotto(String codiceProdotto){
 	for(ProdottoB p:catalogo)
 		if(p.getId().equals(codiceProdotto))

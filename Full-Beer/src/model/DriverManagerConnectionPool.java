@@ -24,14 +24,15 @@ public class DriverManagerConnectionPool  {
 		String ip = "localhost";
 		String port = "3306";
 		String db = "fullbeer_db";
-
-		
 		String username = "root";
 		String password = "antonio97";
 
-		newConnection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fullbeer_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",username,password);
-		// newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db, username, password);
+		
+		newConnection=DriverManager.getConnection("jdbc:mysql://"+ ip + ":" + port +"/"+ db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true"
+				+ "&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", username, password);
+
 		newConnection.setAutoCommit(false);
+		
 		return newConnection;
 	}
 
@@ -46,20 +47,21 @@ public class DriverManagerConnectionPool  {
 			try {
 				if (connection.isClosed())
 					connection = getConnection();
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) {
 				connection.close();
 				connection = getConnection();
-			
 			}
-		} else 
+		} 
+		else {
 			connection = createDBConnection();		
-		
+		}
 
 		return connection;
 	}
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
-		if(connection!= null)
-		freeDbConnections.add(connection);
+		if(connection != null) 
+			freeDbConnections.add(connection);
 	}
 }
