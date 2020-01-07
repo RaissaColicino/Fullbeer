@@ -172,7 +172,7 @@ public boolean doDelete(ProdottoB prodotto) throws SQLException {
 	}
 
 //funzione che permette di prelevare tutti i prodotti
-public Set <ProdottoB> doRetrieveAll() throws SQLException {
+public static Set <ProdottoB> doRetrieveAll() throws SQLException {
 	
 	LinkedHashSet<ProdottoB> prodotti = new LinkedHashSet<ProdottoB>();
 	Connection connection=null;
