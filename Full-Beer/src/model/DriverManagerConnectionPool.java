@@ -41,23 +41,25 @@ public class DriverManagerConnectionPool  {
 
 		if (!freeDbConnections.isEmpty()) {
 			connection = (Connection) freeDbConnections.get(0);
-			DriverManagerConnectionPool.freeDbConnections.remove(0);
+			freeDbConnections.remove(0);
 
 			try {
 				if (connection.isClosed())
-					connection = DriverManagerConnectionPool.getConnection();
+					connection = getConnection();
 			} catch (SQLException e) {
 				connection.close();
-				connection = DriverManagerConnectionPool.getConnection();
+				connection = getConnection();
+			
 			}
 		} else 
-			connection = DriverManagerConnectionPool.createDBConnection();		
+			connection = createDBConnection();		
 		
 
 		return connection;
 	}
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
-		DriverManagerConnectionPool.freeDbConnections.add(connection);
+		if(connection!= null)
+		freeDbConnections.add(connection);
 	}
 }

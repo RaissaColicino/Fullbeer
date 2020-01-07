@@ -143,9 +143,20 @@ public UtenteB doRetrieveByUsername(String username)throws SQLException {
 
 
 //permette di aggiornare i dati di un utente già memorizzato
-public void doUpdate(UtenteB utente)  throws SQLException {
+public boolean doUpdate(UtenteB utente)  throws SQLException {
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
+	
+	//la correttezza dell'username e quindi dell'utente è stato aggiunto dopo la fase di testing 
+int result=0;
+	log.info("doUpdate -> verifico correttezza username");
+	if(utente==null || utente.getUsername()==null || utente.getUsername().equals("")
+			|| utente.getPassword()==null || utente.getPassword().equals("")
+			|| utente.getNome()==null || utente.getNome().equals("")
+			|| utente.getCognome()==null || utente.getCognome().equals("")
+			|| utente.getMail()==null || utente.getMail().equals("")
+			|| doRetrieveByUsername(utente.getUsername())==null)
+		return false;
 	
 	String updateSQL="update " + UtenteDAO.TABLE_NAME + " "
 			   + " set nome=?, "
@@ -153,7 +164,6 @@ public void doUpdate(UtenteB utente)  throws SQLException {
 			   + " mail=?, "
 			   + " pasword=?, "
 			   + " username=?, "
-			 
 			   + " where username=?";
 
 	try {
@@ -181,13 +191,22 @@ public void doUpdate(UtenteB utente)  throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
+	log.info("UtenteModel -> terminato doUpdate");
+	
+	return (result!=0);
 }
 
 //permette di eliminare un utente
 public boolean doDelete(UtenteB utente)  throws SQLException {
+	log.info("UtenteModel -> doDelete");
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 
+	
+	if(utente==null || doRetrieveByUsername(utente.getUsername())==null)
+		return false;
+	
+	
 	int result=0;
 
 	String deleteSQL="delete from " + UtenteDAO.TABLE_NAME + " where username=?";
