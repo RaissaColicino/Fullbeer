@@ -64,7 +64,7 @@ public Set<IndirizzoB> doRetrieveByUtente(UtenteB utente) throws SQLException{
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
-	String selectSQL = "select * from " + IndirizzoDAO.TABLE_NAME + " where usr=?";
+	String selectSQL = "select * from " + IndirizzoDAO.TABLE_NAME + " where username=?";
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();

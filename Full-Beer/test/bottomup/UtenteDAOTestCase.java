@@ -18,31 +18,27 @@ public class UtenteDAOTestCase extends TestCase {
 
 		//Creo l'utente
 		utenteTest=new UtenteB();
-		utenteTest.setUsername("RaissaC");
-		utenteTest.setPassword("RaissaC");
-		utenteTest.setNome("Raissa");
-		utenteTest.setCognome("Colicino");
-		utenteTest.setMail("raissacolicino@gmail.it");
+		utenteTest.setUsername("Giovanni");
+		utenteTest.setPassword("Giovanni");
+		utenteTest.setNome("Giovanni");
+		utenteTest.setCognome("gamba");
+		utenteTest.setMail("gamba@gmail.com");
 		
 	}
 	
 	//Tests doSave
 	public void doSaveCorretto() throws SQLException {
 		utenteDAO.doSave(utenteTest);
-		
 		assertNotNull(utenteDAO.doRetrieveByUsername(utenteTest.getUsername()));
 	}
 	
 	public void doSaveErrato() throws SQLException {
 		UtenteB utenteErrato=new UtenteB();
-		
 		utenteDAO.doSave(utenteErrato);
-		
 		assertNull(utenteDAO.doRetrieveByUsername(utenteErrato.getUsername()));
 	}
-	//Fine test doSave
 	
-	//Tests validate
+	
 	public void validateCorretto() throws SQLException {
 		UtenteB validato=utenteDAO.validate(utenteTest);
 		
@@ -86,7 +82,7 @@ public class UtenteDAOTestCase extends TestCase {
 	
 	//Tests doDelete
 	public void doUpdateCorretto() throws SQLException {
-		utenteTest.setNome("Anna");
+		utenteTest.setNome("anna");
 		assertTrue(utenteDAO.doUpdate(utenteTest));
 	}
 	

@@ -15,9 +15,19 @@ public class UtenteDAO {
 	
 //funzionalità che permette di salvare un nuovo utente
 public void doSave(UtenteB utente) throws SQLException{
+	log.info("UtenteDao -> doSave");
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
+	log.info("verifica correttezza username");
+	
+	if(utente==null || utente.getUsername()==null || utente.getUsername().equals("")
+					|| utente.getPassword()==null || utente.getPassword().equals("")
+					|| utente.getNome()==null|| utente.getNome().equals("")
+					|| utente.getCognome()==null||utente.getCognome().equals("")
+					|| utente.getMail()==null || utente.getMail().equals(""))
+		
+			return;
 	String insertSQL="insert into " + UtenteDAO.TABLE_NAME
 			+ " (nome, cognome, mail, password_, username) "
 			+ "values (?, ?, ?, ?, ?)";
@@ -45,14 +55,23 @@ public void doSave(UtenteB utente) throws SQLException{
 		finally {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
+		
+		log.info("doSave controllo terminato");
 	}
 	}
 
 //permette di verificare che l'utente sia già registrato con delle specifiche credenziali
 public UtenteB validate(UtenteB utente) throws SQLException {
+	log.info("UtenteDAO-> validate");
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
+	log.info("validate-> verifica pre-condizione");
+	if(utente==null || utente.getUsername()==null || utente.getUsername().equals("")
+				   || utente.getPassword()==null || utente.getPassword().equals(""))
+			return null;
+	
+	RuoloDAO ruoloDAO = new RuoloDAO();
 	IndirizzoDAO indirizzoModel=new IndirizzoDAO();
 	
 	
@@ -67,7 +86,7 @@ public UtenteB validate(UtenteB utente) throws SQLException {
 		while (rs.next()) {
 			UtenteB bean=new UtenteB();
 			bean.setUsername(rs.getString("username"));
-			bean.setPassword(rs.getString("pwd"));
+			bean.setPassword(rs.getString("password_"));
 			
 			if(bean.getUsername().equals(utente.getUsername())
 					&& bean.getPassword().equals(utente.getPassword())) {
@@ -93,23 +112,31 @@ public UtenteB validate(UtenteB utente) throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
-	
+	log.info("validate utente non presente");
 	return null;
 }
 
 
 //permette di ottenere un utente specificando l'username
 public UtenteB doRetrieveByUsername(String username)throws SQLException {
+	log.info("utenteDAO->doRetrieveByUsername");
 	UtenteB bean=new UtenteB();
 
+	
+	log.info("controllo username corretto");
+	if(username==null || username.equals(""))
+			return null;
+	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
+	RuoloDAO ruoloDAO = new RuoloDAO();
 	IndirizzoDAO indirizzoModel=new IndirizzoDAO();
 	
 	
 	String selectSQL = "select * from " + UtenteDAO.TABLE_NAME + " where username=?";
 
+	
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(selectSQL);
@@ -119,7 +146,7 @@ public UtenteB doRetrieveByUsername(String username)throws SQLException {
 
 		while (rs.next()) {
 			bean.setUsername(rs.getString("username"));
-			bean.setPassword(rs.getString("password"));
+			bean.setPassword(rs.getString("password_"));
 			bean.setNome(rs.getString("nome"));
 			bean.setCognome(rs.getString("cognome"));
 			bean.setMail(rs.getString("mail"));
@@ -137,18 +164,21 @@ public UtenteB doRetrieveByUsername(String username)throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
-	
+	log.info("doRetrieveByUsername eseguito e terminato");
 	return bean;
+
 }
 
 
 //permette di aggiornare i dati di un utente già memorizzato
 public boolean doUpdate(UtenteB utente)  throws SQLException {
+	log.info("utenteDAO -> doUpdate");
+	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
-	//la correttezza dell'username e quindi dell'utente è stato aggiunto dopo la fase di testing 
-int result=0;
+	int result=0;
+	
 	log.info("doUpdate -> verifico correttezza username");
 	if(utente==null || utente.getUsername()==null || utente.getUsername().equals("")
 			|| utente.getPassword()==null || utente.getPassword().equals("")
@@ -162,8 +192,8 @@ int result=0;
 			   + " set nome=?, "
 			   + " cognome=?, "
 			   + " mail=?, "
-			   + " pasword=?, "
-			   + " username=?, "
+			   + " password_=?, "
+			   + " username=? "
 			   + " where username=?";
 
 	try {
@@ -176,9 +206,9 @@ int result=0;
 		preparedStatement.setString(4, utente.getPassword());
 		preparedStatement.setString(5, utente.getUsername());
 		
-		preparedStatement.setString(8, utente.getUsername());
+		preparedStatement.setString(6, utente.getUsername());
 
-		preparedStatement.executeUpdate();
+		result=preparedStatement.executeUpdate();
 
 		connection.commit();
 	} 
@@ -191,14 +221,14 @@ int result=0;
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
-	log.info("UtenteModel -> terminato doUpdate");
+	log.info("doUpdate eseguito e terminato");
 	
 	return (result!=0);
 }
 
 //permette di eliminare un utente
 public boolean doDelete(UtenteB utente)  throws SQLException {
-	log.info("UtenteModel -> doDelete");
+	log.info("UtenteDAO -> doDelete");
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 
@@ -227,7 +257,8 @@ public boolean doDelete(UtenteB utente)  throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
+	log.info("doDelete eseguito e terminato");
+	return (result!=0);
 	
-	return result!=0;
 }
 }
