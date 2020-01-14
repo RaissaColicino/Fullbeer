@@ -39,8 +39,8 @@ public class Catalogo extends HttpServlet {
 		synchronized(session){
 		
 			ProdottoDAOStub prodottoDAO= new ProdottoDAOStub();
-		log.info("Ottendo i prodotti per il Catalogo");
-		CatalogoB catalogo= new CatalogoB();
+	     	log.info("Ottendo i prodotti per il Catalogo");
+		    CatalogoB catalogo= new CatalogoB();
 		
 
 			}
