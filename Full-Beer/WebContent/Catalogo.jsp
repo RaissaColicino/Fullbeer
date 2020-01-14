@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="model.*" %>
+    <%@page import="beans.*" %>
+    <%@page import="java.util.*" %>
+    
+     
+	
+	
+ 
+<%! CatalogoB catalogo; 
+	HashSet<ProdottoB> catalogoa;
+%>
+
+<%
+	String UTENTE="Utente";
+	session.setAttribute("ruolo", UTENTE);
+	catalogo=(CatalogoB) session.getAttribute("Catalogo");
+	catalogoa=(HashSet<ProdottoB>) catalogo.getCatalogo();
+%>
+		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,9 +38,14 @@
  <!-- ContenitoreFOto-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="drink">
     <div class="w3-quarter">
-      <img src="img/chimay.png" style="width:50%">
+  <!--      <img src="img/chimay.png" style="width:50%">
       <h3>Chimay birra scozzese</h3>
- <!--     
+      -->
+	<% for(ProdottoB p: catalogoa){%>
+		
+<h1>    <%=		p.getNome()%></h1>
+	<% }%>
+        				<!--     
     </div>
     <div class="w3-quarter">
       <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
