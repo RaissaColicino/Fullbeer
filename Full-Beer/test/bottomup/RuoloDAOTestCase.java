@@ -1,11 +1,8 @@
 package bottomup;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
-
-
-import org.junit.Test;
 import junit.framework.TestCase;
-import static org.junit.Assert.*;
+
 
 
 import beans.RuoloB;
@@ -13,40 +10,83 @@ import beans.UtenteB;
 import model.RuoloDAO;
 
 
-public class RuoloDAOTestCase {
+public class RuoloDAOTestCase extends TestCase {
 	
 	public RuoloDAOTestCase(String nome) {
-		super();
+		super(nome);
 	}
-	public void doRetrieveByUtente() throws SQLException {
-		RuoloDAO ruoloDAO=new RuoloDAO();
+	
+	
+	public void setUp() {
+		ruoloDAO = new RuoloDAO();
+	}
+	
+	public void doRetrieveByUtenteCorretto() throws SQLException {
 		
-		UtenteB user=new UtenteB();
-		user.setUsername("root");
 		
-		LinkedHashMap<String, RuoloB> map=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(user);
 		
-		assertFalse(map.isEmpty());
+		UtenteB user= new UtenteB();
+		user.setUsername("RaissaC");
+		
+		
+		LinkedHashMap<String, RuoloB> ruoli= (LinkedHashMap<String, RuoloB>) RuoloDAO.doRetrieveByUtente(user);
+		
+		assertFalse(ruoli.isEmpty());
+		assertNotNull(ruoli);
+	}
+	
+	
+	public void doRetrieveByUtenteErrato() throws SQLException {	
+		//Ottengo i ruoli dell'utente
+		LinkedHashMap<String, RuoloB> ruoli=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(null);
+		
+		assertNull(ruoli);
 	}
 
 	
-	public void doSave() throws SQLException {
-		RuoloDAO ruoloDAO=new RuoloDAO();
+	public void doSaveCorretto() throws SQLException {
+	
 		
 		UtenteB user=new UtenteB();
-		user.setUsername("GiovanniGambale");
+		user.setUsername("VincenzaC");
 		
-		LinkedHashMap<String, RuoloB> map=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(user);
-		int size=map.size();
+		
 		
 		RuoloB ruolo=new RuoloB();
-		ruolo.setUsername("GiovanniGambale");
+		ruolo.setUsername("VincenzaC");
 		ruolo.setRuolo("GestoreCatalogo");
 		
 		ruoloDAO.doSave(ruolo);
 		
-		LinkedHashMap<String, RuoloB> saveMap=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(user);
+		LinkedHashMap<String, RuoloB> ruoli=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(user);
 		
-		assertTrue(saveMap.size()>size);
+		assertNotNull(ruoli);
+		assertFalse(ruoli.isEmpty());
+		assertTrue(ruoli.containsKey(ruolo.getRuolo()));
+		
 	}
+	
+	
+	public void doSaveErrato() throws SQLException {
+		//Creo l'utente
+		UtenteB user=new UtenteB();
+		user.setUsername("GiovanniG");
+		
+		//Creo ruolo da salvare
+		RuoloB ruolo=new RuoloB();
+		ruolo.setUsername("");
+		ruolo.setRuolo("");
+		
+		//Salvo il ruolo
+		
+		ruoloDAO.doSave(ruolo);
+		
+		//Ottengo i ruoli
+		LinkedHashMap<String, RuoloB> ruoli=(LinkedHashMap<String, RuoloB>) ruoloDAO.doRetrieveByUtente(user);
+		
+		assertFalse(ruoli.containsKey(ruolo.getRuolo()));
+	
+	
+}
+	private RuoloDAO ruoloDAO;
 }

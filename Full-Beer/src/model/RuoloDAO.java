@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
-import com.sun.javafx.collections.MappingChange.Map;
+
 
 import beans.RuoloB;
 import beans.UtenteB;
-import java.util.logging.*;
+
 public class RuoloDAO {
 	
 	private static final String TABLE_NAME="ruolo";
@@ -28,7 +29,14 @@ public class RuoloDAO {
 			Connection connection=null;
 			PreparedStatement preparedStatement=null;
 		
-			String insertSQL="insert into" + RuoloDAO.TABLE_NAME+"tipo"+"username"+"values(?,?)";
+			log.info("RuoloModel -> verifica correttezza di ruolo da salvare");
+			
+			if(ruolo==null || ruolo.getUsername()==null || ruolo.getUsername().equals("")
+						   || ruolo.getRuolo()==null || ruolo.getRuolo().equals(""))
+
+						return ;
+			
+			String insertSQL="insert into " + RuoloDAO.TABLE_NAME+ "(tipo, username) values (?, ?)";
 		
 			try{
 					connection=DriverManagerConnectionPool.getConnection();
@@ -68,15 +76,21 @@ public class RuoloDAO {
 
 		//HashMap associa ad ogni chiave(nel nostro caso String) un valore (il ruolo)
 
-		public Map<String, RuoloB> doRetrieveByUtente(UtenteB utente) throws SQLException{
+		public static Map<String, RuoloB> doRetrieveByUtente(UtenteB utente) throws SQLException{
 	
 			log.info("RuoloDAO -> doRetrieveByUtente");
 			LinkedHashMap<String, RuoloB> ruoli =new LinkedHashMap<String, RuoloB>();
 
+			log.info("RuoloDAO-> verifica correttezza username dell' utente");
+			
+			if(utente==null || utente.getUsername()==null || utente.getUsername().equals(""))
+			
+					return null;
+			
 			Connection connection=null;
 			PreparedStatement preparedStatement=null;
 			
-			String selectSQL="select * from"+RuoloDAO.TABLE_NAME+"where username=?";
+			String selectSQL="select * from " + RuoloDAO.TABLE_NAME + " where username=?";
 			
 				try{
 					 	connection=DriverManagerConnectionPool.getConnection();
@@ -92,7 +106,7 @@ public class RuoloDAO {
 					 						bean.setUsername(rs.getString("username"));
 					 						
 					 						
-											ruoli.put(""+bean.getRuolo(),bean);
+											ruoli.put("" + bean.getRuolo(),bean);
 					 		}
 					 			
 					} 
@@ -108,7 +122,7 @@ public class RuoloDAO {
 											}
 										
 									log.info("Ho ottenuto i ruoli, ruoli vuota: " + ruoli.isEmpty());
-			
-										return (Map<String, RuoloB>) ruoli;
+							
+										return ruoli;
 		}
 	}
