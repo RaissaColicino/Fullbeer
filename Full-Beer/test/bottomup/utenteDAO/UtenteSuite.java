@@ -1,5 +1,5 @@
   
-package bottomup;
+package bottomup.utenteDAO;
 
 import junit.framework.*;
 import junit.textui.TestRunner;

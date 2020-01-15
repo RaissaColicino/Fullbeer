@@ -1,4 +1,4 @@
-package bottomup;
+package bottomup.ruoloDAO;
 import junit.framework.*;
 import junit.textui.TestRunner;
 
