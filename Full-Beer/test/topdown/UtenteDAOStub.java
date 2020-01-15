@@ -96,4 +96,19 @@ public class UtenteDAOStub {
 
 		return users;
 	}
+	public UtenteB doRetrieveByUsername(String username) {
+		log.info("Metodo: doRetrieveByUsername -> metodo: doRetrieveAll");
+		LinkedHashMap<String, UtenteB> users=(LinkedHashMap<String, UtenteB>) doRetrieveAll();
+		
+		log.info("Comincio scorrimento");
+		for(UtenteB utente: users.values()) {
+			if(utente.getUsername().equals(username)) {
+				log.info("utente restituito: " + utente.getUsername());
+				
+				return utente;
+			}
+		}
+		
+		return null;
+	}
 }

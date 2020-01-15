@@ -29,13 +29,13 @@ public Set<OrdineB> doRetrieveAll() throws SQLException {
 	UtenteDAOStub utenteDAO=new UtenteDAOStub();
 	LinkedHashMap<String, UtenteB> utenti=(LinkedHashMap<String, UtenteB>) utenteDAO.doRetrieveAll();
 	
-	OrdineB ordineA=createOrdine(utenti.get("root"), "root", 000001, ELABORAZIONE);	
+	OrdineB ordineA=createOrdine(utenti.get("root"), "root", "000001", ELABORAZIONE);	
 	ordini.add(ordineA);
 	
-	OrdineB ordineB=createOrdine(utenti.get("AntonioG"), "AntonioG", 000002, SPEDIZIONE);	
+	OrdineB ordineB=createOrdine(utenti.get("AntonioG"), "AntonioG", "000002", SPEDIZIONE);	
 	ordini.add(ordineB);
 	
-	OrdineB ordineC=createOrdine(utenti.get("RaissaC"), "RaissaC", 000003, CONSEGNATO);	
+	OrdineB ordineC=createOrdine(utenti.get("RaissaC"), "RaissaC", "000003", CONSEGNATO);	
 	ordini.add(ordineC);
 	
 	return ordini;
@@ -56,7 +56,7 @@ public Set<OrdineB> doRetrieveByUtente(UtenteB utente) throws SQLException {
 
 
 
-public OrdineB doRetrieveByNumero(int numero) throws SQLException {
+public OrdineB doRetrieveByNumero(String numero) throws SQLException {
 	LinkedHashSet<OrdineB> ordini=(LinkedHashSet<OrdineB>) doRetrieveAll();
 	
 	log.info("doRetrieveByNumero -> procedo all'ottenimento dell'ordine");
@@ -118,7 +118,7 @@ public String generatoreConsegna() {
 
 
 //metodo per la simulazione di ordini nel DataBase
-private OrdineB createOrdine(UtenteB user, String username, int numero, String stato) {
+private OrdineB createOrdine(UtenteB user, String username, String numero, String stato) {
 	OrdineB ordA=new OrdineB();
 	ordA.setUsername(user.getUsername());
 	ordA.setN_fattura(numero);

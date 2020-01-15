@@ -36,7 +36,7 @@ public class ComposizioneDAO {
 			preparedStatement.setDouble(2, composizione.getPrezzo());
 			preparedStatement.setInt(3, composizione.getQuantità());
 			preparedStatement.setString(4, composizione.getProdottoCodice());
-			preparedStatement.setInt(5, composizione.getN_fattura());
+			preparedStatement.setString(5, composizione.getN_fattura());
 			
 			
 			
@@ -69,14 +69,14 @@ public class ComposizioneDAO {
 				try {
 					connection=DriverManagerConnectionPool.getConnection();
 					preparedStatement=connection.prepareStatement(selectSQL);
-					preparedStatement.setInt(1, ordine.getN_fattura());
+					preparedStatement.setString(1, ordine.getN_fattura());
 
 					ResultSet rs=preparedStatement.executeQuery();
 
 					while(rs.next()) {
 							ComposizioneB bean=new ComposizioneB();
 						
-							bean.setN_fattura(rs.getInt("ordinen_fattura"));
+							bean.setN_fattura(rs.getString("ordinen_fattura"));
 							bean.setProdottoCodice(rs.getString("prodottoCodice"));
 							bean.setNome_prodotto(rs.getString("nome_prodotto"));
 							bean.setPrezzo(rs.getDouble("prezzo"));

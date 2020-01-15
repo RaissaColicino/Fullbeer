@@ -8,10 +8,10 @@ public class ComposizioneB {
 		
 	}
 	
-	public int getN_fattura() {
+	public String getN_fattura() {
 		return n_fattura;
 	}
-	public void setN_fattura(int n_fattura) {
+	public void setN_fattura(String n_fattura) {
 		this.n_fattura = n_fattura;
 	}
 
@@ -47,7 +47,7 @@ public class ComposizioneB {
 		this.quantità = quantità;
 	}
 
-	private int n_fattura;
+	private String n_fattura;
 	private String prodotto_codice;
 	private String nome_prodotto;
 	private double prezzo;

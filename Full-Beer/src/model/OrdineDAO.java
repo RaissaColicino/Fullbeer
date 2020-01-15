@@ -38,7 +38,7 @@ public void doSave(OrdineB ordine) throws SQLException {
 		connection=DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(insertSQL);
 
-		preparedStatement.setInt(1, ordine.getN_fattura());
+		preparedStatement.setString(1, ordine.getN_fattura());
 		preparedStatement.setString(2, ordine.getDate());
 		preparedStatement.setDouble(3, ordine.getImporto());
 		preparedStatement.setString(4, ordine.getUsername());
@@ -78,7 +78,7 @@ public void modificaStato(OrdineB ordine, String stato) throws SQLException {
 		preparedStatement=connection.prepareStatement(updateSQL);
 		
 		preparedStatement.setString(1, stato);
-		preparedStatement.setInt(2, ordine.getN_fattura());
+		preparedStatement.setString(2, ordine.getN_fattura());
 		
 		preparedStatement.executeUpdate();
 	} 
@@ -113,7 +113,7 @@ public OrdineB doRetrieveByNumero(int numero) throws SQLException {
 		ResultSet rs=preparedStatement.executeQuery();
 
 		while (rs.next()) {
-			bean.setN_fattura(rs.getInt("fattura"));
+			bean.setN_fattura(rs.getString("fattura"));
 			bean.setDate(rs.getString("data"));
 			bean.setImporto(rs.getFloat("importo"));
 			bean.setUsername(rs.getString("username"));
@@ -177,7 +177,7 @@ public Set<OrdineB> doRetrieveIfAttivi(String order) throws SQLException{
 
 		while (rs.next()) {
 			OrdineB bean=new OrdineB();
-			bean.setN_fattura(rs.getInt("fattura"));
+			bean.setN_fattura(rs.getString("fattura"));
 			bean.setDate(rs.getString("data"));
 			bean.setImporto(rs.getFloat("importo"));
 			bean.setUsername(rs.getString("username"));
@@ -225,7 +225,7 @@ public Set<OrdineB> doRetrieveAll(String order) throws SQLException{
 		while (rs.next()) {
 			OrdineB bean=new OrdineB();
 
-			bean.setN_fattura(rs.getInt("fattura"));
+			bean.setN_fattura(rs.getString("fattura"));
 			bean.setDate(rs.getString("data"));
 			bean.setImporto(rs.getInt("importo"));
 			bean.setUsername(rs.getString("username"));
