@@ -13,7 +13,7 @@ public class OrdineSuite {
 		suite.addTest(new OrdineDAOTestCase("doRetrieveByNumero"));
 		suite.addTest(new OrdineDAOTestCase("doRetrieveByUtente"));
 		suite.addTest(new OrdineDAOTestCase("doRetrieveIfAttivi"));
-		suite.addTest(new OrdineDAOTestCase("aggiornaStato"));
+		suite.addTest(new OrdineDAOTestCase("modificaStato"));
 		
 		return suite;
 	}

@@ -26,6 +26,8 @@ public class OrdineDAO {
 
 //permette di salvare un ordine
 public void doSave(OrdineB ordine) throws SQLException {
+	log.info("OrdineDAO->doSave");
+	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
@@ -33,11 +35,11 @@ public void doSave(OrdineB ordine) throws SQLException {
 	if(ordine==null || ordine.getN_fattura()==null ||ordine.getN_fattura().equals("")
 					|| ordine.getStato()==null ||ordine.getStato().equals("")
 					|| ordine.getDate()==null ||ordine.getDate().equals("")
-					||ordine.getImporto()<1
 					||ordine.getUsername()==null ||ordine.getUsername().equals("")
-					||ordine.getComposizione()==null)
+					||ordine.getImporto()<1||ordine.getComposizione()==null)
 		return ;
-	ComposizioneDAO composizioneModel=new ComposizioneDAO();
+	
+	ComposizioneDAO composizioneDAO=new ComposizioneDAO();
 	
 	String insertSQL="insert into " + OrdineDAO.TABLE_NAME
 			+ " (fattura, data, importo, username, Stato) "
@@ -54,9 +56,11 @@ public void doSave(OrdineB ordine) throws SQLException {
 		preparedStatement.setString(5, ordine.getStato());
 		
 		preparedStatement.executeUpdate();
+		connection.commit();
 		
+		log.info("doSave -> ordine salvato, procedo a salvare la composizione dell'ordine");
 		for(ComposizioneB comp: ordine.getComposizione()) {
-			composizioneModel.doSave(comp);
+			composizioneDAO.doSave(comp);
 		}
 		
 		connection.commit();
@@ -70,6 +74,7 @@ public void doSave(OrdineB ordine) throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
+	log.info("OrdineDAO -> doSave terminato");
 }	
 
 
@@ -100,6 +105,7 @@ public void modificaStato(OrdineB ordine) throws SQLException {
 		preparedStatement.setString(2, ordine.getN_fattura());
 		
 		preparedStatement.executeUpdate();
+		connection.commit();
 	} 
 	finally {
 		try {
@@ -138,12 +144,12 @@ public OrdineB doRetrieveByNumero(String numero) throws SQLException {
 		while (rs.next()) {
 			bean.setN_fattura(rs.getString("fattura"));
 			bean.setDate(rs.getString("data"));
-			bean.setImporto(rs.getFloat("importo"));
+			bean.setImporto(rs.getDouble("importo"));
 			bean.setUsername(rs.getString("username"));
 			bean.setStato(rs.getString("Stato"));
-			ComposizioneDAO composizioneDAO1=null;
-			bean.setComposizione(composizioneDAO1.doRetrieveByOrdine(bean));
-		}
+			
+			bean.setComposizione(composizioneDAO.doRetrieveByOrdine(bean));
+			}
 	} 
 	finally {
 		try {
@@ -228,7 +234,7 @@ public Set<OrdineB> doRetrieveAll() throws SQLException{
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
-	
+	ComposizioneDAO composizioneDAO=new ComposizioneDAO();
 	
 	String selectSQL="select * from " + OrdineDAO.TABLE_NAME;
 	
@@ -247,7 +253,8 @@ public Set<OrdineB> doRetrieveAll() throws SQLException{
 			bean.setImporto(rs.getInt("importo"));
 			bean.setUsername(rs.getString("username"));
 			bean.setStato(rs.getString("Stato"));
-			ComposizioneDAO composizioneDAO = null;
+			
+		
 			bean.setComposizione(composizioneDAO.doRetrieveByOrdine(bean));
 			
 			ordini.add(bean);
