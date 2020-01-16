@@ -25,6 +25,15 @@ public void doSave(IndirizzoB indirizzo) throws SQLException {
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
+	log.info("doSave -> verica correttezza");
+	
+	if(indirizzo ==null || indirizzo.getUsername()==null || indirizzo.getUsername().equals("")
+						|| indirizzo.getVia()==null|| indirizzo.getVia().equals("")
+						|| indirizzo.getCap()==null|| indirizzo.getCap().equals("")
+						|| indirizzo.getCitta()==null || indirizzo.getCitta().equals(""))
+		
+				return ;
+	log.info("esecuzione query");
 	String insertSQL="insert into " + IndirizzoDAO.TABLE_NAME
 			+ " (via, cap, citta, username) "
 			+ "values (?, ?, ?, ?)";
@@ -51,15 +60,24 @@ public void doSave(IndirizzoB indirizzo) throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
+		log.info("IndirizzoDAO-> doSave Terminato");
 }
 	
 	
 
-//permette di ottenere tutti gli indirizzi di un utente
+
+/*
+ * permette di ottenere tutti gli indirizzi di un utente
+ */
 public Set<IndirizzoB> doRetrieveByUtente(UtenteB utente) throws SQLException{
+	
+	log.info("IndirizzoDAO-> doRetriveByUtente");
 	LinkedHashSet<IndirizzoB> indirizzi=new LinkedHashSet<IndirizzoB>();
 
+	log.info("verifica correttezza username riferito all'utente");
 	
+	if(utente==null || utente.getUsername()==null || utente.getUsername().equals(""))
+		return null;
 	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
@@ -94,16 +112,23 @@ public Set<IndirizzoB> doRetrieveByUtente(UtenteB utente) throws SQLException{
 		}
 	}
 	
+	log.info("IndirizzoDAO -> doRetrieveByUtente è terminato");
 	return indirizzi ;
 
 }
 
-//permette di cancellare un indirizzo
+/*
+ * permette di cancellare un indirizzo
+ */
 public boolean doDelete(IndirizzoB indirizzo)throws SQLException {
-	
+	log.info("IndirizzoDAO->doDelete");
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
-
+	
+	log.info("verifica correttezza indirizzo");
+	if(indirizzo==null)
+		return false;
+	
 	int result=0;
 
 	String deleteSQL="delete from " + IndirizzoDAO.TABLE_NAME + " where username=?";
@@ -124,7 +149,7 @@ public boolean doDelete(IndirizzoB indirizzo)throws SQLException {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
-	
+		log.info("IndirizzoDAO-> doDelete terminato");
 	return result!=0;
 }
 

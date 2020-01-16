@@ -24,11 +24,23 @@ public class ProdottoDAO {
 	
 	//permette di salvare un nuovo prodotto
 public void doSave(ProdottoB prodotto) throws SQLException {
+		log.info("ProdottoDAO-> doSave");
+		
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		
-		String insertSQL="insert into" + ProdottoDAO.TABLE_NAME
-				+ " (codice, prezzo, nome, descrizione, img, qt,)"
+		log.info("doSave-> PreCondizione");
+		if(prodotto==null || prodotto.getId()==null|| prodotto.getId().equals("")
+						  || prodotto.getNome()==null || prodotto.getNome().equals("")
+						  || prodotto.getDescrizione()==null || prodotto.getDescrizione().equals("")
+						  || prodotto.getImmagine()==null|| prodotto.getImmagine().equals("")
+						  || prodotto.getQt()<1 || prodotto.getPrezzo()<1)
+						
+			return;
+		
+		
+			String insertSQL=" insert into " + ProdottoDAO.TABLE_NAME
+				+ " (codice, prezzo, nome, descrizione, img, qt)"
 				+ "values (?, ?, ?, ?, ?, ?)";
 
 	
@@ -59,31 +71,39 @@ public void doSave(ProdottoB prodotto) throws SQLException {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+		log.info("ProdottoDAO -> doSaveTerminato");
 	}
 //permette di ottenere un prodotto in base al suo codice
-public ProdottoB doRetrieveByCodice(String codice) throws SQLException{
+public ProdottoB doRetrieveByCodice(String b) throws SQLException{
+	log.info("ProdottoDAO -> doRetrieveByCodice");
 	
 	ProdottoB bean= new ProdottoB();
+	
+	log.info("doRetrieveByCodice -> verifica PreCondizione");
+	if(b==null || b.equals(""))
+		return null;
+	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
-	String selectSQL="select * from"+ ProdottoDAO.TABLE_NAME + "where codice=?";
+	
+	String selectSQL="select * from "+ ProdottoDAO.TABLE_NAME + " where codice=?";
 	
 	try{
-	connection=DriverManagerConnectionPool.getConnection();
-	preparedStatement=connection.prepareStatement(selectSQL);
-	preparedStatement.setString(1, codice);
+			connection=DriverManagerConnectionPool.getConnection();
+			preparedStatement=connection.prepareStatement(selectSQL);
+			preparedStatement.setString(1, b);
 
-	ResultSet rs=preparedStatement.executeQuery();
+			ResultSet rs=preparedStatement.executeQuery();	
 	
-	while(rs.next()){
+			while(rs.next()){
 		
-					bean.setId(rs.getString("codice"));
-					bean.setPrezzo(rs.getDouble("prezzo"));
-					bean.setNome(rs.getString("nome"));
-					bean.setDescrizione(rs.getString("descrizione"));
-					bean.setImmagine(rs.getString("img"));
-					bean.setQt(rs.getInt("qt"));
+								bean.setId(rs.getString("codice"));
+								bean.setPrezzo(rs.getDouble("prezzo"));
+								bean.setNome(rs.getString("nome"));
+								bean.setDescrizione(rs.getString("descrizione"));
+								bean.setImmagine(rs.getString("img"));
+								bean.setQt(rs.getInt("qt"));
 		}
 	
 	}finally{
@@ -103,11 +123,24 @@ public ProdottoB doRetrieveByCodice(String codice) throws SQLException{
 	}
 
 //permette di aggiornare(salvare) un prodotto
-public void doUpdate(ProdottoB prodotto) throws SQLException {
+public boolean doUpdate(ProdottoB prodotto) throws SQLException {
+	log.info("ProdottoDAO->doUpdate");
+	
 	Connection connection= null;
 	PreparedStatement preparedStatement = null;
 
-	String updateSQL= "update"+ProdottoDAO.TABLE_NAME+"prezzo=?,"+"nome=?,"+"descrizione=?,"+"img=?,"+"qt=?"+"where codice=?";
+	log.info("doUpdate: verifica PreCondizione");
+	if(prodotto==null || prodotto.getId()==null|| prodotto.getId().equals("")
+			  || prodotto.getNome()==null || prodotto.getNome().equals("")
+			  || prodotto.getDescrizione()==null || prodotto.getDescrizione().equals("")
+			  || prodotto.getImmagine()==null|| prodotto.getImmagine().equals("")
+			  || prodotto.getQt()<1 || prodotto.getPrezzo()<1
+			  || doRetrieveByCodice(prodotto.getId())==null)
+			  
+			  return false;
+	int result=0;
+	
+	String updateSQL= "update "+ ProdottoDAO.TABLE_NAME + " " + "set codice=?,"+" prezzo=?,"+" nome=?,"+" descrizione=?,"+" img=?,"+ " qt=?"+" where codice=?";
 	
 	try{
 			connection=DriverManagerConnectionPool.getConnection();
@@ -120,8 +153,9 @@ public void doUpdate(ProdottoB prodotto) throws SQLException {
 			preparedStatement.setString(4, prodotto.getDescrizione());
 			preparedStatement.setString(5, prodotto.getImmagine());
 			preparedStatement.setInt(6, prodotto.getQt());
-		
-			preparedStatement.executeUpdate();
+			preparedStatement.setString(7, prodotto.getId());
+			result=preparedStatement.executeUpdate();
+			connection.commit();
 	} 
 			
 			finally{
@@ -136,19 +170,30 @@ public void doUpdate(ProdottoB prodotto) throws SQLException {
 					DriverManagerConnectionPool.releaseConnection(connection);
 					}
 			}
+	log.info("ProdottoDAO -> doUpdate terminato");
 	
-	
+	return (result!=0);
 	}
 
 //permette di eliminare un prodotto
 public boolean doDelete(ProdottoB prodotto) throws SQLException {
+		log.info("ProdottoDAO->doDelete");
 	
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
+		log.info("verifica PreCondizione");
+		if(prodotto==null || prodotto.getId()==null|| prodotto.getId().equals("")
+				  || prodotto.getNome()==null || prodotto.getNome().equals("")
+				  || prodotto.getDescrizione()==null || prodotto.getDescrizione().equals("")
+				  || prodotto.getImmagine()==null|| prodotto.getImmagine().equals("")
+				  || prodotto.getQt()<1 || prodotto.getPrezzo()<1
+				  || doRetrieveByCodice(prodotto.getId())==null)
+		return false;
+		
 		int result=0;
 
-	String deleteSQL="delete from " + ProdottoDAO.TABLE_NAME + " where codice=?";
+	String deleteSQL=" delete from " + ProdottoDAO.TABLE_NAME + " where codice=?";
 
 		try {
 			connection=DriverManagerConnectionPool.getConnection();
@@ -167,18 +212,23 @@ public boolean doDelete(ProdottoB prodotto) throws SQLException {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
-	
-		return result!=0;
+		log.info("ProdottoDAO-> doDeleteTerminato");
+		
+		return (result!=0);
 	}
 
 //funzione che permette di prelevare tutti i prodotti
 public static Set <ProdottoB> doRetrieveAll() throws SQLException {
+	log.info("ProdottoDAO->doRetrieveAll");
 	
 	LinkedHashSet<ProdottoB> prodotti = new LinkedHashSet<ProdottoB>();
+	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
-	String selectSQL = "SELECT * FROM" + ProdottoDAO.TABLE_NAME;
+	
+	
+	String selectSQL = "SELECT * FROM " + ProdottoDAO.TABLE_NAME;
 
 	try {
 		 connection = DriverManagerConnectionPool.getConnection();
