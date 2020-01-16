@@ -26,7 +26,7 @@ public class ComposizioneDAOTestCase extends TestCase {
 		
 		//Creo un ordine
 		OrdineB ordine=new OrdineB();
-		ordine.setN_fattura("000002");
+		ordine.setN_fattura("000005");
 		ordine.setStato(OrdineB.ELABORAZIONE);
 		ordine.setUsername("antonioga");
 		ordine.setImporto(99.99);
