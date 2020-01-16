@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 import beans.ComposizioneB;
 import beans.OrdineB;
+import beans.UtenteB;
 
 public class OrdineDAO {
 	private static final String TABLE_NAME="ordine";
@@ -28,11 +29,19 @@ public void doSave(OrdineB ordine) throws SQLException {
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 	
+	log.info("doSave -> verifio pre-condizioni");
+	if(ordine==null || ordine.getN_fattura()==null ||ordine.getN_fattura().equals("")
+					|| ordine.getStato()==null ||ordine.getStato().equals("")
+					|| ordine.getDate()==null ||ordine.getDate().equals("")
+					||ordine.getImporto()<1
+					||ordine.getUsername()==null ||ordine.getUsername().equals("")
+					||ordine.getComposizione()==null)
+		return ;
 	ComposizioneDAO composizioneModel=new ComposizioneDAO();
 	
 	String insertSQL="insert into " + OrdineDAO.TABLE_NAME
-			+ " (fattura, data, importo, username, Stato, prodotto) "
-			+ "values (?, ?, ?, ?, ?, ?)";
+			+ " (fattura, data, importo, username, Stato) "
+			+ "values (?, ?, ?, ?, ?)";
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
@@ -65,10 +74,20 @@ public void doSave(OrdineB ordine) throws SQLException {
 
 
 //permette di modificare lo stato di un ordine
-public void modificaStato(OrdineB ordine, String stato) throws SQLException {
+public void modificaStato(OrdineB ordine) throws SQLException {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
-
+	
+	
+	log.info("aggiornaStato -> verifico pre-condizioni");
+	if(ordine==null || ordine.getN_fattura()==null || ordine.getN_fattura().equals("")
+			|| ordine.getStato()==null || ordine.getStato().equals("")
+			|| doRetrieveByNumero(ordine.getN_fattura())==null)
+		return;
+	
+	
+	
+	log.info("aggiornaStato -> eseguo query");
 	String updateSQL="update " + OrdineDAO.TABLE_NAME + " "
 				   + " set Stato=? "
 				   + " where fattura=?";
@@ -77,7 +96,7 @@ public void modificaStato(OrdineB ordine, String stato) throws SQLException {
 		connection=DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(updateSQL);
 		
-		preparedStatement.setString(1, stato);
+		preparedStatement.setString(1, ordine.getStato());
 		preparedStatement.setString(2, ordine.getN_fattura());
 		
 		preparedStatement.executeUpdate();
@@ -94,9 +113,13 @@ public void modificaStato(OrdineB ordine, String stato) throws SQLException {
 }
 
 //permette di pttenere un ordine specificando il numero
-public OrdineB doRetrieveByNumero(int numero) throws SQLException {
+public OrdineB doRetrieveByNumero(String numero) throws SQLException {
 	
 	OrdineB bean=new OrdineB();
+	
+	log.info("doRetrieveByNumero -> verifico che il  numero sia corretto");
+	if(numero==null || numero.equals(""))
+		return null;
 	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
@@ -108,7 +131,7 @@ public OrdineB doRetrieveByNumero(int numero) throws SQLException {
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
 		preparedStatement=connection.prepareStatement(selectSQL);
-		preparedStatement.setInt(1, numero);
+		preparedStatement.setString(1, numero);
 
 		ResultSet rs=preparedStatement.executeQuery();
 
@@ -152,7 +175,7 @@ public String generatoreSottomissione() {
 
 
 //permette di ottenere gli ordini attivi
-public Set<OrdineB> doRetrieveIfAttivi(String order) throws SQLException{
+public Set<OrdineB> doRetrieveIfAttivi() throws SQLException{
 	LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 
 	
@@ -163,9 +186,6 @@ public Set<OrdineB> doRetrieveIfAttivi(String order) throws SQLException{
 	
 	String selectSQL="select * from " + OrdineDAO.TABLE_NAME + " where Stato=? and stato=?";
 	
-	if (order!=null && !order.equals("")) {
-		selectSQL+=" order by " + order;
-	}
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
@@ -202,19 +222,16 @@ public Set<OrdineB> doRetrieveIfAttivi(String order) throws SQLException{
 
 
 
-public Set<OrdineB> doRetrieveAll(String order) throws SQLException{
+public Set<OrdineB> doRetrieveAll() throws SQLException{
 	LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 	
 	Connection connection=null;
 	PreparedStatement preparedStatement=null;
 
-	ComposizioneDAO composizioneModel=new ComposizioneDAO();
+	
 	
 	String selectSQL="select * from " + OrdineDAO.TABLE_NAME;
 	
-	if (order!=null && !order.equals("")) {
-		selectSQL+=" order by " + order;
-	}
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
@@ -244,6 +261,59 @@ public Set<OrdineB> doRetrieveAll(String order) throws SQLException{
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
 	}
+	
+	return ordini;
+}
+
+public Set<OrdineB> doRetrieveByUtente(UtenteB utente) throws SQLException {
+	log.info("OrdineModel -> doRetrieveByUtente");
+	LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
+	
+	log.info("doRetrieveByUtente -> verifico pre-condizioni");
+	if(utente==null || utente.getUsername()==null || utente.getUsername().equals(""))
+		return null;
+	
+	Connection connection=null;
+	PreparedStatement preparedStatement=null;
+
+	ComposizioneDAO composizioneDAO=new ComposizioneDAO();
+	
+	log.info("doRetrieveByUtente -> eseguo query");
+	String selectSQL="select * from " + OrdineDAO.TABLE_NAME + " where username=?";
+	
+
+
+	try {
+		connection=DriverManagerConnectionPool.getConnection();
+		preparedStatement=connection.prepareStatement(selectSQL);
+		preparedStatement.setString(1, utente.getUsername());
+
+		ResultSet rs=preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			OrdineB bean=new OrdineB();
+
+			bean.setN_fattura(rs.getString("fattura"));
+			bean.setDate(rs.getString("data"));
+			bean.setImporto(rs.getInt("importo"));
+			bean.setUsername(rs.getString("username"));
+			bean.setStato(rs.getString("Stato"));
+			
+			log.info("doRetrieveByUtente -> ottengo composizione ordine");
+			bean.setComposizione(composizioneDAO.doRetrieveByOrdine(bean));
+			
+			ordini.add(bean);
+		}
+	} 
+	finally {
+		try {
+			if (preparedStatement != null)
+				preparedStatement.close();
+		} finally {
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	}
+	log.info("OrdineModel -> doRetrieveByUtente terminato");
 	
 	return ordini;
 }

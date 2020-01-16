@@ -35,11 +35,11 @@ public class OrdineB {
 		this.date = date;
 	}
 
-	public float getImporto() {
+	public double getImporto() {
 		return importo;
 	}
 
-	public void setImporto(float importo) {
+	public void setImporto(double importo) {
 		this.importo = importo;
 	}
 
@@ -65,7 +65,7 @@ public class OrdineB {
 	}
 	private String n_fattura;
 	private String date;
-	private float importo;
+	private double importo;
 	private String username;
 	private String stato;
 	private Set<ComposizioneB> composizione;
