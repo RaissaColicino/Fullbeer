@@ -23,7 +23,7 @@ public class OrdineDAOStub {
 public OrdineDAOStub() {
 		
 	}
-public Set<OrdineB> doRetrieveAll() throws SQLException {	
+public Set<OrdineB> doRetrieveAll() {	
 	LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 	
 	UtenteDAOStub utenteDAO=new UtenteDAOStub();
@@ -42,7 +42,7 @@ public Set<OrdineB> doRetrieveAll() throws SQLException {
 }
 
 
-public Set<OrdineB> doRetrieveByUtente(UtenteB utente) throws SQLException {
+public Set<OrdineB> doRetrieveByUtente(UtenteB utente)  {
 	LinkedHashSet<OrdineB> ordini=(LinkedHashSet<OrdineB>) doRetrieveAll();
 	
 	LinkedHashSet<OrdineB> ordiniUtente=new LinkedHashSet<OrdineB>();
@@ -56,7 +56,7 @@ public Set<OrdineB> doRetrieveByUtente(UtenteB utente) throws SQLException {
 
 
 
-public OrdineB doRetrieveByNumero(String numero) throws SQLException {
+public OrdineB doRetrieveByNumero(String numero)  {
 	LinkedHashSet<OrdineB> ordini=(LinkedHashSet<OrdineB>) doRetrieveAll();
 	
 	log.info("doRetrieveByNumero -> procedo all'ottenimento dell'ordine");
@@ -79,7 +79,7 @@ public void doSave(OrdineB ordine) {
 
 
 
-public Set<OrdineB> doRetrieveIfAttivi(String order) throws SQLException {
+public Set<OrdineB> doRetrieveIfAttivi(String order)  {
 	LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 	
 	log.info("metodo: doRetrieveIfAttivi -> metodo: doCount -> ottengo gli ordini per la generazione del numero");
@@ -143,4 +143,9 @@ private OrdineB createOrdine(UtenteB user, String username, String numero, Strin
 	
 	return ordA;
 }
+
+public void modificaStato(OrdineB ordine) {
+	
+}
+
 }

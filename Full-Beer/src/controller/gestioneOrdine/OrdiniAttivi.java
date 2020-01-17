@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  */
 @WebServlet("/OrdiniAttivi")
 public class OrdiniAttivi extends HttpServlet {
+	OrdineDAOStub ordiniDAO;
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("OrdiniAttiviDebugger");
     public OrdiniAttivi() {
@@ -34,7 +35,7 @@ public class OrdiniAttivi extends HttpServlet {
 		if(order==null)
 			order="sottomissione";
 		synchronized(session) {
-			OrdineDAOStub ordiniDAO=new OrdineDAOStub();
+			 ordiniDAO=new OrdineDAOStub();
 			
 			log.info("Ottengo gli ordini attivi");
 			LinkedHashSet<OrdineB> ordiniAttivi=(LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi(order);

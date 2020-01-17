@@ -64,23 +64,17 @@ public class Ordine extends HttpServlet {
 				
 				if(toDo.equals(GESTORE)) {
 					log.info("Ottengo tutti gli ordini poichè l'utente è gestore degli ordini");
-					try {
+					
 						ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveAll();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}							
+											
 				}
 				else {
 					UtenteB utente=(UtenteB) session.getAttribute("userLogged");
 					
 					log.info("Ottengo solo gli ordini dell'utente");
-					try {
+					
 						ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveByUtente(utente);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}					
+									
 				}
 				
 				session.setAttribute("Ordini", ordini);
