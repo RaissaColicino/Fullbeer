@@ -62,10 +62,7 @@ public class SottomissioneOrdine extends HttpServlet {
 					log.info("Sottomissione ordine -> ottengo i dati dalla richiesta");
 					String indirizzo=request.getParameter("scelta-indirizzo");
 					log.info("Indirizzo: " + indirizzo);
-					String metodo=request.getParameter("scelta-metpag");
-					log.info("Metodo di pagamento: " + metodo);
-					if(indirizzo.equalsIgnoreCase("Scegli un indirizzo di spedizione")
-							|| metodo.equalsIgnoreCase("Scegli un metodo di pagamento")) {
+					if(indirizzo.equalsIgnoreCase("Scegli un indirizzo di spedizione")){
 						redirectedPage="/Acquisto.jsp";
 						response.sendRedirect(request.getContextPath() + redirectedPage);
 					}

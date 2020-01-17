@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<header>
+<%@ include file="Nav_bar.jsp" %>
+</header>
+
 <p><%=p.getNome() %></p>
 <p><%=p.getPrezzo() %></p>
 <p><%=p.getDescrizione()%></p>

@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="model.*" %>
+    <%@page import="controller.*" %>
     <%@page import="beans.*" %>
     <%@page import="java.util.*" %>
     
-     
-	
-	
- 
 <%! CatalogoB catalogo; 
 	HashSet<ProdottoB> catalogoa;
 %>
-
 <%
 	String UTENTE="Utente";
 	session.setAttribute("ruolo", UTENTE);
@@ -30,63 +26,23 @@
 <title>Catalogo</title>
 </head>
 <body>
-
 <header>
 <%@ include file="Nav_bar.jsp" %>
 </header>
-<div class="container_photo"></div>
+
+	<% for(ProdottoB p: catalogoa){%>
+		<div class="container_photo"></div>
  <!-- ContenitoreFOto-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="drink">
     <div class="w3-quarter">
-  <!--      <img src="img/chimay.png" style="width:50%">
-      <h3>Chimay birra scozzese</h3>
-      -->
-	<% for(ProdottoB p: catalogoa){%>
-		
-<h1>    <%=		p.getNome()%></h1>
+     <img src="img/<%=p.getImmagine()%>" style="width:50%">
+  			   <h3><%=p.getNome()%></h3>
+  			   <h3><%=p.getPrezzo()%></h3>
+  			   
+  	<a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a><br>
+	<a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a>
 	<% }%>
-        				<!--     
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
-      <h3>Let Me Tell You About This Steak</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/cherries.jpg" alt="Cherries" style="width:100%">
-      <h3>Cherries, interrupted</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-      <p>What else?</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
-      <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-  </div>-->
-  
-  <!-- Second Photo Grid
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">
-      <h3>All I Need Is a Popsicle</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/salmon.jpg" alt="Salmon" style="width:100%">
-      <h3>Salmon For Your Skin</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich, A Real Classic</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="/w3images/croissant.jpg" alt="Croissant" style="width:100%">
-      <h3>Le French</h3>
-      <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-  </div> -->
+        				
+   
 </body>
 </html>

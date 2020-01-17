@@ -29,22 +29,25 @@ public class SchedaProdotto extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
+		
 		synchronized(session) {
 			
 			log.info("Scheda prodotto -> ottengo il codice del prodotto da mostrare dalla richiesta");
-			String codiceProdotto=request.getParameter("codProd");
+			String codiceProdotto=request.getParameter("id");
 			
 			ProdottoDAOStub prodottoDAO=new ProdottoDAOStub();
 			
 			log.info("Scheda prodotto -> ottengo il prodotto da mostrare");
 			ProdottoB prodottoDaMostrare=prodottoDAO.doRetrieveByCodice(codiceProdotto);
-			if(prodottoDaMostrare!=null) {		
+			System.out.println(prodottoDaMostrare);
+			if(prodottoDaMostrare!=null){		
 			
 				log.info("Scheda prodotto -> aggiungo il prodotto da mostrare alla sessione");
 				session.setAttribute("ProdottoDaMostrare", prodottoDaMostrare);
 			}
 		
 		}
+		
 		RequestDispatcher view=request.getRequestDispatcher("SchedaProdotto.jsp");
 		view.forward(request, response);
 	}

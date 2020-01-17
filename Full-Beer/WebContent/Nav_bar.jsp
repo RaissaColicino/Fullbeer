@@ -17,7 +17,7 @@
 
 	<ul class="header_menu">	
 		<li class="header_menu_item"><a href="Home.jsp">HomePage</a></li>
-		<li class="header_menu_item"><a href="Prodotto.jsp">Birre</a></li>
+		<li class="header_menu_item"><a href="Catalogo.jsp">Birre</a></li>
 	    <li class="header_menu_item"><a href="ChiSiamo.jsp">Chi siamo</a></li>
 		<li class="header_menu_item"><a href="AreaUtente.jsp">Area Utente</a></li>
 		<li class="header_menu_item"><a href="Carrello.jsp">Carrello</a></li>

@@ -67,7 +67,13 @@ session.setAttribute("userAuth", true);
 session.setAttribute("ruolo", UTENTE);
 session.setAttribute("user", user);
 
-redirectedPage="/Index.jsp";
+String pp=(String) session.getAttribute("previousPage");
+if(pp!=null && !pp.equals("")) {
+	redirectedPage=pp;
+	session.removeAttribute("previousPage");
+}
+else
+redirectedPage="/HomePgage.jsp";
 }
 else {
 session.setAttribute("userAuth", false);

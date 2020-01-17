@@ -55,11 +55,10 @@ public class UtenteDAOStub {
 		
 		
 		log.info("Ottengo indirizzi per Antonio");
-		
 		LinkedHashSet<IndirizzoB> indirizziAntonio=(LinkedHashSet<IndirizzoB>) indirizzoDAO.doRetrieveByUtente(antonio);
-		System.out.println(indirizziAntonio);
+		
 		for(IndirizzoB indirizzo: indirizziAntonio){
-			System.out.println(indirizzo);
+			
 			antonio.addIndirizzo(indirizzo);
 		}
 		

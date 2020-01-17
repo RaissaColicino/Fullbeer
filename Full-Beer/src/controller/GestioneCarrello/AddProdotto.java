@@ -39,7 +39,7 @@ public class AddProdotto extends HttpServlet {
 				session.setAttribute("Carrello", carrello);
 			}
 			log.info("Ottengo codice prodotto dalla richiesta");
-			String codiceProdotto=request.getParameter("prodotto");
+			String codiceProdotto=request.getParameter("id");
 			
 			log.info("procedo ottenendo il catalogo");
 			CatalogoB catalogo=(CatalogoB) session.getAttribute("Catalogo");

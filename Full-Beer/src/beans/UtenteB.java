@@ -52,6 +52,9 @@ public class UtenteB {
 		public void setIndirizzi(Set<IndirizzoB> indirizzi) {
 			this.indirizzi=indirizzi;
 		}
+		public Set<IndirizzoB> getIndirizzi() {
+			return indirizzi;
+		}
 		
 		public IndirizzoB getIndirizzo(String username) {
 			for(IndirizzoB indirizzo: indirizzi)

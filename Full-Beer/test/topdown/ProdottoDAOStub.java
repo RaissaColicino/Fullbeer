@@ -52,12 +52,13 @@ public class ProdottoDAOStub {
 			catalogo.setCatalogo(doRetrieveAll());
 			
 			log.info("Cerco il prodotto");
-			for(ProdottoB prodotto: catalogo.getCatalogo()) {
+			for(ProdottoB prodotto: catalogo.getCatalogo())
+			{
 				if(prodotto.getId().equals(codiceProdotto))
 					return prodotto;
 			}
 			
-			return null;
+			 return null;
 		}
 		
 }
