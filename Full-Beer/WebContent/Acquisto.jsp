@@ -8,9 +8,7 @@
 	if((userIn==null) || (!userIn.booleanValue())){
 		session.setAttribute("previousPage", "/Acquisto.jsp");
 		response.sendRedirect(request.getContextPath() + "/Login.jsp");
-	}
-	
-		else{
+	}else{
   		UtenteB user=(UtenteB) session.getAttribute("userLogged");
   		LinkedHashSet<IndirizzoB> indirizzi=(LinkedHashSet<IndirizzoB>) user.getIndirizzi();
   		%>

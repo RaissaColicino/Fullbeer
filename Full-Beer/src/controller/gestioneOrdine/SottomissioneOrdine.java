@@ -42,6 +42,7 @@ public class SottomissioneOrdine extends HttpServlet {
 		synchronized(session) {
 			log.info("Sottomissione ordine -> controllo che l'utente sia autenticato");
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
+			
 			if((userAuth==null) || (!userAuth.booleanValue())) {
 				redirectedPage="/Login.jsp";
 				response.sendRedirect(request.getContextPath() + redirectedPage);
@@ -75,9 +76,8 @@ public class SottomissioneOrdine extends HttpServlet {
 						ordine.setUsername(user.getUsername());
 						ordine.setStato(OrdineDAOStub.ELABORAZIONE);
 						ordine.setDate(ordineDAO.generatoreSottomissione());
-					
 						
-						float totale=0;
+						double totale=0;
 						log.info("Sottomissione ordine -> uso i prodotti nel carrello per creare la composizione dell'ordine");
 						for(CarrelloItem item: carrello.getCarrello()) {
 							log.info("Sottomissione ordine -> creo la composizone dell'ordine");

@@ -65,7 +65,7 @@ if(user!=null) {
 log.info("utente loggato: " + user.getUsername() + ", " + user.getPassword());
 session.setAttribute("userAuth", true);
 session.setAttribute("ruolo", UTENTE);
-session.setAttribute("user", user);
+session.setAttribute("userLogged", user);
 
 String pp=(String) session.getAttribute("previousPage");
 if(pp!=null && !pp.equals("")) {
