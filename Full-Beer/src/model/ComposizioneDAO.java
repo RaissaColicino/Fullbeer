@@ -22,6 +22,14 @@ public class ComposizioneDAO {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		
+		log.info("doSave -> verifico pre-condizioni");
+		if(composizione==null || composizione.getN_fattura()==null || composizione.getN_fattura().equals("")
+				|| composizione.getProdottoCodice()==null || composizione.getProdottoCodice().equals("")
+				|| composizione.getNome_prodotto()==null || composizione.getNome_prodotto().equals("")
+				|| composizione.getPrezzo()<1 ||  composizione.getQuantità()<1)
+				
+			return;
+		
 		String insertSQL="insert into " + ComposizioneDAO.TABLE_NAME
 				+ " (nome_prodotto, prezzo, quantita, prodottoCodice, ordinen_fattura) "
 				+ "values (?, ?, ?, ?, ?)";
@@ -59,7 +67,11 @@ public class ComposizioneDAO {
 		}
 		public 	Set<ComposizioneB> doRetrieveByOrdine(OrdineB ordine) throws SQLException{
 				LinkedHashSet<ComposizioneB> composizione=new LinkedHashSet<ComposizioneB>();
-
+				
+				log.info("doRetrieveByOrdine -> verifico pre-condizioni");
+				if(ordine==null || ordine.getN_fattura()==null || ordine.getN_fattura().equals(""))
+					return null;
+				
 				Connection connection=null;
 				PreparedStatement preparedStatement=null;
 				
