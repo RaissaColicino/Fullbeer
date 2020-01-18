@@ -26,7 +26,7 @@
 <form name='acquisto' action="SottomissioneOrdine" method="post">
 						<h5>Indirizzo di spedizione</h5>
                    		<div class="input-group">
-  							<select class="custom-select" name="scelta-indirizzo" id="inputGroupSelect04">
+  							<select class="custom-select" name="scelta-indirizzo" id="indirizzo">
 							    <option selected>Scegli un indirizzo di spedizione</option>
 							    <% 
 							    	for(IndirizzoB indirizzo: indirizzi){

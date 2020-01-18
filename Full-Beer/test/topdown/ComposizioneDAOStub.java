@@ -2,39 +2,34 @@ package topdown;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
-import com.sun.istack.internal.logging.Logger;
-
-import beans.OrdineB;
 import beans.ComposizioneB;
+import beans.OrdineB;
+
 public class ComposizioneDAOStub {
-
-		static Logger log=Logger.getLogger("ComposizioneDAOStubDebugger", null);
+	static Logger log=Logger.getLogger("ComposizioneModelStubDebugger");
+	
+	public ComposizioneDAOStub() {
 		
-		public ComposizioneDAOStub(){
-			
-		}
+	}
+	
+	public Set<ComposizioneB> doRetrieveByOrdine(OrdineB ordine){
+		LinkedHashSet<ComposizioneB> comp=new LinkedHashSet<ComposizioneB>();
 		
-
-		public Set<ComposizioneB> doRitrieveByOrdine(OrdineB ordine){
-			LinkedHashSet<ComposizioneB> composizione= new LinkedHashSet<ComposizioneB>();
-			
-			ComposizioneB composizioneA= new ComposizioneB();
-			
-			composizioneA.setN_fattura(ordine.getN_fattura());
-			composizioneA.setProdottoCodice("001");
-			composizioneA.setNome_prodotto("NastroAzzurro");
-			composizioneA.setPrezzo(3.50);
-			composizioneA.setQuantità(1);
-			
-			composizione.add(composizioneA);
-			
-			return composizione;
-			
-			
-		} 
-
-		public void doSave(ComposizioneB composizione){
-
-		}
+		ComposizioneB compOne=new ComposizioneB();
+		compOne.setN_fattura(ordine.getN_fattura());
+		compOne.setProdottoCodice("00");
+		compOne.setNome_prodotto("Nastro Azzurro");
+		compOne.setPrezzo(1.50);
+		compOne.setQuantità(1);
+		
+		comp.add(compOne);
+		
+		return comp;
+	}
+	
+	public void doSave(ComposizioneB composizione) {
+		
+	}
 }

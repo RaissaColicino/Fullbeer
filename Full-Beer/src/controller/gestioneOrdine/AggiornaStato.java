@@ -82,7 +82,7 @@ public class AggiornaStato extends HttpServlet {
 					ordineDaModificare.setStato(stato);
 					
 				}
-				ordineDAO.modificaStato(ordineDaModificare);
+				ordineDAO.aggiornaStato(ordineDaModificare);
 				log.info("Ordine aggiornato: " + ordineDaModificare.getN_fattura() 
 					+ ", stato: " + ordineDaModificare.getStato());
 				

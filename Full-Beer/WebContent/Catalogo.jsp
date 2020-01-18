@@ -48,8 +48,8 @@
   			   <p class="prezzo"><%=p.getPrezzo()%></p>
   			   <p><%=p.getDescrizione()%></p>
   			   
-  	<p><button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button><br></p>
-	<p><button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button></p>
+  	<button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button><br>
+	<button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button>
 	</span>
 	</td>
 	

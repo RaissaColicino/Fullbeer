@@ -61,7 +61,7 @@ public class SottomissioneOrdine extends HttpServlet {
 				}
 				else {
 					log.info("Sottomissione ordine -> ottengo i dati dalla richiesta");
-					String indirizzo=request.getParameter("scelta-indirizzo");
+					String indirizzo=request.getParameter("indirizzo");
 					log.info("Indirizzo: " + indirizzo);
 					if(indirizzo.equalsIgnoreCase("Scegli un indirizzo di spedizione")){
 						redirectedPage="/Acquisto.jsp";
@@ -72,7 +72,7 @@ public class SottomissioneOrdine extends HttpServlet {
 						
 						log.info("Sottomissione ordine -> creo l'ordine");
 						OrdineB ordine=new OrdineB();
-						//ordine.setN_fattura(n_fattura);
+						ordine.setN_fattura(ordineDAO.generatoreNumero());
 						ordine.setUsername(user.getUsername());
 						ordine.setStato(OrdineDAOStub.ELABORAZIONE);
 						ordine.setDate(ordineDAO.generatoreSottomissione());
@@ -96,8 +96,10 @@ public class SottomissioneOrdine extends HttpServlet {
 						
 						log.info("Sottomissione ordine -> aggiorno totale dell'ordine");
 						ordine.setImporto(totale);
+						System.out.println(ordine.getImporto());
 						log.info("Sottomissione ordine -> salvo l'ordine per completare la sottomissione");
 						ordineDAO.doSave(ordine);
+						
 						
 						log.info("Sottomissione ordine -> svuoto il carrello dopo la sottomissione");
 						carrello.svuotaCarrello();
