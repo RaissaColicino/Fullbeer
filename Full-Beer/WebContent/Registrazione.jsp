@@ -21,7 +21,6 @@
    <div align="right" class="img_c">
 		<img src="img/registrazione.jpg">
 	</div> 
- 
   
     <div class="input-container">
     <i class="fa fa-address-book" style="font-size:36px" ></i>

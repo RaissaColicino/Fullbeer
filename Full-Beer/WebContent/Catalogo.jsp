@@ -23,26 +23,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="css/Catalogo.css">
 <title>Catalogo</title>
 </head>
 <body>
+
 <header>
 <%@ include file="Nav_bar.jsp" %>
 </header>
 
+<h1 align="center" color"">Le nostre prime scelte</h1>>
+<table class="table" align="center" width="60%" >
+	<%	int salto=0;
+		int i=0; %>
+	
 	<% for(ProdottoB p: catalogoa){%>
-		<div class="container_photo"></div>
- <!-- ContenitoreFOto-->
-  <div class="w3-row-padding w3-padding-16 w3-center" id="drink">
-    <div class="w3-quarter">
-     <img src="img/<%=p.getImmagine()%>" style="width:50%">
-  			   <h3><%=p.getNome()%></h3>
-  			   <h3><%=p.getPrezzo()%></h3>
+			<% i++;
+					%>
+		 <!-- ContenitoreFOto-->
+		<td width="200" heigth="200"> 
+		<span  class="card">
+     <img src="img/<%=p.getImmagine()%>" style="width:100%">
+  			   <h1><%=p.getNome()%></h1>
+  			   <p class="prezzo"><%=p.getPrezzo()%></p>
+  			   <p><%=p.getDescrizione()%></p>
   			   
-  	<a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a><br>
-	<a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a>
-	<% }%>
-        				
-   
+  	<p><button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button><br></p>
+	<p><button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button></p>
+	</span>
+	</td>
+	
+	<%
+	salto++;
+	if(salto==3){
+	%>
+	<tr>
+	<%
+	salto=0;
+	}}%>
+	
+	</table>
+	
+	
 </body>
 </html>

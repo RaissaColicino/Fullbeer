@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+
+.container {
+  position: relative;
+  font-family: Arial;
+  
+}
+
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+a{
+	 text-decoration: none;
+	 color: white;
+}
+.btn{
+	 padding: 10px 25px;
+	border:none;
+	border-radius: 40%;
+	background-color: #C0C0C0;
+}
+.btnn{
+	padding: 10px 25px;
+	border:none;
+	border-radius: 40%;
+	background-color: #C0C0C0;
+}
+
+.cover{
+	 height:70%;
+	 background-image: url(slider.jpg);
+	 background-repeat: no-repeat;
+	 width: 100%;
+	 background-size: cover;
+	 background-position:center center;
+	 position:relative;
+	 }
+.cover_filter{background: #000; width:100%; height:100%; position: absolute; z-index: 0; opacity:0.5;} /* creo opacità sull'immagine per far leggere il testo, iposto prima il div nero sull'immagine con z-index e poi lo sfumo con opacity*/
+.cover_caption{display: table; height:100%; width:100%; position: relative; z-index:1; padding: 5px;}
+.cover_caption_copy{ display: table-cell; vertical-align: middle; text-align:center; color: #fff; font-style: italic;}

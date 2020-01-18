@@ -43,8 +43,32 @@ public class ProdottoDAOStub {
 			
 			catalogo.add(prodottoB);
 		
-			return catalogo;
 			
+			ProdottoB prodottoC= new ProdottoB();
+			
+			prodottoC.setId("002");
+			prodottoC.setNome("Nastro Azzurro");
+			prodottoC.setPrezzo(1.50);
+			prodottoC.setQt(40);
+			prodottoC.setDescrizione("La birra Nastro Azzurro è una birra lager italiana prodotta dall'omonimo birrificio a partire dal 1846. Dall'ottobre 2016 fa parte del gruppo giapponese Asahi Breweries. Viene prodotta negli stabilimenti del gruppo situati a Roma, Padova e Bari, mentre il malto proviene dalla Malteria Saplo di Pomezia.");
+			prodottoC.setImmagine("nastro.jpg");
+			
+			catalogo.add(prodottoC);
+	
+			
+			
+		
+ProdottoB prodottoD= new ProdottoB();
+			
+			prodottoD.setId("002");
+			prodottoD.setNome("Nastro Azzurro");
+			prodottoD.setPrezzo(1.50);
+			prodottoD.setQt(40);
+			prodottoD.setDescrizione("La birra Nastro Azzurro è una birra lager italiana prodotta dall'omonimo birrificio a partire dal 1846. Dall'ottobre 2016 fa parte del gruppo giapponese Asahi Breweries. Viene prodotta negli stabilimenti del gruppo situati a Roma, Padova e Bari, mentre il malto proviene dalla Malteria Saplo di Pomezia.");
+			prodottoD.setImmagine("nastro.jpg");
+			
+			catalogo.add(prodottoD);
+			return catalogo;
 			}
 		
 		public ProdottoB doRetrieveByCodice(String codiceProdotto) {
