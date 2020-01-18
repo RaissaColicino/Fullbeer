@@ -34,10 +34,10 @@ public class OrdineDAOStub {
 		OrdineB ordOne=createOrdine(utenti.get("root"),  "000001", ELABORAZIONE);	
 		ordini.add(ordOne);
 		
-		OrdineB ordTwo=createOrdine(utenti.get("PaoloG"),  "000002", SPEDIZIONE);	
+		OrdineB ordTwo=createOrdine(utenti.get("AntonioG"),  "000002", SPEDIZIONE);	
 		ordini.add(ordTwo);
 		
-		OrdineB ordThree=createOrdine(utenti.get("PaoloG"),  "000003", CONSEGNATO);	
+		OrdineB ordThree=createOrdine(utenti.get("AntonioG"),  "000003", CONSEGNATO);	
 		ordini.add(ordThree);
 		
 		return ordini;
