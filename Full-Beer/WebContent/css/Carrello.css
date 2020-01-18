@@ -1,2 +1,23 @@
 @CHARSET "ISO-8859-1";
 
+.btn {
+  background-color: black;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+  opacity: 0.9;
+ 
+}
+
+.btn:hover {
+  
+  background-color: #000;
+  opacity: 1;
+}
+
+a{
+	color: white;
+	text-decoration:none;
+}

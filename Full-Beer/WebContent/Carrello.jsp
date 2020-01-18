@@ -21,13 +21,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Full-Beer Carrello</title>
+<link rel="stylesheet" href="css/Carrello.css">
 </head>
 <body>
+
 <header>
 <%@ include file="Nav_bar.jsp" %>
 </header>
-<h1>Riepilogo</h1>
 
+<h1 align="center" color"">Il tuo Carrello</h1>
 <%				costoTotale=0;
         	     if(carrello!=null && !carrello.isEmpty()){	
         						for(CarrelloItem i: items){
@@ -60,7 +62,7 @@
 				%> 
 				
 				
-					<table border="0" width="500" align="center">
+					<table width="600" align="center" border="0">
 			
 			
 			<tr>
@@ -81,39 +83,37 @@
 			
 			</tr><tr>
 			
-			<p>
-                          			<span id="sp-qt">Quantità acquisto <%= i.getQt() %></span>
-                          			&nbsp;
-                          			<% if(i.getQt()<i.getProdotto().getQt()){ %>
-                          			
-									<a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>">Aggiungi<a>
-									<% }
-                          			 if(i.getQt()!=1){ %>
-										<a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>">Elimina</a>
-										<%}%>
-										<a class="text-light a-btt" href="RemoveProdottoCarrello?prodotto=<%= p.getId()%>">
-                              			Rimuovi dal carrello
-                              		</a>
-                          		</p>
-                          		
-                              		
+			<% if(i.getQt()<i.getProdotto().getQt()){ %>
+                          	
+			<th>Quantità:</th>
+			<th><input type="text" name="txtPrezzo" value="<%=i.getQt() %>" readonly></th>  
+			    
+			<th><button  class=btn> <a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>">Aggiungi</a></button>
+			
+									<% }%><% if(i.getQt()!=1){ %>			
+			<button  class=btn>	<a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>">Elimina</a></button>
+									<%}%></th> 
+									
+			</tr><tr><th></th><th>
+			<button type="submit" class=btn><a href="RemoveProdottoCarrello?prodotto=<%= p.getId()%>">Rimuovi dal carrello</a></button></th>
+	          		
 					<%}%>
                           		<%}%>
 			</tr><tr></tr></table>
 			<br><br><br>
 			
-        		<div id="opt-cart" class="list-group">
-          			<a href="Acquisto.jsp" class="list-group-item bb">
-            			<span class="a-sp">Procedi al pagamento</span>
-          			</a>
-          			<br>
-          			<a href="Catalogo" class="list-group-item bb">
-            			<span class="a-nsp">Compra altre Birre</span>
-          			</a>
-          			<br>
-         	 		<a href="SvuotaCarrello" class="list-group-item bb">
-              			<span class="a-nsp">Svuota il carrello</span>
-          			</a>
+        		<div  align=center>
+          			<button class=btn style="width:200px;"><a href="Acquisto.jsp">
+            			<span >Procedi al pagamento</span>
+          			</a></button>
+          			
+          			<button class=btn style="width:200px;"><a href="Catalogo">
+            			<span>Compra altre Birre</span>
+          			</a></button>
+          			
+         	 		<button class=btn  style="width:200px;"><a href="SvuotaCarrello" >
+              			<span>Svuota il carrello</span>
+          			</a></button>
         		</div>
 			
 </body>

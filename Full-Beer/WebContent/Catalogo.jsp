@@ -32,7 +32,7 @@
 <%@ include file="Nav_bar.jsp" %>
 </header>
 
-<h1 align="center" color"">Le nostre prime scelte</h1>>
+
 <table class="table" align="center" width="60%" >
 	<%	int salto=0;
 		int i=0; %>
@@ -48,8 +48,10 @@
   			   <p class="prezzo"><%=p.getPrezzo()%></p>
   			   <p><%=p.getDescrizione()%></p>
   			   
-  	<button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button><br>
-	<button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button>
+  	<button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button>
+  	<br>
+  	<br>
+  	<button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button>
 	</span>
 	</td>
 	
