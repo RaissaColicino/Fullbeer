@@ -31,13 +31,13 @@ public class OrdineDAOStub {
 		UtenteDAOStub utenteDAO=new UtenteDAOStub();
 		LinkedHashMap<String, UtenteB> utenti=(LinkedHashMap<String, UtenteB>) utenteDAO.doRetrieveAll();
 		
-		OrdineB ordOne=createOrdine(utenti.get("root"), 3, "000001", ELABORAZIONE);	
+		OrdineB ordOne=createOrdine(utenti.get("root"),  "000001", ELABORAZIONE);	
 		ordini.add(ordOne);
 		
-		OrdineB ordTwo=createOrdine(utenti.get("PaoloG"), 1, "000002", SPEDIZIONE);	
+		OrdineB ordTwo=createOrdine(utenti.get("PaoloG"),  "000002", SPEDIZIONE);	
 		ordini.add(ordTwo);
 		
-		OrdineB ordThree=createOrdine(utenti.get("PaoloG"), 2, "000003", CONSEGNATO);	
+		OrdineB ordThree=createOrdine(utenti.get("PaoloG"),  "000003", CONSEGNATO);	
 		ordini.add(ordThree);
 		
 		return ordini;
@@ -67,12 +67,14 @@ public class OrdineDAOStub {
 	}
 	
 	public void doSave(OrdineB ordine) {
+		log.info("sto cercando di salvare  l'ordine");
 		ComposizioneDAOStub composizioneDAO=new ComposizioneDAOStub();
-		
+		log.info("ho creato la composizione");
 		LinkedHashSet<ComposizioneB> composizione=(LinkedHashSet<ComposizioneB>) ordine.getComposizione();
-		for(ComposizioneB comp: composizione)
+		for(ComposizioneB comp: composizione){
+			log.info("cerco di salvare la composizione");
 			composizioneDAO.doSave(comp);
-	}
+		}}
 	
 	public void aggiornaStato(OrdineB ordine) {
 		
@@ -125,7 +127,7 @@ public class OrdineDAOStub {
 	}
 	
 	//Metodo per la simulazione di ordini nel DB
-	private OrdineB createOrdine(UtenteB user, int codice, String numero, String stato) {
+	private OrdineB createOrdine(UtenteB user, String numero, String stato) {
 		OrdineB ordOne=new OrdineB();
 		ordOne.setUsername(user.getUsername());
 		ordOne.setN_fattura(numero);

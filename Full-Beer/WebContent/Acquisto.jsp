@@ -7,6 +7,7 @@
 	Boolean userIn=(Boolean) session.getAttribute("userAuth"); 
 	if((userIn==null) || (!userIn.booleanValue())){
 		session.setAttribute("previousPage", "/Acquisto.jsp");
+		
 		response.sendRedirect(request.getContextPath() + "/Login.jsp");
 	}else{
   		UtenteB user=(UtenteB) session.getAttribute("userLogged");
@@ -26,7 +27,7 @@
 <form name='acquisto' action="SottomissioneOrdine" method="post">
 						<h5>Indirizzo di spedizione</h5>
                    		<div class="input-group">
-  							<select class="custom-select" name="scelta-indirizzo" id="indirizzo">
+  							<select class="custom-select" name="indirizzo" id="indirizzo">
 							    <option selected>Scegli un indirizzo di spedizione</option>
 							    <% 
 							    	for(IndirizzoB indirizzo: indirizzi){

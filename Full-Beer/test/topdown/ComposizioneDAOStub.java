@@ -19,7 +19,7 @@ public class ComposizioneDAOStub {
 		
 		ComposizioneB compOne=new ComposizioneB();
 		compOne.setN_fattura(ordine.getN_fattura());
-		compOne.setProdottoCodice("00");
+		compOne.setProdottoCodice("002");
 		compOne.setNome_prodotto("Nastro Azzurro");
 		compOne.setPrezzo(1.50);
 		compOne.setQuantità(1);

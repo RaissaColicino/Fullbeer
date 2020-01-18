@@ -24,18 +24,8 @@ import java.util.logging.Logger;
 public class SottomissioneOrdine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     Logger log=Logger.getLogger("SottomissioneOrdineDebugger");
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SottomissioneOrdine() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		String redirectedPage="";
 		
@@ -72,6 +62,7 @@ public class SottomissioneOrdine extends HttpServlet {
 						
 						log.info("Sottomissione ordine -> creo l'ordine");
 						OrdineB ordine=new OrdineB();
+						
 						ordine.setN_fattura(ordineDAO.generatoreNumero());
 						ordine.setUsername(user.getUsername());
 						ordine.setStato(OrdineDAOStub.ELABORAZIONE);
@@ -79,8 +70,10 @@ public class SottomissioneOrdine extends HttpServlet {
 						
 						double totale=0;
 						log.info("Sottomissione ordine -> uso i prodotti nel carrello per creare la composizione dell'ordine");
+					
 						for(CarrelloItem item: carrello.getCarrello()) {
 							log.info("Sottomissione ordine -> creo la composizone dell'ordine");
+						
 							ComposizioneB cb=new ComposizioneB();
 							cb.setN_fattura(ordine.getN_fattura());
 							cb.setProdottoCodice(item.getProdotto().getId());
