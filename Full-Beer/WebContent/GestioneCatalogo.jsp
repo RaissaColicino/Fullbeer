@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %> 
+<%@ page import="beans.*" %>
 
 <% 
 	Boolean userIn=(Boolean) session.getAttribute("userAuth"); 
@@ -8,23 +10,23 @@
 		response.sendRedirect("./Login.jsp");
 	}
 	else{
-		UtenteBean userForRoleControl=(UtenteBean) session.getAttribute("userLogged");
-		if(!userForRoleControl.getRuolo().containsKey(RuoloBean.CATALOGO)){
+		UtenteB userForRoleControl=(UtenteB) session.getAttribute("userLogged");
+		if(!userForRoleControl.getRuolo().containsKey(RuoloB.CATALOGO)){
 			response.sendRedirect("./OnlyAdminPage.html");
 		}
 		else{
-			session.setAttribute("ruolo", RuoloBean.CATALOGO);
-%>
-<%@ page import="java.util.*" %> 
-<%@ page import="beans.*" %>
+			session.setAttribute("ruolo", RuoloB.CATALOGO);
 
-<%	String ruolo=(String) session.getAttribute("ruolo");
+%>
+<%  
+String ruolo=(String) session.getAttribute("ruolo");
 String CATALOGO="Catalogo";
 String ORDINI="Ordini";
-String UTENTE="Utente"; %>
+String UTENTE="Utente";
+%>
 <%!
 CatalogoB ctlg; 
-	HashSet<ProdottoB> catalogo;
+HashSet<ProdottoB> catalogo;
 %>
 <%
 	ctlg=(CatalogoB) session.getAttribute("CatalogoDaGestire");
@@ -79,3 +81,4 @@ CatalogoB ctlg;
 	
 </body>
 </html>
+<% }}%>
