@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+	<%@page import= "beans.*" %> 
+    <% String ruolo=(String) session.getAttribute("ruolo");
+       String CATALOGO="Catalogo";
+       String ORDINI="Ordini";
+       String UTENTE="Utente";
+    %>
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,7 +19,20 @@
 <body>
 
 <header>
-<%@ include file="Nav_bar.jsp" %>
+				<% 
+				String pg="";
+			
+				if(ruolo==null || ruolo.equals(UTENTE))
+					pg="Nav_bar.jsp"; 
+				else if(ruolo.equals(CATALOGO))
+					pg="NavbarCatalogo.jsp";
+				else if(ruolo.equals(ORDINI))
+					pg="Nav_bar_gestoreOrdini.jsp";
+			
+			%>
+			
+			<jsp:include page="<%= pg %>" />
+
 </header>
 
 <h2 align="center">Fullbeer</h2>

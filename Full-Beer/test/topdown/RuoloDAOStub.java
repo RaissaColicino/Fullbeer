@@ -27,14 +27,14 @@ public Map<String, RuoloB> doRetrieveByUtente(UtenteB user){
 	
 	RuoloB gestoreCatalogo=new RuoloB();
 	gestoreCatalogo.setUsername(user.getUsername());
-	gestoreCatalogo.setRuolo("GestoreCatalogo");
+	gestoreCatalogo.setRuolo("Catalogo");
 
 	log.info("Inserisco ruolo: " + gestoreCatalogo.getRuolo());
 	ruoli.put(gestoreCatalogo.getRuolo(), gestoreCatalogo);
 	
 	RuoloB gestoreOrdini=new RuoloB();
 	gestoreOrdini.setUsername(user.getUsername());
-	gestoreOrdini.setRuolo("GestoreOrdini");
+	gestoreOrdini.setRuolo("Ordini");
 	
 	log.info("Inserisco ruolo: " + gestoreOrdini.getRuolo());
 	ruoli.put(gestoreOrdini.getRuolo(), gestoreOrdini);

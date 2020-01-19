@@ -107,7 +107,7 @@
             			<span >Procedi al pagamento</span>
           			</a></button>
           			
-          			<button class=btn style="width:200px;"><a href="Catalogo">
+          			<button class=btn style="width:200px;"><a href="Catalogo.jsp">
             			<span>Compra altre Birre</span>
           			</a></button>
           			

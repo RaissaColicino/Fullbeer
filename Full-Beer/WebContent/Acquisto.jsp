@@ -2,7 +2,13 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="beans.*" %>
 <%@	page import="java.util.*" %>
-
+  <%@ page import="beans.IndirizzoB" %>
+    
+    <% 
+	String ruolo=(String) session.getAttribute("ruolo");
+	String CATALOGO="Catalogo";
+	String ORDINI="Ordini";
+	String UTENTE="Utente"; %>
 <%
 	Boolean userIn=(Boolean) session.getAttribute("userAuth"); 
 	if((userIn==null) || (!userIn.booleanValue())){
@@ -28,7 +34,20 @@
 </head>
 <body>
 <header>
-<%@ include file="Nav_bar.jsp" %>
+
+				<% 
+				String pg="";
+			
+				if(ruolo==null || ruolo.equals(UTENTE))
+					pg="Nav_bar.jsp"; 
+				else if(ruolo.equals(CATALOGO))
+					pg="NavbarCatalogo.jsp";
+				else if(ruolo.equals(ORDINI))
+					pg="Nav_bar_gestoreOrdini.jsp";
+			
+			%>
+			
+			<jsp:include page="<%= pg %>" />			
 </header>
 
 <form name='acquisto' action="SottomissioneOrdine" method="post">

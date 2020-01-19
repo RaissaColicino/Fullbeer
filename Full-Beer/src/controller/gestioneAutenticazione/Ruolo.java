@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.RuoloB;
+
 @WebServlet("/Ruolo")
 public class Ruolo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,15 +33,15 @@ public class Ruolo extends HttpServlet {
 			session.setAttribute("ruolo", permesso);
 
 			log.info("Se gestore degli ordini vado alla pagina di gestione degli ordini attivi");
-			if(permesso.equals(ORDINI))
+			if(permesso.equals(RuoloB.ORDINI))
 				redirectedPage="/OrdiniAttivi";
-			else if(permesso.equals(CATALOGO)) {
+			else if(permesso.equals(RuoloB.CATALOGO)) {
 				log.info("Vado alla pagina di gestione del catalogo");
 				redirectedPage="/GestioneCatalogo";
 			}
 			else {
 				log.info("Vado alla Home Page");
-				redirectedPage="/Index.jsp";
+				redirectedPage="/Homepage.jsp";
 			}
 		}
 		

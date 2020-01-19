@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.logging.Logger;
 
+import beans.RuoloB;
 import beans.UtenteB;
 import topdown.UtenteDAOStub;
 
@@ -21,13 +22,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("LoginDebugger");
 	String UTENTE="Utente";
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+  
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +59,7 @@ log.info("Sono nello servlet di login -> terminato metodo: verifica");
 if(user!=null) {
 log.info("utente loggato: " + user.getUsername() + ", " + user.getPassword());
 session.setAttribute("userAuth", true);
-session.setAttribute("ruolo", UTENTE);
+session.setAttribute("ruolo", RuoloB.UTENTE);
 session.setAttribute("userLogged", user);
 
 String pp=(String) session.getAttribute("previousPage");
@@ -73,7 +68,7 @@ if(pp!=null && !pp.equals("")) {
 	session.removeAttribute("previousPage");
 }
 else
-redirectedPage="/HomePgage.jsp";
+redirectedPage="/AreaUtente.jsp";
 }
 else {
 session.setAttribute("userAuth", false);
