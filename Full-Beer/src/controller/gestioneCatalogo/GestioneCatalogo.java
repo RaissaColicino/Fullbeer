@@ -27,7 +27,7 @@ public class GestioneCatalogo extends HttpServlet {
     	ProdottoDAOStub prodottoDAO=new ProdottoDAOStub();
 	
     	
-    	log.info("GestioneCatalogo -> ottengo i prodotti per il catalogo in base al tipo");
+    	log.info("GestioneCatalogo -> ottengo i prodotti per il catalogo");
 		CatalogoB catalogo=new CatalogoB();
 		catalogo.setCatalogo(prodottoDAO.doRetrieveAll());
 		session.setAttribute("CatalogoDaGestire", catalogo);
