@@ -12,6 +12,13 @@
 	}else{
   		UtenteB user=(UtenteB) session.getAttribute("userLogged");
   		LinkedHashSet<IndirizzoB> indirizzi=(LinkedHashSet<IndirizzoB>) user.getIndirizzi();
+  		float ct=0;
+  		CarrelloB carrello;
+  		HashSet<CarrelloItem> items;
+  		carrello=(CarrelloB) session.getAttribute("Carrello");
+  		ct=(float)session.getAttribute("costoTotale");
+  		if(carrello!=null)
+  			
   		%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,8 +43,7 @@
 							    <% } %>
   							</select>
 						</div>
-						<br>
-                  		<button type="submit" class="btn btn-black">Procedi</button>
+						<br><button type="submit" class="btn btn-black">Procedi</button>
                   		<button type="reset" class="btn btn-secondary">Annulla</button>
                   		<button class="btn btn-danger">
 							<a class="text-light no-dec" href="Carrello.jsp" style="text-decoration: none">
@@ -45,6 +51,28 @@
 							</a>
 						</button>
                		</form>
+               								<h1>Riepilogo Ordine</h1>
+						<table border=1>
+						<% String imgString="";
+						items =(HashSet<CarrelloItem>) carrello.getCarrello();
+						for (CarrelloItem i: items){
+							ProdottoB p=i.getProdotto();
+								imgString="images/" + p.getImmagine() + ".jpg"; 
+								
+						%>
+						<tr>
+						<th>
+						<%=imgString %>
+						</th><th>
+						<%=p.getNome() %><br>
+						Prezzo:<%=p.getPrezzo()%><br>
+						Quantità:<%=i.getQt() %>
+						</th></tr>
+						<% } %>
+						<tr><th>
+						Totale: <%= ct %>
+						<th></tr>
+						</table>
 						<br>
 				
 </body>
