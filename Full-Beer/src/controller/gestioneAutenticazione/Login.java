@@ -31,7 +31,6 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
