@@ -14,7 +14,7 @@ import beans.OrdineB;
 import beans.UtenteB;
 import topdown.OrdineDAOStub;
 import topdown.UtenteDAOStub;
-
+import javax.servlet.RequestDispatcher;
 /**
  * Servlet implementation class Fattura
  */
@@ -37,6 +37,8 @@ public class Fattura extends HttpServlet {
 			log.info("Servlet Fattura -> controllo che l'utente si sia autenticato");
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 			if((userAuth==null) || (!userAuth.booleanValue())) {
+				String ord="sottomissione desc";
+				session.setAttribute("previousPage", "/Ordine?toDo=utente&order=" + ord);
 				redirectedPage="/Login.jsp";
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 			}
@@ -63,8 +65,11 @@ public class Fattura extends HttpServlet {
 				if(utente!=null)
 					session.setAttribute("UtenteFattura", utente);
 			}
-		}
 			
+		
+		}
+		RequestDispatcher view=request.getRequestDispatcher("Fattura.jsp");
+		view.forward(request, response);
 			
 			
 			}

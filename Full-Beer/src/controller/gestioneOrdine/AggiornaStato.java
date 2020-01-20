@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.OrdineB;
+import beans.RuoloB;
 import beans.UtenteB;
 import topdown.OrdineDAOStub;
 
@@ -44,12 +45,14 @@ public class AggiornaStato extends HttpServlet {
 		log.info("Controllo che l'utente sia autenticato");
 		Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 		if((userAuth==null) || (!userAuth.booleanValue())) {
+			String ord="sottomissione desc";
+			session.setAttribute("previousPage", "/OrdiniAttivi?order" + ord );
 			redirectedPage="/Login.jsp";
 			response.sendRedirect(request.getContextPath() + redirectedPage);
 		}else{
 			log.info("Controllo che l'utente autenticato sia un gestore degli ordini");
 			UtenteB utente=(UtenteB) session.getAttribute("userLogged");
-			if(!utente.getRuolo().containsKey("Ordini")){
+			if(!utente.getRuolo().containsKey(RuoloB.ORDINI)){
 				response.sendRedirect("/AdminPage.html");
 				}else {
 				
@@ -65,23 +68,28 @@ public class AggiornaStato extends HttpServlet {
 					log.info("numero dell'ordine da aggiornare: " + numero);
 					
 					ordineDaModificare=ordineDAO.doRetrieveByNumero(numero);
-					if(ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO))
+					if(ordineDaModificare==null || ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO))
 						//Sostutuire con pagina di errore
-						redirectedPage="/OnlyAdminPage.html";
-					
+						redirectedPage="/Errore.html";
+					response.sendRedirect(request.getContextPath() + redirectedPage);
+				}else{
 					log.info("Inserisco ordine nella sessione: " + ordineDaModificare.getN_fattura());
 					session.setAttribute("OrdineDaModificare", ordineDaModificare);
 					
 					log.info("Vado alla pagina di aggiornamento");
 					redirectedPage="/AggiornaStato.jsp";
 					response.sendRedirect(request.getContextPath() + redirectedPage);
-				}else if(what.equals(SAVE)) {
+				} if(what.equals(SAVE)) {
 					log.info("Ottengo il nuovo stato dell'ordine");
 					String stato=request.getParameter("scelta-stato");
 					ordineDaModificare=(OrdineB) session.getAttribute("OrdineDaModificare");
 					ordineDaModificare.setStato(stato);
-					
-				}
+					log.info("AggiornaStato -> se l'ordine è contrassegnato come consegnato, allora aggiorno la data di consegna");
+					if(ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO)) {
+						ordineDaModificare.setConsegna(ordineDAO.generatoreSottomissione());
+						log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
+					}
+				
 				ordineDAO.aggiornaStato(ordineDaModificare);
 				log.info("Ordine aggiornato: " + ordineDaModificare.getN_fattura() 
 					+ ", stato: " + ordineDaModificare.getStato());
@@ -90,7 +98,7 @@ public class AggiornaStato extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 		}
 	}
-
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

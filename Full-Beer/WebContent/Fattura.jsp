@@ -4,6 +4,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
 
+	
 <% 
 	Boolean userIn=(Boolean) session.getAttribute("userAuth"); 
 	if((userIn==null) || (!userIn.booleanValue())){
@@ -14,6 +15,9 @@
 	}
 	else{
 		String ruolo=(String) session.getAttribute("ruolo");
+		String CATALOGO="Catalogo";
+		String ORDINI="Ordini";
+		String UTENTE="Utente";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,35 +26,40 @@
 <title>Dettagli Ordine</title>
 </head>
 <body>
-		<header>
-			<% 
+	<header>
+				<% 
 				String pg="";
 			
-				if(ruolo==null || ruolo.equals(RuoloB.UTENTE) || ruolo.equals(RuoloB.CATALOGO))
-					pg="Nav_bar.jsp";
-				else if(ruolo.equals(RuoloB.ORDINI))
-					pg="Nav_bar_gestoreOrdini.jsp";			
+				if(ruolo==null || ruolo.equals(UTENTE))
+					pg="Nav_bar.jsp"; 
+				else if(ruolo.equals(CATALOGO))
+					pg="NavbarCatalogo.jsp";
+				else if(ruolo.equals(ORDINI))
+					pg="Nav_bar_gestoreOrdini.jsp";
+			
 			%>
 			
-			<jsp:include page="<%= pg %>" />		
-		</header>
+			<jsp:include page="<%= pg %>" />			
+</header><br><br><br>
+
+	
 		
 		<%
   			OrdineB ordine=(OrdineB) session.getAttribute("Ordine");
   			LinkedHashSet<ComposizioneB> comp=(LinkedHashSet<ComposizioneB>) ordine.getComposizione();
   		%>
-  		  <table cellpadding="0" cellspacing="0">
+  		  <table border=1 align=center >
 	            <tr class="top">
 	                <td colspan="4">
 	                    <table>
 	                        <tr>
-	                            <td class="title">
-	                                <img src="images/LogoSfondoBianco.png" style="width:60%; max-width:180px;">
-	                            </td>
+	                           
 	                            
 	                            <td>
-	                                <b>eSport<br>
-	                                Università degli studi di Salerno</b>
+	                                <b>FullBeer<br>
+	                                <b>TEL.3200642373<br>
+								<b>MAIL:Full_Beer@libero.it
+	                               
 	                            </td>
 	                        </tr>
 	                    </table>
@@ -62,8 +71,8 @@
 	                    <table>
 	                        <tr>
 	                            <td>
-	                                <b>Fattuna n° <%= ordine.getNumero() %></b><br>
-	                                Data sottomissione <%= ordine.getSottomissione() %><br>
+	                                <b>Fattuna n° <%= ordine.getN_fattura() %></b><br>
+	                                Data sottomissione <%= ordine.getDate() %><br>
 
 	                                Data consegna <%= ordine.getConsegna() %>
 	                            </td>
@@ -71,12 +80,10 @@
 	                            <td>
 	                            	<%
 	                            		UtenteB user=(UtenteB) session.getAttribute("UtenteFattura");
-	                            		IndirizzoB indirizzo=user.getIndirizzi();
-	                            		
+	                            	                            		
 	                            	%>
 	                                <b>Cliente</b><br>
 	                                <%= user.getNome() + " " + user.getCognome() %> <br>
-	                                <%= indirizzo %><br>
 	                                <%= user.getMail() %><br>
 	                            </td>
 	                        </tr>
@@ -85,9 +92,9 @@
 	            </tr>
 	            
 	            <tr class="heading">
-	                <td>Prodotto</td>
-	                <td>Quantità</td>
-	                <td>Prezzo</td>
+	                <td><strong>Prodotto</strong></td>
+	                <td><strong>Quantità</strong></td>
+	                <td><strong>Prezzo</strong></td>
 	               
 	            </tr>
 	            <%
