@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="css/Catalogo.css">
+<link rel="stylesheet" href="css/ordine.css">
 <title>Catalogo</title>
 </head>
 <body>
@@ -48,10 +49,10 @@
   			   <p class="prezzo"><%=p.getPrezzo()%></p>
   			   <p><%=p.getDescrizione()%></p>
   			   
-  	<button><a href="SchedaProdotto?id=<%=p.getId()%>"> Dettagli </a></button>
+  	<button  class=btnn><a href="SchedaProdotto?id=<%=p.getId()%>"style="color:white"> Dettagli </a></button>
   	<br>
   	<br>
-  	<button><a href="AddProdottoCarrello?id=<%=p.getId()%>"> Aggiungi </a></button>
+  	<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi </a></button>
 	</span>
 	</td>
 	

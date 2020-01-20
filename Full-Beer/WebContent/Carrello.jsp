@@ -22,6 +22,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Full-Beer Carrello</title>
 <link rel="stylesheet" href="css/Carrello.css">
+
 </head>
 <body>
 
@@ -88,14 +89,14 @@
 			<th>Quantità:</th>
 			<th><input type="text" name="txtPrezzo" value="<%=i.getQt() %>" readonly></th>  
 			    
-			<th><button  class=btn> <a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>">Aggiungi</a></button>
+			<th><button  class=btn> <a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>"style="color:white">Aggiungi</a></button>
 			
 									<% }%><% if(i.getQt()!=1){ %>			
-			<button  class=btn>	<a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>">Elimina</a></button>
+			<button  class=btn>	<a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>"style="color:white">Elimina</a></button>
 									<%}%></th> 
 									
 			</tr><tr><th></th><th>
-			<button type="submit" class=btn><a href="RemoveProdottoCarrello?prodotto=<%= p.getId()%>">Rimuovi dal carrello</a></button></th>
+			<button type="submit" class=btn><a href="RemoveProdottoCarrello?prodotto=<%= p.getId()%>"style="color:white">Rimuovi dal carrello</a></button></th>
 	          		
 					<%}%>
                           		<%}%>
@@ -103,15 +104,15 @@
 			<br><br><br>
 			
         		<div  align=center>
-          			<button class=btn style="width:200px;"><a href="Acquisto.jsp">
+          			<button class=btn style="width:200px;"><a href="Acquisto.jsp"style="color:white">
             			<span >Procedi al pagamento</span>
           			</a></button>
           			
-          			<button class=btn style="width:200px;"><a href="Catalogo.jsp">
+          			<button class=btn style="width:200px;"><a href="Catalogo"style="color:white">
             			<span>Compra altre Birre</span>
           			</a></button>
           			
-         	 		<button class=btn  style="width:200px;"><a href="SvuotaCarrello" >
+         	 		<button class=btn  style="width:200px;"><a href="SvuotaCarrello"style="color:white" >
               			<span>Svuota il carrello</span>
           			</a></button>
         		</div>

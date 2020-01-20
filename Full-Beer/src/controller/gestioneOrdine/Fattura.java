@@ -68,7 +68,7 @@ public class Fattura extends HttpServlet {
 			
 		
 		}
-		RequestDispatcher view=request.getRequestDispatcher("Fattura.jsp");
+		RequestDispatcher view=request.getRequestDispatcher("Fattura_.jsp");
 		view.forward(request, response);
 			
 			

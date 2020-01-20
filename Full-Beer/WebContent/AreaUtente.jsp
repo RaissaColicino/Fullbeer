@@ -25,6 +25,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" href="css/ordine.css">
+<link rel="stylesheet" href="css/AreaUtente.css">
+
 <title>AreaUtente</title>
 </head>
 <body>
@@ -48,9 +50,11 @@
 </header>
 
 
-	<h1 align="center">Benvenuto nella tua AraeUtente, <%=user.getNome() %> <%=user.getCognome() %>
+	<h1 align="center">Benvenuto nella tua AreaUtente, <%=user.getNome() %> <%=user.getCognome() %>
+	
 	<h2>I tuoi dati</h2>
-			
+	<br>
+	<br>		
 			<table width="600" align="left" border="1">
 
 			<tr>
@@ -91,9 +95,17 @@
 			
 			</table>
 		
-		
+	
+		<div class="img_containerA">
+		<img src="img/images.jpg">
+	</div>
+	
+	
 		<button type="submit" class=btnn><a href="Ordine" style="color:white;" >I miei ordini</button>
 		<button type="submit" class=btnn><a href="Logout"style="color:white;" text-decoration="none">Logout</a></button>
+			
+	
+	
 		
 </body>
 </html>

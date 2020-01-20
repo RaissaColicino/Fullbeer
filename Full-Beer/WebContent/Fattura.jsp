@@ -23,6 +23,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <title>Dettagli Ordine</title>
 </head>
 <body>
@@ -48,6 +51,7 @@
   			OrdineB ordine=(OrdineB) session.getAttribute("Ordine");
   			LinkedHashSet<ComposizioneB> comp=(LinkedHashSet<ComposizioneB>) ordine.getComposizione();
   		%>
+  		
   		  <table border=1 align=center >
 	            <tr class="top">
 	                <td colspan="4">
@@ -66,8 +70,8 @@
 	                </td>
 	            </tr>
 	            
-	            <tr class="information">
-	                <td colspan="4">
+	            <tr>
+	                <td>
 	                    <table>
 	                        <tr>
 	                            <td>
