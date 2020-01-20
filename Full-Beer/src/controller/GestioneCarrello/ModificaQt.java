@@ -41,7 +41,7 @@ HttpSession session=request.getSession();
 			log.info("Aggiorno il carrello");
 			session.setAttribute("Carrello", carrello);
 		}
-	RequestDispatcher view=request.getRequestDispatcher("Carrello.jsp");
+	RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
 	view.forward(request, response);
 	}
 

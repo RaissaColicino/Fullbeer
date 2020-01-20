@@ -64,7 +64,7 @@ public class AddProdotto extends HttpServlet {
 			log.info("Aggiorno il carrello nella sessione");
 			session.setAttribute("Carrello", carrello);
 			
-			RequestDispatcher view=request.getRequestDispatcher("Carrello.jsp");
+			RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
 			view.forward(request, response);
 		}
 	}

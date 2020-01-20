@@ -35,7 +35,7 @@
 		<li class="header_menu_item"><a href="Catalogo"style="color:white">Birre</a></li>
 	    <li class="header_menu_item"><a href="ChiSiamo.jsp"style="color:white">Chi siamo</a></li>
 		<li class="header_menu_item"><a href="AreaUtente.jsp"style="color:white">Area Utente</a></li>
-		<li class="header_menu_item"><a href="Carrello.jsp"style="color:white">Carrello</a></li>
+		<li class="header_menu_item"><a href="Carrello_.jsp"style="color:white">Carrello</a></li>
 				
 			<%
 				if (user.getRuolo().containsKey(RuoloB.CATALOGO) || user.getRuolo().containsKey(RuoloB.ORDINI)) {
