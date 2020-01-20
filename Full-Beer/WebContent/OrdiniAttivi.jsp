@@ -36,7 +36,7 @@
 	      					for(OrdineB o: ordiniAttivi){
 	      				%>
 	      				<div align="center">
-	      				  Ordine <%= o.getN_fattura() %>
+	      				 <strong> Ordine <%= o.getN_fattura() %></strong>
 	      				   <h5> <%= o.getStato() %> </h5>
                                                 <h6>Sottomesso da <%= o.getUsername() %></h6>
                                                 <h6>Sottomesso il <%= o.getDate() %></h6>
@@ -51,7 +51,7 @@
 				                              		</a></button>  <button type="submit" class=btnn >
 <a href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>" style="color:white">
 				                              			Aggiorna stato
-				                              		</a></button></div><br>
+				                              		</a></button></div><br><br><br>
 <%} %>
 </body>
 </html>
