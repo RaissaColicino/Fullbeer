@@ -31,21 +31,23 @@
 <header class="header clearfix">
 <a href="" class="header_icon">
 <ul class="header_menu">	
-		<li class="header_menu_item"><a href="Homepage.jsp">Home</a></li>
-		<li class="header_menu_item"><a href="Ordine?toDo=gestore">Visualizza Ordini</a></li>
-	    <li class="header_menu_item"><a href="Gestione_Ordini.jsp">Gestisci Ordini</a></li>
-		<li class="header_menu_item"><a href="AreaUtente.jsp">Area Utente</a></li>
+
+		<li class="header_menu_item"><a href="Homepage.jsp"style="color:white">Home</a></li>
+		<li class="header_menu_item"><a href="Visualizza_Ordini.jsp"style="color:white">Visualizza Ordini</a></li>
+	    <li class="header_menu_item"><a href="Gestione_Ordini.jsp"style="color:white">Gestisci Ordini</a></li>
+		<li class="header_menu_item"><a href="AreaUtente.jsp"style="color:white">Area Utente</a></li>
+
 		<br>
-		<br>
-			
+		<br>	
 			<%
 				if (user.getRuolo().containsKey(RuoloB.CATALOGO) || user.getRuolo().containsKey(RuoloB.ORDINI)) {
 			%>
-		
-		<div class="dropdown" align="left" >
+		<li class="dropdown" align="left" >
 		<button class="btn btn primary dropdown toggle" tybe="button" data-toggle="dropdown" href="#">Permessi
 		<span class="caret"></span></button>
 		<ul class="dropdown-menu">
+		</li>
+		
 		<%
 						for (RuoloB r : user.getRuolo().values()) {
 					%>

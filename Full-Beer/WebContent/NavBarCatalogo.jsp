@@ -31,10 +31,10 @@
 <header class="header clearfix">
 <a href="" class="header_icon">
 <ul class="header_menu">	
-		<li class="header_menu_item"><a href="Homepage.jsp">Home</a></li>
-	    <li class="header_menu_item"><a href="GestioneCatalogo.jsp">Gestisci Catalogo</a></li>
-		<li class="header_menu_item"><a href="AreaUtente.jsp">Area Utente</a></li>
-		<li class="header_menu_item"> <a href="Logout">LOGOUT</a></li>
+		<li class="header_menu_item"><a href="Homepage.jsp"style="color:white">Home</a></li>
+	    <li class="header_menu_item"><a href="GestioneCatalogo.jsp"style="color:white">Gestisci Catalogo</a></li>
+		<li class="header_menu_item"><a href="AreaUtente.jsp"style="color:white">Area Utente</a></li>
+		<li class="header_menu_item"> <a href="Logout"style="color:white">LOGOUT</a></li>
 		<br>
 		<br>
 		<div class="dropdown" >

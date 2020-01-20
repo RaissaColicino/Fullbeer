@@ -47,16 +47,34 @@
 	      					for(OrdineB o : ordini){
 	      						
 	      							
-	      				%>	<div align="center">
-	      				    <b> Ordine <%= o.getN_fattura() %></b>
-	      				 <h5> <%= o.getStato() %> </h5>
-	      				 Sottomesso il <%= o.getDate() %><br>
-	      				 Consegna prevista il <%= o.getConsegna() %><br>
-	      				  <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
+	      				%>
+	      				<table border="1" width="50%" align="center">
+	      				
+	      					<tr>
+	      				    <td><b> Ordine <%= o.getN_fattura() %></b></td><td><%= o.getStato() %></td>
+	      				    </tr>
 	      				  
+	      				   <tr>
+	      				 
+	      				 	<td>Sottomesso il:</td> <td><%= o.getDate() %></td>
+	      				 
+	      				 </tr>
+	      				
+	      				<tr>
+	      				 <td>Consegna prevista il:</td> <td><%= o.getConsegna() %></td>
+	      				  
+	      				 </tr>
+	      				 <tr> 
+	      				  <td>Totale</td><td> <%= (float) o.getImporto() + "&euro;" %></td>
+	      				  </tr>
+	      				  
+	      				
+	      				  </table>
+	      				    
+	      				    <div align="center">
 	      				  <button class=btnn ><a  href="Fattura?numeroOrdine=<%= o.getN_fattura()%>"style="color:white;">Dettagli</a></button><br><br>
-				                              			
-				          </div>                    		
+				           </div>                    			
+				                         		
 	      				 <%
                         		}
 	      					

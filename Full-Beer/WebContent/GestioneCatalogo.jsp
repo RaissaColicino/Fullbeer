@@ -60,10 +60,10 @@ HashSet<ProdottoB> catalogo;
   			   <p class="prezzo"><%=p.getPrezzo()%></p>
   			   <p><%=p.getDescrizione()%></p>
   			   
-  	<button><a href="ModificaProdottoAdmin.jsp?id=<%=p.getId()%>"> Modifica </a></button>
+  	<button><a href="ModificaProdottoAdmin.jsp?id=<%=p.getId()%>"style="color:white"> Modifica </a></button>
   	<br>
   	<br>
-  	<button><a href="RimuoviProdottoAdmin?id=<%=p.getId()%>"> Elimina </a></button>
+  	<button><a href="RimuoviProdottoAdmin?id=<%=p.getId()%>"style="color:white"> Elimina </a></button>
 	</span>
 	</td>
 	

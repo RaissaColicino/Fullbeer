@@ -9,8 +9,8 @@ body
    margin: 0
 }
 a{
-	color:white;
-	text-decoration: none;
+	
+	text-decoration: underline none;
 }
 
 .card {
@@ -29,12 +29,12 @@ a{
 }
 
 .card button {
-	
+  	
   border: none;
   outline: 0;
   padding: 12px;
   color: white;
-  background-color: #000;
+  background-color: black;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -43,4 +43,4 @@ a{
 
 .card button:hover {
   opacity: 0.7;
-}
+} */
