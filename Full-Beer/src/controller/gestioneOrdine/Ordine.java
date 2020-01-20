@@ -90,7 +90,7 @@ public class Ordine extends HttpServlet {
 			view.forward(request, response);
 		}
 		else {
-			RequestDispatcher view=request.getRequestDispatcher("OrdineUtente.jsp");
+			RequestDispatcher view=request.getRequestDispatcher("OrdiniUtente.jsp");
 			view.forward(request, response);
 		}
 	}
