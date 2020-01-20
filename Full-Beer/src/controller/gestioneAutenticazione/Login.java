@@ -54,31 +54,32 @@ public class Login extends HttpServlet {
 				user = utenteDAO.validate(toLog);
 
 
-log.info("Sono nello servlet di login -> terminato metodo: verifica");
-if(user!=null) {
-log.info("utente loggato: " + user.getUsername() + ", " + user.getPassword());
-session.setAttribute("userAuth", true);
-session.setAttribute("ruolo", RuoloB.UTENTE);
-session.setAttribute("userLogged", user);
+				log.info("Sono nello servlet di login -> terminato metodo: verifica");
+				if(user!=null) {
+					log.info("utente loggato: " + user.getUsername() + ", " + user.getPassword());
+					session.setAttribute("userAuth", true);
+					session.setAttribute("ruolo", RuoloB.UTENTE);
+					session.setAttribute("userLogged", user);
 
-String pp=(String) session.getAttribute("previousPage");
-if(pp!=null && !pp.equals("")) {
-	redirectedPage=pp;
-	session.removeAttribute("previousPage");
-}
-else
-redirectedPage="/AreaUtente.jsp";
-}
-else {
-session.setAttribute("userAuth", false);
-session.setAttribute("ruolo", UTENTE);
-session.setAttribute("userLogged", null);
+					String pp=(String) session.getAttribute("previousPage");
+						if(pp!=null && !pp.equals("")) {
+								redirectedPage=pp;
+								session.removeAttribute("previousPage");
+							}
+							else
+									redirectedPage="/AreaUtente.jsp";
+							}	
+								else {
+										session.setAttribute("userAuth", false);
+										session.setAttribute("ruolo", UTENTE);
+										session.setAttribute("userLogged", null);
 				
-redirectedPage="/Login.jsp";
-}
+										session.setAttribute("errore", "errore");
+										redirectedPage="/Login.jsp";
+								}
 
 
-response.sendRedirect(request.getContextPath() + redirectedPage);
-	}
+				response.sendRedirect(request.getContextPath() + redirectedPage);
+			}
 		}
 	}
