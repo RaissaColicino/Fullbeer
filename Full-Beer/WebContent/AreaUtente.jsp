@@ -23,8 +23,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/Carrello.css">
 
+<link rel="stylesheet" href="css/ordine.css">
 <title>AreaUtente</title>
 </head>
 <body>
@@ -85,11 +85,16 @@
 			
 			<% %>
 			<%}  %></th>
+			
+			
 			</tr>
+			
 			</table>
-			
-			
-			<a href="Logout">LOGOUT</a>
+		
+		
+		<button type="submit" class=btnn><a href="OrdineUtente.jsp" style="color:white;" >I miei ordini</button>
+		<button type="submit" class=btnn><a href="Logout"style="color:white;" text-decoration="none">LOGOUT</a></button>
+		
 </body>
 </html>
 <%}%>
