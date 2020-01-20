@@ -31,10 +31,12 @@
 <header class="header clearfix">
 <a href="" class="header_icon">
 <ul class="header_menu">	
+
 		<li class="header_menu_item"><a href="Homepage.jsp"style="color:white">Home</a></li>
 		<li class="header_menu_item"><a href="Visualizza_Ordini.jsp"style="color:white">Visualizza Ordini</a></li>
 	    <li class="header_menu_item"><a href="Gestione_Ordini.jsp"style="color:white">Gestisci Ordini</a></li>
 		<li class="header_menu_item"><a href="AreaUtente.jsp"style="color:white">Area Utente</a></li>
+
 		<br>
 		<br>	
 			<%
