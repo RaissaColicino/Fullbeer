@@ -80,7 +80,7 @@ public class OrdineDAOStub {
 		
 	}
 	
-	public Set<OrdineB> doRetrieveIfAttivi(String order) {
+	public Set<OrdineB> doRetrieveIfAttivi() {
 		LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 		
 		log.info("metodo: doRetrieveIfAttivi -> metodo: doCount -> ottengo gli ordini per la generazione del numero");
@@ -104,7 +104,16 @@ public class OrdineDAOStub {
 		return sottomissione;
 	}
 	
-
+	public String generatoreConsegna() {
+		log.info("Imposto la data di consegna");
+    	Calendar cal=Calendar.getInstance();
+    	cal.add(Calendar.DATE, 3);
+    	String formatOne="yyyy-MM-dd";
+		DateFormat dfOne=new SimpleDateFormat(formatOne);
+		String consegna=dfOne.format(cal.getTime());
+		
+		return consegna;
+	}
 	
 	public String generatoreNumero() {		
 		log.info("generatoreNumero -> eseguo doCount");

@@ -29,16 +29,22 @@ public class OrdiniAttivi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.info("Servlet per gli ordini attivi");
 		HttpSession session=request.getSession();
-	
-		log.info("OttenGO l'ordine di visualizzazione degli ordini attivi");
-		String order=(String) request.getAttribute("order");
-		if(order==null)
-			order="sottomissione";
+		String redirectedPage="";
 		synchronized(session) {
+			log.info("Ordine -> verifico che l'utente si sia autenticato");
+			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
+			if((userAuth==null) || (!userAuth.booleanValue())) {
+				String ord="sottomissione desc";
+				session.setAttribute("previousPage", "/OrdiniAttivi?order=" + ord);
+
+				redirectedPage="/Login.jsp";
+				response.sendRedirect(request.getContextPath() + redirectedPage);
+			}
+			else{
 			 ordiniDAO=new OrdineDAOStub();
 			
 			log.info("Ottengo gli ordini attivi");
-			LinkedHashSet<OrdineB> ordiniAttivi=(LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi(order);
+			LinkedHashSet<OrdineB> ordiniAttivi=(LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi();
 			
 			log.info("Aggiungo ordini attivi alla sessione");
 			session.setAttribute("OrdiniAttivi", ordiniAttivi);
@@ -46,7 +52,7 @@ public class OrdiniAttivi extends HttpServlet {
 		RequestDispatcher view=request.getRequestDispatcher("OrdiniAttivi.jsp");
 		view.forward(request, response);
 	}
-
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

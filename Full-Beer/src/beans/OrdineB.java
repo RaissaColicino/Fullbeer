@@ -50,6 +50,12 @@ public class OrdineB {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public String getConsegna() {
+		return consegna;
+	}
+	public void setConsegna(String consegna) {
+		this.consegna = consegna;
+	}
 
 	//permette di aggiungere un prodotto nella composizione dell'ordine
 	public void addProdotto(ComposizioneB prodotto) {
@@ -67,6 +73,7 @@ public class OrdineB {
 	private String date;
 	private double importo;
 	private String username;
+	private String consegna;
 	private String stato;
 	private Set<ComposizioneB> composizione;
 	/**

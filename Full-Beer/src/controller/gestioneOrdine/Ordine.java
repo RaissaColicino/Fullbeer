@@ -50,17 +50,21 @@ public class Ordine extends HttpServlet {
 			log.info("Verifico che l'utente si sia autenticato");
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 			if((userAuth==null) || (!userAuth.booleanValue())) {
+				log.info("Ordine -> stabilisco a quale pagina tornare");
+				if(toDo.equals(GESTORE)) {
+					String ord="sottomissione desc";
+					session.setAttribute("previousPage", "/Ordine?toDo=gestore&order=" + ord);
+				}
+				else {
+					String ord="sottomissione desc";
+					session.setAttribute("previousPage", "/Ordine?toDo=utente&order=" + ord);
+				}
 				redirectedPage="/Login.jsp";
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 			}
 			else {
 				OrdineDAOStub ordineDAO=new OrdineDAOStub();
 				LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
-
-				log.info("Ottengo l'ordine per visualizzare gli ordini");
-				String order=request.getParameter("order");
-				if(order==null || order.equals(""))
-					order="nome";
 				
 				if(toDo.equals(GESTORE)) {
 					log.info("Ottengo tutti gli ordini poichè l'utente è gestore degli ordini");
