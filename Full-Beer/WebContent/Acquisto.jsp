@@ -32,7 +32,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Acquisto</title>
 </head>
+<style>
+.wrap{
+
+  height: auto !important;
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto -150px;
+}</style>
 <body>
+
 <header>
 
 				<% 
@@ -49,7 +58,7 @@
 			
 			<jsp:include page="<%= pg %>" />			
 </header>
-
+<div class="wrap">
 <form name='acquisto' action="SottomissioneOrdine" method="post">
 						<h5>Indirizzo di spedizione</h5>
                    		<div class="input-group">
@@ -92,8 +101,9 @@
 						Totale: <%= ct %>
 						<th></tr>
 						</table>
-						<br>
-				
+						<br></div>
+
+
 </body>
 </html>
 <%} %>

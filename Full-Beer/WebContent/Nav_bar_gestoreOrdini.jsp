@@ -32,7 +32,7 @@
 <a href="" class="header_icon">
 <ul class="header_menu">	
 		<li class="header_menu_item"><a href="Homepage.jsp">Home</a></li>
-		<li class="header_menu_item"><a href="Visualizza_Ordini.jsp">Visualizza Ordini</a></li>
+		<li class="header_menu_item"><a href="Ordine?toDo=gestore">Visualizza Ordini</a></li>
 	    <li class="header_menu_item"><a href="Gestione_Ordini.jsp">Gestisci Ordini</a></li>
 		<li class="header_menu_item"><a href="AreaUtente.jsp">Area Utente</a></li>
 		<br>

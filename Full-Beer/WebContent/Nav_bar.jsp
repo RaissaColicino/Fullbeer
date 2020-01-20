@@ -38,6 +38,8 @@
 		<li class="header_menu_item"><a href="Carrello.jsp">Carrello</a></li>
 				
 			<%
+			if(user!=null){
+
 				if (user.getRuolo().containsKey(RuoloB.CATALOGO) || user.getRuolo().containsKey(RuoloB.ORDINI)) {
 			%>
 			
@@ -57,7 +59,7 @@
 							<li><a href="Ruolo?permesso=<%=r.getRuolo()%>"><%=r.getRuolo()%></a></li>
 						<% }
 						   }
-						}
+						} }
 					%>
 	</ul>
 	</div>
