@@ -30,6 +30,7 @@
 <body>
 
 
+
 <header>
 				<% 
 				String pg="";
@@ -45,7 +46,6 @@
 			
 			<jsp:include page="<%= pg %>" />			
 </header>
-
 
 
 	<h1 align="center">Benvenuto nella tua AraeUtente, <%=user.getNome() %> <%=user.getCognome() %>
@@ -92,8 +92,8 @@
 			</table>
 		
 		
-		<button type="submit" class=btnn><a href="OrdineUtente.jsp" style="color:white;" >I miei ordini</button>
-		<button type="submit" class=btnn><a href="Logout"style="color:white;" text-decoration="none">LOGOUT</a></button>
+		<button type="submit" class=btnn><a href="Ordine" style="color:white;" >I miei ordini</button>
+		<button type="submit" class=btnn><a href="Logout"style="color:white;" text-decoration="none">Logout</a></button>
 		
 </body>
 </html>

@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+
+.btnn {
+  background-color: black;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+  opacity: 0.9;
+ 
+}
+
+.btnn:hover {
+  opacity: 1;
+}
