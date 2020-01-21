@@ -46,7 +46,7 @@ public class SottomissioneOrdine extends HttpServlet {
 				
 				log.info("Sottomissione ordine -> controllo che non sia vuoto, altrimenti ritorno alla pagina del carrello");
 				if(carrello==null || carrello.isEmpty()) {
-					redirectedPage="/Carrello.jsp";
+					redirectedPage="/Carrello_.jsp";
 					response.sendRedirect(request.getContextPath() + redirectedPage);
 				}
 				else {

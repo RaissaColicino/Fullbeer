@@ -27,6 +27,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/ordine.css">
 <title>Gestione Ordini </title>
 </head>
 <body>
@@ -41,10 +42,10 @@
 	      						if(o.getStato().equals(OrdineB.ELABORAZIONE) || o.getStato().equals(OrdineB.SPEDIZIONE)){
 	      							areAttivi=true;
 	      				%>
-	      				<div>
-	      				<a href="#">
-                                                     Ordine <%= o.getN_fattura() %>
-                                                  </a>
+	      				<div align="center">
+	      									
+                                                   <b>  Ordine <%= o.getN_fattura() %></b>
+                                                  
                                                 
                                                 <h5> <%= o.getStato() %> </h5>
                                                 <h6>Sottomesso da <%= o.getUsername() %></h6>
@@ -52,14 +53,14 @@
                                                 <h6>Consegna prevista il <%= o.getConsegna() %></h6>
                                                 
                                                 <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
-                                               <button id="carrello-button" class="btn btn-secondary bg-dark text-white">
-				                              		<a class="text-light a-btt" href="Fattura?numeroOrdine=<%= o.getN_fattura()%>">
+                                               <button id="carrello-button" class="btnn">
+				                              		<a class="text-light a-btt" style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura()%>">
 				                              			Dettagli
 				                              		</a>
 				                          		</button>
 				                          		
-				                          		<button id="carrello-button" class="btn btn-secondary bg-dark text-white">
-				                              		<a class="text-light a-btt" href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>">
+				                          		<button id="carrello-button" class="btnn">
+				                              		<a class="text-light a-btt" style="color:white" href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>">
 				                              			Aggiorna stato
 				                              		</a>
 				                          		</button><br><br>
@@ -83,7 +84,7 @@
 	      							areChiusi=true;
 	      				%>
 	      				
-	      				              <div>
+	      				              <div align="center">
                                                 <h4>
                                                   <a class="title-prod" href="#">
                                                      Ordine <%= o.getN_fattura() %>
@@ -96,8 +97,8 @@
                                                 
                                                 <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
                                                 
-                                                <button id="carrello-button" class="btn btn-secondary bg-dark text-white">
-				                              		<a class="text-light a-btt" href="Fattura?numeroOrdine=<%= o.getN_fattura() %>">
+                                                <button id="carrello-button" class="btnn">
+				                              		<a class="text-light a-btt"  style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura() %>">
 				                              			Dettagli
 				                              		</a>
 				                          		</button>
@@ -110,6 +111,9 @@
 	      				%>
 								<h4>Nessun ordine chiuso</h4>
 	      				<% } %>
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 <% }}%>

@@ -35,6 +35,7 @@
 </header>
 
 
+
 <%				costoTotale=0;
         	     if(carrello!=null && !carrello.isEmpty()){	
         						for(CarrelloItem i: items){
@@ -125,14 +126,20 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light"><a href="Catalogo">Continua lo Shopping</a></button>
+                    <button class="btn btn-block btn-light"><a href="Catalogo"style="color:white">Continua lo Shopping</a></button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="Acquisto.jsp">Procedi al pagamento</a></button>
+                    <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="Acquisto.jsp" style="color:white">Procedi al pagamento</a></button>
                 </div>
             </div>
         </div>
     </div>
-</div>    
+</div> 
+<a href="SvuotaCarrello" class="list-group-item bb">
+              			<span class="a-nsp">Svuota il carrello</span>
+ </a>
+ <footer>
+		<%@ include file="Footer.jsp" %>
+</footer>   
 </body>
 </html>

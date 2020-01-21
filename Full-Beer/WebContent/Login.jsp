@@ -14,11 +14,6 @@
 </head>
 <body>
 
-<header>
-
-		
-</header>
-
 <form action="Login" method="post"  style="max-width:500px;margin:auto">
 	
 <h2 text-align="center"><strong>Accedi a Fullbeer</strong></h2>
@@ -47,5 +42,8 @@
 		</div>
 
 </form>
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>

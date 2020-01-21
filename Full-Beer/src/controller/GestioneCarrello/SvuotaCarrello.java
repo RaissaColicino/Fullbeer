@@ -32,7 +32,7 @@ public class SvuotaCarrello extends HttpServlet {
 			if(carrello!=null)
 				carrello.svuotaCarrello();
 
-			RequestDispatcher view=request.getRequestDispatcher("Carrello.jsp");
+			RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
 			view.forward(request, response);
 		
 		}

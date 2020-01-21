@@ -61,7 +61,11 @@
                   			<%! String sttmDsc="sottomissione desc"; %>
 				     	<a  href="OrdiniAttivi?order=<%= sttmDsc %>" style="text-decoration: none">	Indietro</a>
 						</button>
-               			</form>
+  
+              			</form>
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 <%}}%>

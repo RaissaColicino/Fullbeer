@@ -64,7 +64,9 @@
   
   <button type="submit" class="btn">Registrati</button>
 </form>
-
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 

@@ -74,7 +74,7 @@
 						<br><button type="submit" class="btn btn-black">Procedi</button>
                   		<button type="reset" class="btn btn-secondary">Annulla</button>
                   		<button class="btn btn-danger">
-							<a class="text-light no-dec" href="Carrello.jsp" style="text-decoration: none">
+							<a class="text-light no-dec" href="Carrello_.jsp" style="text-decoration: none">
 								Indietro
 							</a>
 						</button>
@@ -103,7 +103,9 @@
 						</table>
 						<br></div>
 
-
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 <%} %>

@@ -53,6 +53,9 @@
 				                              			Aggiorna stato
 				                              		</a></button></div><br><br><br>
 <%} %>
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 <%}

@@ -15,16 +15,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/Riepilogo.css">
 <title>Riepilogo Ordine</title>
 </head>
 <body>
+
+
 <header>
 <%@ include file="Nav_bar.jsp" %>
 </header>
  	<% UtenteB userForName=(UtenteB) session.getAttribute("userLogged"); %>
                             <h2><%= userForName.getNome() + " " + userForName.getCognome() %>, il tuo ordine è stato effettuato con successo!</h2>
 
-
+		
+		<div class="img_container">
+		<img src="img/simpson.jpg">
+		</div>
+<footer>
+		<%@ include file="Footer.jsp" %>
+</footer>
 </body>
 </html>
 <% } %>
