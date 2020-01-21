@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
 			toLog.setUsername(username);
 			toLog.setPassword(password);
 				
-			UtenteDAOStub utenteDAO=new UtenteDAOStub();
+			UtenteDAOS utenteDAO=new UtenteDAO();
 			UtenteB user;
 		
 				user = utenteDAO.validate(toLog);
