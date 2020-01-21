@@ -1,6 +1,8 @@
 package controller.gestioneAutenticazione;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import java.util.logging.Logger;
 
 import beans.RuoloB;
 import beans.UtenteB;
+import model.UtenteDAO;
 import topdown.UtenteDAOStub;
 
 /**
@@ -48,10 +51,15 @@ public class Login extends HttpServlet {
 			toLog.setUsername(username);
 			toLog.setPassword(password);
 				
-			UtenteDAOS utenteDAO=new UtenteDAO();
-			UtenteB user;
+			UtenteDAO utenteDAO=new UtenteDAO();
+			UtenteB user=new UtenteB();
 		
-				user = utenteDAO.validate(toLog);
+				try {
+					user = utenteDAO.validate(toLog);
+				} catch (SQLException e) {
+					log.info("Login -> errore validazione utente");
+					e.printStackTrace();
+				}
 
 
 				log.info("Sono nello servlet di login -> terminato metodo: verifica");

@@ -79,7 +79,7 @@ public void doSave(OrdineB ordine) throws SQLException {
 
 
 //permette di modificare lo stato di un ordine
-public void modificaStato(OrdineB ordine) throws SQLException {
+public void aggiornaStato(OrdineB ordine) throws SQLException {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	

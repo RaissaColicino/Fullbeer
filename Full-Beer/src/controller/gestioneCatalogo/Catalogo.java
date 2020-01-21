@@ -35,12 +35,17 @@ public class Catalogo extends HttpServlet {
 		synchronized(session){
 		
 
-			ProdottoDAOStub prodottoDAO= new ProdottoDAOStub();
+			ProdottoDAO prodottoDAO= new ProdottoDAO();
 	     	log.info("Ottendo i prodotti per il Catalogo");
 		    CatalogoB catalogo= new CatalogoB();
 
 	
-				catalogo.setCatalogo(prodottoDAO.doRetrieveAll());
+				try {
+					catalogo.setCatalogo(ProdottoDAO.doRetrieveAll());
+				} catch (SQLException e) {
+					log.info("Catalogo -> errore ottenimento prodotti del catalogo");
+					e.printStackTrace();
+				}
 				session.setAttribute("Catalogo",catalogo);
 				
 			

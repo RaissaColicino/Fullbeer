@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import beans.OrdineB;
 import beans.UtenteB;
+import model.OrdineDAO;
+import model.UtenteDAO;
 import topdown.OrdineDAOStub;
 import topdown.UtenteDAOStub;
 import javax.servlet.RequestDispatcher;
@@ -46,34 +48,44 @@ public class Fattura extends HttpServlet {
 				log.info("Servlet Fattura -> recupero il numero identificativo dell'ordine dalla richiesta");
 				String numeroOrdine=request.getParameter("numeroOrdine");
 	
-               OrdineDAOStub ordineDAO=new OrdineDAOStub();
+               OrdineDAO ordineDAO=new OrdineDAO();
 				
 				log.info("Servlet Fattura -> ottengo l'ordine in base al numero");
-				OrdineB ordine;
+				OrdineB ordine= new OrdineB();
 				
 		     	
-					ordine = ordineDAO.doRetrieveByNumero(numeroOrdine);
-		
+					try {
+						ordine = ordineDAO.doRetrieveByNumero(numeroOrdine);
+					
 								
 				if(ordine!=null)
 					session.setAttribute("Ordine", ordine);
 
-				UtenteDAOStub utenteDAO=new UtenteDAOStub();
+				UtenteDAO utenteDAO=new UtenteDAO();
 
 				log.info("Ottengo l'utente per la fattura");
+				
+				try{
 				UtenteB utente=utenteDAO.doRetrieveByUsername(ordine.getUsername());
 				if(utente!=null)
 					session.setAttribute("UtenteFattura", utente);
 			}
-			
-		
-		}
-		RequestDispatcher view=request.getRequestDispatcher("Fattura_.jsp");
-		view.forward(request, response);
-			
-			
+					catch (SQLException e) {
+						log.info("Fattura -> errore ottenimento utente");
+				e.printStackTrace();
 			}
-
+				RequestDispatcher view=request.getRequestDispatcher("Fattura_.jsp");
+				view.forward(request, response);
+			
+		}
+			
+			catch (SQLException eOrdine) {
+				log.info("Fattura -> errore ottenimento ordine");
+				eOrdine.printStackTrace();
+			}
+		}
+	}
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

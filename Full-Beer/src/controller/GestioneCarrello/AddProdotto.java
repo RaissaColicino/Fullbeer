@@ -1,6 +1,8 @@
 package controller.GestioneCarrello;
 import java.util.logging.Logger;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,8 @@ import beans.CarrelloB;
 import beans.CarrelloItem;
 import beans.CatalogoB;
 import beans.ProdottoB;
+import model.ProdottoDAO;
+
 import javax.servlet.RequestDispatcher;
 /**
  * Servlet implementation class AddProdottoCarrello
@@ -42,10 +46,14 @@ public class AddProdotto extends HttpServlet {
 			String codiceProdotto=request.getParameter("id");
 			
 			log.info("procedo ottenendo il catalogo");
-			CatalogoB catalogo=(CatalogoB) session.getAttribute("Catalogo");
+			//CatalogoB catalogo=(CatalogoB) session.getAttribute("Catalogo");
+			ProdottoDAO prodottoDAO=new ProdottoDAO();
 			
 			log.info("Ottengo il prodotto da aggiungere al carrello dal catalogo");
-			ProdottoB prodottoDaAggiungere=catalogo.getProdotto(codiceProdotto);
+			ProdottoB prodottoDaAggiungere;
+			try {
+				prodottoDaAggiungere = prodottoDAO.doRetrieveByCodice(codiceProdotto);
+			
 			
 			if(prodottoDaAggiungere!=null) {
 				log.info("Creo il carrello item da aggiungere");
@@ -66,9 +74,14 @@ public class AddProdotto extends HttpServlet {
 			
 			RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
 			view.forward(request, response);
-		}
+		
 	}
-
+       catch (SQLException e) {
+		log.info("AddProdottoCarrello -> errore ottenimento prodotto");
+		e.printStackTrace();
+	}
+		}
+			}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

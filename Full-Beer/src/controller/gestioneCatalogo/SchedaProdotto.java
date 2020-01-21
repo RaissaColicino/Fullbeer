@@ -1,6 +1,8 @@
 package controller.gestioneCatalogo;
 import java.util.logging.Logger;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import javax.servlet.RequestDispatcher;
 
 
 import beans.ProdottoB;
+import model.ProdottoDAO;
 import topdown.ProdottoDAOStub;
 
 /**
@@ -35,22 +38,28 @@ public class SchedaProdotto extends HttpServlet {
 			log.info("Scheda prodotto -> ottengo il codice del prodotto da mostrare dalla richiesta");
 			String codiceProdotto=request.getParameter("id");
 			
-			ProdottoDAOStub prodottoDAO=new ProdottoDAOStub();
+			ProdottoDAO prodottoDAO=new ProdottoDAO();
 			
 			log.info("Scheda prodotto -> ottengo il prodotto da mostrare");
-			ProdottoB prodottoDaMostrare=prodottoDAO.doRetrieveByCodice(codiceProdotto);
+			ProdottoB prodottoDaMostrare;
+			try {
+				prodottoDaMostrare = prodottoDAO.doRetrieveByCodice(codiceProdotto);
+	
 			System.out.println(prodottoDaMostrare);
 			if(prodottoDaMostrare!=null){		
 			
 				log.info("Scheda prodotto -> aggiungo il prodotto da mostrare alla sessione");
 				session.setAttribute("ProdottoDaMostrare", prodottoDaMostrare);
-			}
-		
-		}
 		
 		RequestDispatcher view=request.getRequestDispatcher("SchedaProdotto.jsp");
 		view.forward(request, response);
+	}		
+			} catch (SQLException e) {
+				log.info("SchedaProdotto -> errore ottenimento prodotto");
+				e.printStackTrace();
 	}
+			}
+				}
 	
 
 	/**

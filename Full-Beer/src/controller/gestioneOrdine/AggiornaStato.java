@@ -1,6 +1,8 @@
 package controller.gestioneOrdine;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import beans.OrdineB;
 import beans.RuoloB;
 import beans.UtenteB;
+import model.OrdineDAO;
 import topdown.OrdineDAOStub;
 
 import java.util.logging.Logger;
@@ -68,13 +71,14 @@ public class AggiornaStato extends HttpServlet {
 				log.info("Se autenticato come gestore degli ordini procedo");
 				String numero="";
 				OrdineB ordineDaModificare=new OrdineB();
-				OrdineDAOStub ordineDAO=new OrdineDAOStub();
+				OrdineDAO ordineDAO=new OrdineDAO();
 		
 
 				if(what.equals(WRITE)) {
+					
 						numero=request.getParameter("numero");
 						log.info("numero dell'ordine da aggiornare: " + numero);
-					
+					try{
 								ordineDaModificare=ordineDAO.doRetrieveByNumero(numero);
 							if(ordineDaModificare==null || ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO)){
 						//Sostutuire con pagina di errore
@@ -91,7 +95,13 @@ public class AggiornaStato extends HttpServlet {
 										response.sendRedirect(request.getContextPath() + redirectedPage);
 								
 								}
-									}else if(what.equals(SAVE)) {
+					}
+					catch (SQLException e) {
+						log.info("AggiornaStato -> errore ottenimento ordine");
+						e.printStackTrace();
+					}
+				}
+							else if(what.equals(SAVE)) {
 					
 									log.info("Ottengo il nuovo stato dell'ordine");
 									
@@ -106,9 +116,13 @@ public class AggiornaStato extends HttpServlet {
 											ordineDaModificare.setConsegna(ordineDAO.generatoreSottomissione());
 											log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
 									}
-				
+
+									try {
 										ordineDAO.aggiornaStato(ordineDaModificare);
-				
+									} catch (SQLException e) {
+										log.info("AggiornaStato -> errore aggiornamento ordine");
+										e.printStackTrace();
+									}
 										log.info("Ordine aggiornato: " + ordineDaModificare.getN_fattura() 
 										+ ", stato: " + ordineDaModificare.getStato());
 				

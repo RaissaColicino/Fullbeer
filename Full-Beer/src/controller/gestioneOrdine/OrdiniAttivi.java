@@ -1,6 +1,8 @@
 package controller.gestioneOrdine;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,13 +14,15 @@ import java.util.LinkedHashSet;
 import javax.servlet.RequestDispatcher;
 import topdown.OrdineDAOStub;
 import beans.OrdineB;
+import model.OrdineDAO;
+
 import java.util.logging.Logger;
 /**
  * Servlet implementation class OrdiniAttivi
  */
 @WebServlet("/OrdiniAttivi")
 public class OrdiniAttivi extends HttpServlet {
-	OrdineDAOStub ordiniDAO;
+	OrdineDAO ordiniDAO;
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("OrdiniAttiviDebugger");
     public OrdiniAttivi() {
@@ -41,16 +45,24 @@ public class OrdiniAttivi extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 			}
 			else{
-			 ordiniDAO=new OrdineDAOStub();
+			 ordiniDAO=new OrdineDAO();
 			
 			log.info("Ottengo gli ordini attivi");
-			LinkedHashSet<OrdineB> ordiniAttivi=(LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi();
+			LinkedHashSet<OrdineB> ordiniAttivi;
+			try {
+				ordiniAttivi = (LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi();
+
+				log.info("Aggiungo ordini attivi alla sessione");
+				session.setAttribute("OrdiniAttivi", ordiniAttivi);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			log.info("Aggiungo ordini attivi alla sessione");
-			session.setAttribute("OrdiniAttivi", ordiniAttivi);
-		}
+		
 		RequestDispatcher view=request.getRequestDispatcher("OrdiniAttivi.jsp");
 		view.forward(request, response);
+	}
 	}
 	}
 	/**

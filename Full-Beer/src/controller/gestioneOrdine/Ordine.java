@@ -15,6 +15,7 @@ import javax.servlet.RequestDispatcher;
 
 import beans.OrdineB;
 import beans.UtenteB;
+import model.OrdineDAO;
 import topdown.OrdineDAOStub;
 
 /**
@@ -63,13 +64,18 @@ public class Ordine extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 			}
 			else {
-				OrdineDAOStub ordineDAO=new OrdineDAOStub();
+				OrdineDAO ordineDAO=new OrdineDAO();
 				LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
 				
 				if(toDo.equals(GESTORE)) {
 					log.info("Ottengo tutti gli ordini poichè l'utente è gestore degli ordini");
 					
-						ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveAll();
+						try {
+							ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveAll();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 											
 				}
 				else {
@@ -77,7 +83,12 @@ public class Ordine extends HttpServlet {
 					
 					log.info("Ottengo solo gli ordini dell'utente");
 					
-						ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveByUtente(utente);
+						try {
+							ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveByUtente(utente);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 									
 				}
 				
