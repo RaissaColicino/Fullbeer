@@ -62,7 +62,7 @@
 <form name='acquisto' action="SottomissioneOrdine" method="post">
 						<h5>Indirizzo di spedizione</h5>
                    		<div class="input-group">
-  							<select class="custom-select" name="indirizzo" id="indirizzo">
+  							<select name="indirizzo" id="indirizzo">
 							    <option selected>Scegli un indirizzo di spedizione</option>
 							    <% 
 							    	for(IndirizzoB indirizzo: indirizzi){
@@ -71,7 +71,7 @@
 							    <% } %>
   							</select>
 						</div>
-						<br><button type="submit" class="btn btn-black">Procedi</button>
+						<br><button type="submit" class="btnn">Procedi</button>
                   		<button type="reset" class="btn btn-secondary">Annulla</button>
                   		<button class="btn btn-danger">
 							<a class="text-light no-dec" href="Carrello_.jsp" style="text-decoration: none">

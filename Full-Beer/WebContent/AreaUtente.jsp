@@ -101,7 +101,7 @@
 	</div>
 	
 	
-		<button type="submit" class=btnn><a href="Ordine" style="color:white;" >I miei ordini</button>
+		<button type="submit" class=btnn class=btordini><a href="Ordine" style="color:white;" >I miei ordini</button>
 		<button type="submit" class=btnn><a href="Logout"style="color:white;" text-decoration="none">Logout</a></button>
 			
 	

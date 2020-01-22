@@ -97,7 +97,7 @@ public Set<IndirizzoB> doRetrieveByUtente(UtenteB utente) throws SQLException{
 			temp.setVia(rs.getString("via"));
 			temp.setCap(rs.getString("cap"));
 			temp.setCittà(rs.getString("citta"));
-			temp.setUsername(rs.getString("via"));
+			temp.setUsername(rs.getString("username"));
 			
 			
 			indirizzi.add(temp);

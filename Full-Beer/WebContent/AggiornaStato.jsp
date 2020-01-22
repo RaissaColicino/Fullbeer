@@ -15,7 +15,7 @@
 	else{
 		UtenteB userForRoleControl=(UtenteB) session.getAttribute("userLogged");
 		if(!userForRoleControl.getRuolo().containsKey(RuoloB.ORDINI)){
-			response.sendRedirect("./OnlyAdminPage.html");
+			response.sendRedirect("./ErrorPage.html");
 		}
 		else{
 			session.setAttribute("ruolo", RuoloB.ORDINI);
@@ -33,6 +33,7 @@
                		    <input type="hidden" name="what" value="save" />
                		
                			<h3>Ordine n° <%= ordineDaModificare.getN_fattura() %></h3>
+               			<h5>Sottomesso  da <%=ordineDaModificare.getUsername() %></h5>
                			<h5>Sottomesso il <%= ordineDaModificare.getDate() %></h5>
                			<h5>Consegna prevista il <%= ordineDaModificare.getConsegna() %></h5>
                			
@@ -55,7 +56,7 @@
 							    %>
   							</select>
   							
-  							<button type="submit" >Modifica</button>
+  							<button type="submit" class="btnn">Modifica</button>
                   		<button type="reset" >Annulla</button>
                   		<button>
                   			<%! String sttmDsc="sottomissione desc"; %>

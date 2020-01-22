@@ -25,7 +25,7 @@ public class RuoloDAO {
 		//permette di salvare un ruolo
 		public void doSave(RuoloB ruolo) throws SQLException {
 		
-			log.info("RuoloModel -> doSave");
+			log.info("RuoloDAO -> doSave");
 			Connection connection=null;
 			PreparedStatement preparedStatement=null;
 		

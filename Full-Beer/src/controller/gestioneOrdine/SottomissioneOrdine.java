@@ -61,6 +61,7 @@ public class SottomissioneOrdine extends HttpServlet {
 						OrdineDAOStub ordineDAO=new OrdineDAOStub();
 						
 						log.info("Sottomissione ordine -> creo l'ordine");
+						System.out.println(indirizzo);
 						OrdineB ordine=new OrdineB();
 						
 						ordine.setN_fattura(ordineDAO.generatoreNumero());

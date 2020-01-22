@@ -52,6 +52,8 @@ public class Ordine extends HttpServlet {
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 			if((userAuth==null) || (!userAuth.booleanValue())) {
 				log.info("Ordine -> stabilisco a quale pagina tornare");
+				//redirectedPage="/Login.jsp";
+				//response.sendRedirect(request.getContextPath() + redirectedPage);
 				if(toDo.equals(GESTORE)) {
 					String ord="sottomissione desc";
 					session.setAttribute("previousPage", "/Ordine?toDo=gestore&order=" + ord);
@@ -93,9 +95,8 @@ public class Ordine extends HttpServlet {
 				}
 				
 				session.setAttribute("Ordini", ordini);
-			}
-		}
-		//Fine synchronized
+			
+	
 		if(toDo.equals(GESTORE)) {
 			RequestDispatcher view=request.getRequestDispatcher("OrdineGestore.jsp");
 			view.forward(request, response);
@@ -104,6 +105,9 @@ public class Ordine extends HttpServlet {
 			RequestDispatcher view=request.getRequestDispatcher("OrdiniUtente.jsp");
 			view.forward(request, response);
 		}
+	}
+		}
+		//Fine synchronized
 	}
 
 	/**

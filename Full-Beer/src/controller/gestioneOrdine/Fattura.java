@@ -24,11 +24,7 @@ import javax.servlet.RequestDispatcher;
 public class Fattura extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("FatturaDebugger");   
-  
-    public Fattura() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,12 +49,11 @@ public class Fattura extends HttpServlet {
 				log.info("Servlet Fattura -> ottengo l'ordine in base al numero");
 				OrdineB ordine= new OrdineB();
 				
-		     	
-					try {
+		     try {
 						ordine = ordineDAO.doRetrieveByNumero(numeroOrdine);
 					
 								
-				if(ordine!=null)
+				if(ordine!=null){
 					session.setAttribute("Ordine", ordine);
 
 				UtenteDAO utenteDAO=new UtenteDAO();
@@ -69,22 +64,32 @@ public class Fattura extends HttpServlet {
 				UtenteB utente=utenteDAO.doRetrieveByUsername(ordine.getUsername());
 				if(utente!=null)
 					session.setAttribute("UtenteFattura", utente);
-			}
-					catch (SQLException e) {
+				
+				
+				}
+				catch (SQLException e) {
 						log.info("Fattura -> errore ottenimento utente");
-				e.printStackTrace();
-			}
+						e.printStackTrace();
+			
+					}
 				RequestDispatcher view=request.getRequestDispatcher("Fattura_.jsp");
 				view.forward(request, response);
 			
-		}
-			
+				}	
+					
+				
+				else {
+						response.sendRedirect(request.getContextPath() +"/ErrorPage.html");
+					
+					}
+			}
 			catch (SQLException eOrdine) {
 				log.info("Fattura -> errore ottenimento ordine");
 				eOrdine.printStackTrace();
 			}
 		}
 	}
+
 }
 
 	/**

@@ -54,7 +54,7 @@ public class RuoloDAOTestCase extends TestCase {
 		
 		RuoloB ruolo=new RuoloB();
 		ruolo.setUsername("VincenzaC");
-		ruolo.setRuolo("GestoreCatalogo");
+		ruolo.setRuolo("Catalogo");
 		
 		ruoloDAO.doSave(ruolo);
 		

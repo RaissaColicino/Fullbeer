@@ -63,7 +63,7 @@ public class AggiornaStato extends HttpServlet {
 					
 						if(!utente.getRuolo().containsKey(RuoloB.ORDINI)){
 						
-						response.sendRedirect("/AdminPage.html");
+						response.sendRedirect("/ErrorPage.html");
 					
 							}else {
 				
@@ -83,7 +83,7 @@ public class AggiornaStato extends HttpServlet {
 							if(ordineDaModificare==null || ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO)){
 						//Sostutuire con pagina di errore
 						
-									redirectedPage="/Errore.html";
+									redirectedPage="/ErrorPage.html";
 							response.sendRedirect(request.getContextPath() + redirectedPage);
 				
 								}else {
@@ -101,7 +101,8 @@ public class AggiornaStato extends HttpServlet {
 						e.printStackTrace();
 					}
 				}
-							else if(what.equals(SAVE)) {
+							
+				else if(what.equals(SAVE)) {
 					
 									log.info("Ottengo il nuovo stato dell'ordine");
 									
@@ -114,7 +115,7 @@ public class AggiornaStato extends HttpServlet {
 									if(ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO)) {
 										
 											ordineDaModificare.setConsegna(ordineDAO.generatoreSottomissione());
-											log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
+											//log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
 									}
 
 									try {

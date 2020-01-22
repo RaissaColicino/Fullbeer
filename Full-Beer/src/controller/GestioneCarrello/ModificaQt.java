@@ -40,9 +40,10 @@ HttpSession session=request.getSession();
 			
 			log.info("Aggiorno il carrello");
 			session.setAttribute("Carrello", carrello);
+			
+			response.sendRedirect(request.getContextPath()+ "/Carrello_.jsp");
 		}
-	RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
-	view.forward(request, response);
+	
 	}
 
 	/**

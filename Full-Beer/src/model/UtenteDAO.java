@@ -94,6 +94,7 @@ public UtenteB validate(UtenteB utente) throws SQLException {
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setMail(rs.getString("mail"));
+				bean.setRuolo(ruoloDAO.doRetrieveByUtente(bean));
 				IndirizzoDAO indirizzo= new IndirizzoDAO();
 				bean.setIndirizzi(indirizzo.doRetrieveByUtente(bean));
 				

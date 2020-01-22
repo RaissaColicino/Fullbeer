@@ -59,7 +59,7 @@
 				                              		</a>
 				                          		</button>
 				                          		
-				                          		<button id="carrello-button" class="btnn">
+				                          		<button id="aggiornastato" class="btnn">
 				                              		<a class="text-light a-btt" style="color:white" href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>">
 				                              			Aggiorna stato
 				                              		</a>

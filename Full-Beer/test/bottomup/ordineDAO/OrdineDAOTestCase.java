@@ -96,11 +96,11 @@ public class OrdineDAOTestCase extends TestCase{
 				assertFalse(o.getStato().equals(OrdineB.SPEDIZIONE));
 		}
 		//Test aggiornaStato
-		public void modificaStato() throws SQLException {
+		public void aggiornaStato() throws SQLException {
 			//Imposto delle modifiche
 			ordineTest.setStato(OrdineB.SPEDIZIONE);
 			
-			ordineDAO.modificaStato(ordineTest);
+			ordineDAO.aggiornaStato(ordineTest);
 			
 			OrdineB ordine=ordineDAO.doRetrieveByNumero(ordineTest.getN_fattura());
 

@@ -22,7 +22,7 @@
 
    <p>  <%=p.getNome()%></p>
    <p>  <%=p.getPrezzo()%> </p>
-    <p> <%p.getDescrizione()%></p>
+    <p> <%p.getDescrizione();%></p>
 
 
 
