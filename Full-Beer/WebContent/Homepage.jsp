@@ -50,29 +50,30 @@
 <br>
 <br>
 
-<div >
-<table align="center" class="imgbirre">
-<tr>
-<td><img  src="img/login1.jpg" width="300" height="300" class="ex"></td>
-<td><strong>La nostra Azienda seleziona le migliori birre al mondo.<br>Per saperne di più visita il nostro Shop</strong><br><br><br>
-<button class="btn" >
-<a href="Prodotto.jsp">Vai allo Shop</a>
-</button>
-</td>
 
-<td><img  src="img/birrae.jpg" width="300" height="300" class="ex1"></td>
-<td><strong>Clicca qui per saperne di più.</strong><br><br><br>
-<button class="btnn" >
-<a href="ChiSiamo.jsp">Chi Siamo</a>
-</button>
-</td>
-</tr>
+<div align="center">
 
-</table>
+<img  src="img/login1.jpg" width="300" height="300" class="ex">
+<strong>La nostra Azienda seleziona le migliori birre al mondo.Per saperne di più visita il nostro Shop</strong>
+<button class=btnn ><a href="Catalogo">Vai allo Shop</a></button>
+</div>
+
+<br>
+<br>
+<div align="center">
+<img  src="img/birrae.jpg" width="300" height="300" class="ex1">
+
+<strong>Clicca qui per saperne di più.</strong>
+<button class=btnn ><a href="ChiSiamo.jsp">Chi Siamo</a></button>
+</div>
+
+<div align="right">
+<img  src="img/homerw.jpg" >
 </div>
 
 
 
+<!-- 
 <script>
  $(document).ready(function(){
 	      $(".btn").mouseenter(function(){
@@ -96,7 +97,7 @@
      });
 	  });
  
-	  </script>	
+	  </script>	 -->
 	  <script>
 $(document).ready(function(){
 			 $(".ex").mouseenter(function(){ //ex query utilizzata per ingrandire le img al passaggio del mouse

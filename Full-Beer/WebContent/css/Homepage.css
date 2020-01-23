@@ -1,14 +1,14 @@
 @CHARSET "ISO-8859-1";
-html,
+
 body
 {
    height: 100%;
 }
- 
+ /*
  body
 {
    margin: 0
-}
+}*/
 .container {
   position: relative;
   font-family: Arial;
@@ -29,6 +29,7 @@ a{
 	 text-decoration: none;
 	 color: white;
 }
+/*
 .btn{
 	 padding: 10px 25px;
 	border:none;
@@ -41,7 +42,21 @@ a{
 	border-radius: 40%;
 	background-color: #C0C0C0;
 }
+*/
+.btnn {
+  background-color: black;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  opacity: 0.9;
+ 
+}
 
+.btnn:hover {
+  opacity: 1;
+}
 .cover{
 	 height:70%;
 	 background-image: url(slider.jpg);

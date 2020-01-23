@@ -27,6 +27,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <title>Full-Beer Carrello</title>
 <link rel="stylesheet" href="css/Carrello.css">
+<link rel="stylesheet" href="css/ordine.css">
 
 </head>
 <body>
@@ -132,14 +133,14 @@
                     <button class="btn btn-block btn-light"><a href="Catalogo"style="color:white">Continua lo Shopping</a></button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="Acquisto.jsp" style="color:white">Procedi al pagamento</a></button>
+                    <button class="btn btn-block btn-light text-lowercase"><a href="Acquisto.jsp" style="color:white">Procedi al pagamento</a></button>
                 </div>
             </div>
         </div>
     </div>
 </div> 
-<a href="SvuotaCarrello" class="list-group-item bb">
-              			<span class="a-nsp">Svuota il carrello</span>
+<a href="SvuotaCarrello" class="list-group-item bb" align="center">
+              			<span class="btnn">Svuota il carrello</span>
  </a>
  <footer>
 		<%@ include file="Footer.jsp" %>
