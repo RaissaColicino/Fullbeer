@@ -96,7 +96,7 @@
                             
                      <td>
                      <% if(i.getQt()<i.getProdotto().getQt()){ %>
-                    <input type="text" name="txtPrezzo" value="<%=i.getQt() %>" readonly></th> 
+                    <span id="sp-qt"><%= i.getQt() %></span>  </th> 
                      	<button  class=btn> <a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>"style="color:white">Aggiungi</a></button>
 			
 									<% }%><% if(i.getQt()!=1){ %>			

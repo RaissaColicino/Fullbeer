@@ -33,7 +33,7 @@
 <%@ include file="Nav_bar.jsp" %>
 </header>
 
-
+<h1 align="center">Le nostre birre<h1>
 <table class="table" align="center" width="60%" >
 	<%	int salto=0;
 		int i=0; %>
@@ -41,19 +41,21 @@
 	<% for(ProdottoB p: catalogoa){%>
 			<% i++;
 					%>
+					
 		 <!-- ContenitoreFOto-->
 		<td width="200" heigth="200"> 
-		<span  class="card">
+		<div  class="card">
+	
      <img src="img/<%=p.getImmagine()%>" style="width:100%">
-  			   <h1><%=p.getNome()%></h1>
-  			   <p class="prezzo"><%=p.getPrezzo()%></p>
-  			   <p><%=p.getDescrizione()%></p>
+  			   <h3><%=p.getNome()%></h3>
+  			   <p class="prezzo"><%=p.getPrezzo()%>&euro;</p>
+  			<!--    <p><%=p.getDescrizione()%></p> -->
   			   
   	<button  class=btnn><a href="SchedaProdotto?id=<%=p.getId()%>"style="color:white"> Dettagli </a></button>
   	<br>
   	<br>
   	<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi </a></button>
-	</span>
+	</div>
 	</td>
 	
 	<%

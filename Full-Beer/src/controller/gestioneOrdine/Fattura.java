@@ -59,17 +59,20 @@ public class Fattura extends HttpServlet {
 				UtenteDAO utenteDAO=new UtenteDAO();
 
 				log.info("Ottengo l'utente per la fattura");
+				UtenteB utente= new UtenteB();
+				
+				
 				
 				try{
-				UtenteB utente=utenteDAO.doRetrieveByUsername(ordine.getUsername());
+						utente=utenteDAO.doRetrieveByUsername(ordine.getUsername());
 				if(utente!=null)
 					session.setAttribute("UtenteFattura", utente);
 				
 				
 				}
-				catch (SQLException e) {
+				catch (SQLException eUtente) {
 						log.info("Fattura -> errore ottenimento utente");
-						e.printStackTrace();
+						eUtente.printStackTrace();
 			
 					}
 				RequestDispatcher view=request.getRequestDispatcher("Fattura_.jsp");
@@ -79,7 +82,7 @@ public class Fattura extends HttpServlet {
 					
 				
 				else {
-						response.sendRedirect(request.getContextPath() +"/ErrorPage.html");
+						response.sendRedirect(request.getContextPath() + "/ErrorPage.html");
 					
 					}
 			}

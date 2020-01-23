@@ -11,7 +11,7 @@
 	else{
 		UtenteB userForRoleControl=(UtenteB) session.getAttribute("userLogged");
 		if(!userForRoleControl.getRuolo().containsKey(RuoloB.ORDINI)){
-			response.sendRedirect("./OnlyAdminPage.html");
+			response.sendRedirect("./ErrorPage.html");
 		}
 		else{
 			session.setAttribute("ruolo", RuoloB.ORDINI);

@@ -1,6 +1,8 @@
 package controller.gestioneOrdine;
 import javax.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import beans.CarrelloItem;
 import beans.ComposizioneB;
 import beans.OrdineB;
 import beans.UtenteB;
+import model.OrdineDAO;
 import topdown.OrdineDAOStub;
 
 import java.util.logging.Logger;
@@ -58,21 +61,23 @@ public class SottomissioneOrdine extends HttpServlet {
 						response.sendRedirect(request.getContextPath() + redirectedPage);
 					}
 					else {
-						OrdineDAOStub ordineDAO=new OrdineDAOStub();
+						OrdineDAO ordineDAO=new OrdineDAO();
 						
 						log.info("Sottomissione ordine -> creo l'ordine");
-						System.out.println(indirizzo);
+			
 						OrdineB ordine=new OrdineB();
-						
+						try{
 						ordine.setN_fattura(ordineDAO.generatoreNumero());
+						}
+						catch(SQLException eNumero){
+							eNumero.printStackTrace();
+						}
 						ordine.setUsername(user.getUsername());
-						ordine.setStato(OrdineDAOStub.ELABORAZIONE);
+						ordine.setStato(OrdineB.ELABORAZIONE);
 						ordine.setDate(ordineDAO.generatoreSottomissione());
+						ordine.setConsegna(ordineDAO.generatoreConsegna());
 						
-						double totale=0;
-						log.info("Sottomissione ordine -> uso i prodotti nel carrello per creare la composizione dell'ordine");
-					
-						for(CarrelloItem item: carrello.getCarrello()) {
+						   for(CarrelloItem item: carrello.getCarrello()) {
 							log.info("Sottomissione ordine -> creo la composizone dell'ordine");
 						
 							ComposizioneB cb=new ComposizioneB();
@@ -82,19 +87,22 @@ public class SottomissioneOrdine extends HttpServlet {
 							cb.setPrezzo(item.getProdotto().getPrezzo());
 							cb.setQuantità(item.getQt());
 														
-							totale+=item.getProdotto().getPrezzo();
-	
-							log.info("Sottomissione ordine -> aggiungo composizione all'ordine");
+						log.info("Sottomissione ordine -> aggiungo composizione all'ordine");
 							ordine.addProdotto(cb);
 						}
+						float totale=(float) session.getAttribute("costoTotale");
 						
 						log.info("Sottomissione ordine -> aggiorno totale dell'ordine");
 						ordine.setImporto(totale);
+						try{
 						System.out.println(ordine.getImporto());
 						log.info("Sottomissione ordine -> salvo l'ordine per completare la sottomissione");
 						ordineDAO.doSave(ordine);
 						
-						
+						}
+						catch(SQLException eOrdine){
+							eOrdine.printStackTrace();
+						}
 						log.info("Sottomissione ordine -> svuoto il carrello dopo la sottomissione");
 						carrello.svuotaCarrello();
 						

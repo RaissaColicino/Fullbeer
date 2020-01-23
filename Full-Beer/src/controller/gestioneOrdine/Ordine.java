@@ -25,17 +25,7 @@ import topdown.OrdineDAOStub;
 public class Ordine extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("OrdineDebugger"); 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Ordine() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		String GESTORE="gestore";
@@ -52,13 +42,13 @@ public class Ordine extends HttpServlet {
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 			if((userAuth==null) || (!userAuth.booleanValue())) {
 				log.info("Ordine -> stabilisco a quale pagina tornare");
-				//redirectedPage="/Login.jsp";
-				//response.sendRedirect(request.getContextPath() + redirectedPage);
+				
 				if(toDo.equals(GESTORE)) {
 					String ord="sottomissione desc";
 					session.setAttribute("previousPage", "/Ordine?toDo=gestore&order=" + ord);
 				}
 				else {
+					
 					String ord="sottomissione desc";
 					session.setAttribute("previousPage", "/Ordine?toDo=utente&order=" + ord);
 				}
@@ -68,6 +58,7 @@ public class Ordine extends HttpServlet {
 			else {
 				OrdineDAO ordineDAO=new OrdineDAO();
 				LinkedHashSet<OrdineB> ordini=new LinkedHashSet<OrdineB>();
+				
 				
 				if(toDo.equals(GESTORE)) {
 					log.info("Ottengo tutti gli ordini poichè l'utente è gestore degli ordini");
@@ -87,9 +78,9 @@ public class Ordine extends HttpServlet {
 					
 						try {
 							ordini=(LinkedHashSet<OrdineB>) ordineDAO.doRetrieveByUtente(utente);
-						} catch (SQLException e) {
+						} catch (SQLException eUtente) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+							eUtente.printStackTrace();
 						}
 									
 				}

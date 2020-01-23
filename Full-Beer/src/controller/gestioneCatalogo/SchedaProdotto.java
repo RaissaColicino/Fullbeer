@@ -24,11 +24,6 @@ import topdown.ProdottoDAOStub;
 public class SchedaProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("SchedaProdottoDebugger");
-    public SchedaProdotto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
@@ -41,7 +36,7 @@ public class SchedaProdotto extends HttpServlet {
 			ProdottoDAO prodottoDAO=new ProdottoDAO();
 			
 			log.info("Scheda prodotto -> ottengo il prodotto da mostrare");
-			ProdottoB prodottoDaMostrare;
+			ProdottoB prodottoDaMostrare = new ProdottoB();
 			try {
 				prodottoDaMostrare = prodottoDAO.doRetrieveByCodice(codiceProdotto);
 	
@@ -53,7 +48,9 @@ public class SchedaProdotto extends HttpServlet {
 		
 		RequestDispatcher view=request.getRequestDispatcher("SchedaProdotto.jsp");
 		view.forward(request, response);
-	}		
+	}else{
+		response.sendRedirect(request.getContextPath()+"/ErrorPage.html");
+	}	
 			} catch (SQLException e) {
 				log.info("SchedaProdotto -> errore ottenimento prodotto");
 				e.printStackTrace();

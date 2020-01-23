@@ -49,8 +49,8 @@ public class AggiornaStato extends HttpServlet {
 		Boolean userAuth=(Boolean) session.getAttribute("userAuth");
 		
 		if((userAuth==null) || (!userAuth.booleanValue())) {
-			String ord="sottomissione desc";
-			session.setAttribute("previousPage", "/OrdiniAttivi?order" + ord );
+			
+			session.setAttribute("previousPage", "/OrdiniAttivi" );
 		
 			redirectedPage="/Login.jsp";
 			response.sendRedirect(request.getContextPath() + redirectedPage);
@@ -63,7 +63,9 @@ public class AggiornaStato extends HttpServlet {
 					
 						if(!utente.getRuolo().containsKey(RuoloB.ORDINI)){
 						
-						response.sendRedirect("/ErrorPage.html");
+
+							redirectedPage="/ErrorPage.html";
+					response.sendRedirect(request.getContextPath() + redirectedPage);
 					
 							}else {
 				
@@ -115,7 +117,7 @@ public class AggiornaStato extends HttpServlet {
 									if(ordineDaModificare.getStato().equals(OrdineB.CONSEGNATO)) {
 										
 											ordineDaModificare.setConsegna(ordineDAO.generatoreSottomissione());
-											//log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
+											log.info("AggiornaStato -> nuova data di consegna: " + ordineDaModificare.getConsegna());
 									}
 
 									try {

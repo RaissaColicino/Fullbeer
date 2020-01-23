@@ -7,7 +7,7 @@ public class CarrelloItem {
 	/**costruttore carrelloItem*/
 	public CarrelloItem(){
 		
-		int qt = 1;
+	 qt = 1;
 	}
 /**
  * permette do ottenere la variabile d'istanza che moedella il prodotto*/

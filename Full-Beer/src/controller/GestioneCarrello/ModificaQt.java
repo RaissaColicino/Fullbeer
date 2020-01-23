@@ -17,11 +17,6 @@ import javax.servlet.RequestDispatcher;
 public class ModificaQt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	   Logger log=Logger.getLogger("ModificaQtDebugger");   
-    public ModificaQt() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 HttpSession session=request.getSession();
@@ -41,7 +36,7 @@ HttpSession session=request.getSession();
 			log.info("Aggiorno il carrello");
 			session.setAttribute("Carrello", carrello);
 			
-			response.sendRedirect(request.getContextPath()+ "/Carrello_.jsp");
+			response.sendRedirect(request.getContextPath()+"/Carrello");
 		}
 	
 	}

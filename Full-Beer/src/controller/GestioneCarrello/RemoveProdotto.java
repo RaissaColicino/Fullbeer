@@ -19,12 +19,6 @@ public class RemoveProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     Logger log=Logger.getLogger("RemoveProdottoCarrelloDebugger");  
 
-    public RemoveProdotto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 	
@@ -45,11 +39,11 @@ public class RemoveProdotto extends HttpServlet {
 			
 			log.info("Aggiorno il carrello");
 			session.setAttribute("Carrello", carrello);
+		
+			response.sendRedirect(request.getContextPath()+"/Carrello");
 		}
 		
-		RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
-		view.forward(request, response);
-	
+		
 	}
 
 	/**

@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="beans.*" %>
 <%@ page import="java.util.*" %>
+<%@page import="model.*" %>
+    <%@page import="controller.*" %>
 <%ProdottoB p=(ProdottoB) session.getAttribute("ProdottoDaMostrare"); %>
 
 
@@ -10,6 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/Catalogo.css">
+<link rel="stylesheet" href="css/ordine.css">
 <title>Dettagli Prodotto</title>
 </head>
 <body>
@@ -19,12 +23,14 @@
 <br><br>
 
 
-
-   <p>  <%=p.getNome()%></p>
-   <p>  <%=p.getPrezzo()%> </p>
-    <p> <%p.getDescrizione();%></p>
-
-
+		<div align="center" >
+   
+    <img src="img/<%=p.getImmagine()%>" >
+  <h1 align="center">  <strong><%=p.getNome()%></strong></h1>
+  <h2 align="center">  <strong><%=p.getPrezzo()%>&euro;</strong></h2> 
+  <h3    align="center"> <%=p.getDescrizione() %></h3>
+<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi al carrello</a></button
+</div>
 
 <br><br>
 <footer>

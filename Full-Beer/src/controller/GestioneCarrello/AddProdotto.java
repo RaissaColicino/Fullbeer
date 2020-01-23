@@ -25,12 +25,8 @@ public class AddProdotto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("AddProdottoCarrelloDebugger"); 
 
-    public AddProdotto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-
+   
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 	
@@ -44,44 +40,46 @@ public class AddProdotto extends HttpServlet {
 			}
 			log.info("Ottengo codice prodotto dalla richiesta");
 			String codiceProdotto=request.getParameter("id");
-			
+			if(codiceProdotto==null|| codiceProdotto.equals("")){
+				response.sendRedirect(request.getContextPath() + "/ErrorPage.html");
+			}else{
 			log.info("procedo ottenendo il catalogo");
 			//CatalogoB catalogo=(CatalogoB) session.getAttribute("Catalogo");
 			ProdottoDAO prodottoDAO=new ProdottoDAO();
-			
+			try {
 			log.info("Ottengo il prodotto da aggiungere al carrello dal catalogo");
 			ProdottoB prodottoDaAggiungere;
-			try {
+			
 				prodottoDaAggiungere = prodottoDAO.doRetrieveByCodice(codiceProdotto);
 			
 			
-			if(prodottoDaAggiungere!=null) {
+			if(prodottoDaAggiungere==null) {
+				response.sendRedirect(request.getContextPath() + "/ErrorPage.html");
+			}else{
+
+		
+			
 				log.info("Creo il carrello item da aggiungere");
 				CarrelloItem item=new CarrelloItem();
 				item.setProdotto(prodottoDaAggiungere);
 				
-				log.info("Verifico se il prodotto è già nel carrello o meno");
-				if(!carrello.contains(item)) {
-					log.info("Non è nel carrello, lo aggiungo");
-					carrello.addProdotto(item);
-		}else{
-			log.info("Già nel carrello, ne aumento solo la quantità");
-			carrello.reAddProdotto(item);
+				log.info("AddProdottoCarrello -> aggiungo prodotto al carrello");
+				carrello.addProdotto(item);
+				
+				log.info("AddProdottoCarrello -> aggiorno il carrello nella sessione");
+				session.setAttribute("Carrello", carrello);
+						
+				response.sendRedirect(request.getContextPath()+"/Carrello");
+			}
 		}
-		}
-			log.info("Aggiorno il carrello nella sessione");
-			session.setAttribute("Carrello", carrello);
 			
-			RequestDispatcher view=request.getRequestDispatcher("Carrello_.jsp");
-			view.forward(request, response);
-		
-	}
        catch (SQLException e) {
 		log.info("AddProdottoCarrello -> errore ottenimento prodotto");
 		e.printStackTrace();
 	}
 		}
 			}
+}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
