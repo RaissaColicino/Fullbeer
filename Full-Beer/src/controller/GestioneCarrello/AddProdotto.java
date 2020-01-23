@@ -63,9 +63,13 @@ public class AddProdotto extends HttpServlet {
 				CarrelloItem item=new CarrelloItem();
 				item.setProdotto(prodottoDaAggiungere);
 				
+				if(!carrello.contains(item)){
 				log.info("AddProdottoCarrello -> aggiungo prodotto al carrello");
 				carrello.addProdotto(item);
-				
+				}else{
+					log.info("Il prodotto è già nel carrello, aumento la quantità");
+					carrello.reAddProdotto(item);
+				}
 				log.info("AddProdottoCarrello -> aggiorno il carrello nella sessione");
 				session.setAttribute("Carrello", carrello);
 						
