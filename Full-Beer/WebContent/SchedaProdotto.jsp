@@ -29,7 +29,7 @@
   <h1 align="center">  <strong><%=p.getNome()%></strong></h1>
   <h2 align="center">  <strong><%=p.getPrezzo()%>&euro;</strong></h2> 
   <h3    align="center"> <%=p.getDescrizione() %></h3>
-<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi al carrello</a></button
+<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi al carrello</a></button>
 </div>
 
 <br><br>
