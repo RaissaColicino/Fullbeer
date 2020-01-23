@@ -23,6 +23,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+
 <link rel="stylesheet" href="css/Catalogo.css">
 <link rel="stylesheet" href="css/ordine.css">
 <title>Catalogo</title>
@@ -50,6 +51,7 @@
   			   <h3><%=p.getNome()%></h3>
   			   <p class="prezzo"><%=p.getPrezzo()%>&euro;</p>
   			<!--    <p><%=p.getDescrizione()%></p> -->
+  			   
   			   
   	<button  class=btnn><a href="SchedaProdotto?id=<%=p.getId()%>"style="color:white"> Dettagli </a></button>
   	<br>

@@ -23,6 +23,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <title>Full-Beer Carrello</title>
 <link rel="stylesheet" href="css/Carrello.css">
@@ -89,7 +90,7 @@
 						imgString="images/" + p.getImmagine() + ".jpg"; 
 				%> 
 				 <tr>
-                            <td><img src=<%=imgString %> /> </td>
+                            <td><img src="img/<%=p.getImmagine()%>" style="width:20%"> </td>
                             <td><%=p.getNome() %></td>
                             
                       	
@@ -97,10 +98,12 @@
                      <td>
                      <% if(i.getQt()<i.getProdotto().getQt()){ %>
                     <span id="sp-qt"><%= i.getQt() %></span>  </th> 
-                     	<button  class=btn> <a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>"style="color:white">Aggiungi</a></button>
+                    <button class="w3-button w3-xsmall w3-black"><a href="ModificaQt?action=plus&prodotto=<%= p.getId()%>"style="color:white">+</a></button>
+                     	
 			
-									<% }%><% if(i.getQt()!=1){ %>			
-					<button  class=btn>	<a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>"style="color:white">Elimina</a></button>
+									<% }%><% if(i.getQt()!=1){ %>		
+				<button class="w3-button w3-xsmall w3-black"><a href="ModificaQt?action=minus&prodotto=<%= p.getId()%>"style="color:white">-</a></button>	
+				
 									<%}%></td> 
 				
 				 <td class="text-right"><%=p.getPrezzo() %></td>
