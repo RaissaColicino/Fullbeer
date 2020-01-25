@@ -99,5 +99,7 @@ public Set<CarrelloItem> getCarrello(){
 				}
 					}
 	}
- private Set<CarrelloItem> carrello;
+private Set<CarrelloItem> carrello;
+public static final String ACTION_PLUS="plus";
+public static final String ACTION_MINUS="minus";
 }
