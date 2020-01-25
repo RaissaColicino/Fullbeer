@@ -28,7 +28,9 @@ public class OrdiniAttivi extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.info("Servlet per gli ordini attivi");
 		HttpSession session=request.getSession();
+		
 		String redirectedPage="";
+		
 		synchronized(session) {
 			log.info("Ordine -> verifico che l'utente si sia autenticato");
 			Boolean userAuth=(Boolean) session.getAttribute("userAuth");
@@ -40,13 +42,13 @@ public class OrdiniAttivi extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 			}
 			else{
-			 OrdineDAO ordiniDAO=new OrdineDAO();
+			 OrdineDAO ordineDAO=new OrdineDAO();
 			
 			log.info("Ottengo gli ordini attivi");
 			
 			try {
-				LinkedHashSet<OrdineB> ordiniAttivi;
-				ordiniAttivi = (LinkedHashSet<OrdineB>) ordiniDAO.doRetrieveIfAttivi();
+				
+				LinkedHashSet<OrdineB> ordiniAttivi = (LinkedHashSet<OrdineB>) ordineDAO.doRetrieveIfAttivi();
 
 				log.info("Aggiungo ordini attivi alla sessione");
 				session.setAttribute("OrdiniAttivi", ordiniAttivi);
