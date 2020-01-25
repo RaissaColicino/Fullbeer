@@ -121,6 +121,7 @@
                             <td></td>
                             <td></td>
                             <td><strong>Totale</strong></td>
+                       
                             <td class="text-right"><%= ct %><strong></strong></td>
                         </tr>
                     </tbody>
@@ -142,8 +143,10 @@
 <a href="SvuotaCarrello" class="list-group-item bb" align="center">
               			<span class="btnn">Svuota il carrello</span>
  </a>
- <footer>
+  
+<footer>
 		<%@ include file="Footer.jsp" %>
-</footer>   
+</footer>
+  
 </body>
 </html>

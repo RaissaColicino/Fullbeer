@@ -21,7 +21,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/ordine.css">
+<link rel="stylesheet" href="css/ordinegestore.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Gestione Ordini attivi</title>
 </head>
 <body>
@@ -30,29 +31,56 @@
 <%@ include file= "Nav_bar_gestoreOrdini.jsp" %>
 </header>
  
- 		<h1 class="my-4">Ordini attivi</h1>
+ <div class="w3-container">
+  		
+  		<h3 align=center>Ordini Attivi</h3>
+  		<br>
+  		<br>
+     	<table class="w3-table-all w3-hoverable" align=center >		
+        
+ 		<tr class="w3-light-grey">	
+        <th>Numero Ordine</th>
+        <th>Stato</th>
+        <th>Sottomesso da:</th>
+        <th>Sottomesso il:</th>
+        <th>Consegna prevista il:</th>
+        <th>Totale ordine</th>
+        <th></th>
+        <th></th>
+        </tr>
+        
 	      				
 	      				<%
 	      					for(OrdineB o: ordiniAttivi){
 	      				%>
-	      				<div align="center">
-	      				 <strong> Ordine <%= o.getN_fattura() %></strong>
-	      				   <h5> <%= o.getStato() %> </h5>
-                                                <h6>Sottomesso da <%= o.getUsername() %></h6>
-                                                <h6>Sottomesso il <%= o.getDate() %></h6>
-                                                <h6>Consegna prevista il <%= o.getConsegna() %></h6>
-                                                
-                                                <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
+	      				
+	      				<tr>
+	      				 <td>  <%= o.getN_fattura() %></td>
+	      				  <td> <%= o.getStato() %> </td>
+                          <td>Sottomesso da <%= o.getUsername() %></td>
+                          <td>Sottomesso il <%= o.getDate() %></td>
+                          <td>Consegna prevista il <%= o.getConsegna() %></td>
+                          <td>Totale <%= (float) o.getImporto() + "&euro;" %></td>
 
 
-<button type="submit" class=btnn >
-<a href="Fattura?numeroOrdine=<%= o.getN_fattura() %>" style="color:white">
-				                              		 Dettagli
-				                              		</a></button>  <button type="submit" class=btnn >
-<a href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>" style="color:white">
-				                              			Aggiorna stato
-				                              		</a></button></div><br><br><br>
+							<td><button type="submit" class=btnn >
+							
+							<a href="Fattura?numeroOrdine=<%= o.getN_fattura() %>" style="color:white">
+				            Dettagli</a>
+				           
+				            </button>                 		
+				            </td>  
+				          
+				          <td><button type="submit" class=btnn >
+							<a href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>" style="color:white">
+				      		Aggiorna stato</a>
+				      		</button>
+				      		</td>
+				      		</tr>
 <%} %>
+</table>
+<br>
+<br>
 <footer>
 		<%@ include file="Footer.jsp" %>
 </footer>

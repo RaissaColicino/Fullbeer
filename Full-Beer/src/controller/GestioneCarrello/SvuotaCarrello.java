@@ -27,11 +27,12 @@ public class SvuotaCarrello extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		synchronized(session) {
+			double ct =0.0;
 			log.info("Svuoto il carrello");
 			CarrelloB carrello=(CarrelloB) session.getAttribute("Carrello");
 			if(carrello!=null)
 				carrello.svuotaCarrello();
-
+			session.setAttribute("costoTotale", ct);
 			response.sendRedirect(request.getContextPath()+"/Carrello");
 		
 		}

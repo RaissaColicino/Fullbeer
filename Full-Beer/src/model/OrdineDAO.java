@@ -67,7 +67,7 @@ public void doSave(OrdineB ordine) throws SQLException {
 			composizioneDAO.doSave(comp);
 		}
 		
-		connection.commit();
+		
 	} 
 	finally {
 		try {
@@ -100,8 +100,8 @@ public void aggiornaStato(OrdineB ordine) throws SQLException {
 	log.info("aggiornaStato -> eseguo query");
 	String updateSQL="update " + OrdineDAO.TABLE_NAME + " "
 				  + " set Stato=? "
-				  + " consegna=?"
-				   + " where fattura=?";
+				  + " consegna=? "
+				  + " where fattura=?";
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();
@@ -218,7 +218,7 @@ public Set<OrdineB> doRetrieveIfAttivi() throws SQLException{
 			bean.setDate(rs.getString("data"));
 			bean.setImporto(rs.getFloat("importo"));
 			bean.setUsername(rs.getString("username"));
-			bean.setStato(rs.getString("Stato"));
+			bean.setStato(rs.getString("stato"));
 			bean.setConsegna(rs.getString("consegna"));
 			
 			bean.setComposizione(composizioneDAO.doRetrieveByOrdine(bean));
