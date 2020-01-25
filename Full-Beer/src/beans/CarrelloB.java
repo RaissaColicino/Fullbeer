@@ -16,11 +16,19 @@ public class CarrelloB {
 		
 //permette di inserire un elemento nel carrello
 public void addProdotto(CarrelloItem carrelloItem){
+	if(carrelloItem==null || carrelloItem.getProdotto()==null || carrelloItem.getQt()<1 
+			|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
+			
+		return;
+	
 	carrello.add(carrelloItem);
 }
 
 //permette di inserire un elemento nel carrello se già presente aumentandone la quantità
 public void reAddProdotto(CarrelloItem carrelloItem){
+	if(carrelloItem==null || carrelloItem.getProdotto()==null || carrelloItem.getQt()<1
+			|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
+		return;
 	for(CarrelloItem item:carrello){
 		if(item.equals(carrelloItem))
 			item.setQt(item.getQt()+1);
@@ -29,6 +37,10 @@ public void reAddProdotto(CarrelloItem carrelloItem){
 
 //permette di ottenere un elemento del carrello specificandone il codice
 public CarrelloItem getProdotto(String codiceProdotto){
+	if(codiceProdotto==null || codiceProdotto.equals(""))
+		return null;
+	
+	
 	for(CarrelloItem item :carrello){
 		if(item.getProdotto().getId().equals(codiceProdotto))
 			return item;
@@ -38,6 +50,10 @@ public CarrelloItem getProdotto(String codiceProdotto){
 
 //permette di rimuovere un elemento dal carrello
 public void removeProdotto(CarrelloItem carrelloItem){
+	if(carrelloItem==null || carrelloItem.getProdotto()==null || carrelloItem.getQt()<1 
+			|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
+				return;
+	
 	ArrayList<CarrelloItem> array=new ArrayList<CarrelloItem>();
 	for(CarrelloItem item:carrello){
 		array.add(item);
@@ -69,6 +85,11 @@ public Set<CarrelloItem> getCarrello(){
 	 *  @return true se il prodotto è già nel carrello, altrimenti false
 	 */
 	public boolean contains(CarrelloItem carrelloItem) {
+		if(carrelloItem==null || carrelloItem.getProdotto()==null
+				|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
+			return false;
+
+		
 		for(CarrelloItem item: carrello)
 			if(item.equals(carrelloItem))
 				return true;
@@ -90,6 +111,9 @@ public Set<CarrelloItem> getCarrello(){
 	
 //permette di aumentare o diminuire di un unità la quantità di un elemento nel carrello
 	public void modificaQT(String codiceProdotto, String action){
+		if(codiceProdotto==null || codiceProdotto.equals(""))
+				
+			return;
 		for(CarrelloItem item:carrello){
 			if(item.getProdotto().getId().equals(codiceProdotto))
 				if(action.equals("plus"))

@@ -47,7 +47,7 @@
 	</tr>
 	<tr>
 	<td id=colonna4 width=500>I maniaci della birra troveranno qui promozioni esclusive, simpatici gadget e tantissime idee regalo per rendere pi&#249; divertenti le serate in compagnia degli amici.Dalla birra artigianale alle birre esclusive, dalla birra gluten free alla birra analcolica, sei nel posto giusto!</td>
-	<td id=colonna5 width=500><a href="Carrello.jsp">Carrello</a><br><a href="AreaUtente.jsp">Il mio Account</a><br>Note legali<br>Termini e Condizioni Legali di Vendita</td>
+	<td id=colonna5 width=500><a href="Carrello_.jsp">Carrello</a><br><a href="AreaUtente.jsp">Il mio Account</a><br>Note legali<br>Termini e Condizioni Legali di Vendita</td>
 	<td id=colonna6 width=500>Via Macchia Del Monte 14<br>Email:Fullbeer@libero.it<br>Orari:<br>Dal martedi al sabato<br>09:30 &#8211; 12:30 / 15:30 &#8211; 19:00 </td>
 	</tr>
 	
@@ -64,7 +64,7 @@
 	
 
 </table>
-</div>
+
 
 </body>
 </footer>

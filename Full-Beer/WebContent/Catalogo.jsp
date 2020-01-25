@@ -35,7 +35,7 @@
 </header>
 
 <h1 align="center">Le nostre birre<h1>
-<table class="table" align="center" width="60%" >
+<table class="table" align="center" width="60%">
 	<%	int salto=0;
 		int i=0; %>
 	
@@ -44,7 +44,7 @@
 					%>
 					
 		 <!-- ContenitoreFOto-->
-		<td width="200" heigth="200"> 
+		<td align="center" width="300" heigth="300"> 
 		<div  class="card">
 	
      <img src="img/<%=p.getImmagine()%>" style="width:100%">
@@ -57,7 +57,10 @@
   	<br>
   	<br>
   	<button  class=btnn><a href="AddProdottoCarrello?id=<%=p.getId()%>"style="color:white"> Aggiungi </a></button>
+	
 	</div>
+	<br>
+	<br>
 	</td>
 	
 	<%

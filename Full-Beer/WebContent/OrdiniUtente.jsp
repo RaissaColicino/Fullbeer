@@ -25,19 +25,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/OrdiniUtente.css">
+<link rel="stylesheet" href="css/ordinegestore.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Ordine Utente</title>
 </head>
-
-
-
 <body>
+
 <header>
 			<%@ include file="Nav_bar.jsp" %>
 </header>
 
-<h1 align="center">Dettaglio Ordini</h1>
-						<br> <br><br>
+<h1 align="center"><b>I tuoi ordini</b></h1>
+<div class="w3-container">
+  		
+  		
+  		<br>
+  		<br>
+     	<table class="w3-table-all w3-hoverable" align=center >		
+        
+ 		<tr class="w3-light-grey">	
+        <th>Numero Ordine</th>
+        <th>Stato</th>
+        <th>Sottomesso da:</th>
+        <th>Sottomesso il:</th>
+        <th>Consegna prevista il:</th>
+        <th>Totale ordine</th>
+        <th></th>
+        <th></th>
+        </tr>
+        
 	
 						<%! String totale="totale desc"; %>
 	        			<%! String sottomissione="sottomissione desc"; %>
@@ -48,38 +64,27 @@
 	      						
 	      							
 	      				%>
-	      				<table border="1" width="50%" align="center">
+	      				
 	      				
 	      					<tr>
-	      				    <td><b> Ordine <%= o.getN_fattura() %></b></td><td><%= o.getStato() %></td>
-	      				    </tr>
+	      				    <td><b><%= o.getN_fattura() %></b></td>
+	      				    <td><%= o.getStato() %></td>
+	      				    <td><%= o.getDate() %></td>
+	      				 	<td>Consegna prevista il:</td>
+	      				    <td><%= o.getConsegna() %></td>
+	      				    <td> <%= (float) o.getImporto() + "&euro;" %></td>
 	      				  
-	      				   <tr>
-	      				 
-	      				 	<td>Sottomesso il:</td> <td><%= o.getDate() %></td>
-	      				 
-	      				 </tr>
-	      				
-	      				<tr>
-	      				 <td>Consegna prevista il:</td> <td><%= o.getConsegna() %></td>
 	      				  
-	      				 </tr>
-	      				 <tr> 
-	      				  <td>Totale</td><td> <%= (float) o.getImporto() + "&euro;" %></td>
-	      				  </tr>
-	      				  
-	      				
-	      				  </table>
-	      				    
-	      				    <div align="center">
-	      				  <button class=btnn ><a  href="Fattura?numeroOrdine=<%= o.getN_fattura()%>"style="color:white;">Dettagli</a></button><br><br>
-				           </div>                    			
-				                         		
+	      					<td><button class=btnn ><a  href="Fattura?numeroOrdine=<%= o.getN_fattura()%>"style="color:white;">Dettagli</a></button></td>
+				            </tr>                   			
+				                        		
 	      				 <%
                         		}
 	      					
 	      			%>
-	
+</table>
+	<br>
+	<br>
 	<footer>
 		<%@ include file="Footer.jsp" %>
 </footer>					

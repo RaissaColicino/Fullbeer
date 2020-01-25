@@ -27,56 +27,85 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/ordine.css">
+<link rel="stylesheet" href="css/ordinegestore.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Gestione Ordini </title>
 </head>
 <body>
-	<header>
+	
+<header>
 			<%@ include file="Nav_bar_gestoreOrdini.jsp" %>
-		</header> <br><br><br>
-		
-		
-		<h1 >Ordini Aperti</h1>
-	      				<%
-	      					for(OrdineB o: ordini){
+</header> 
+	
+		<div class="w3-container">
+  		<h2 align=center>Gestione Ordini</h2>
+  		<h3>Ordini da gestire</h3>
+     	<table class="w3-table-all w3-hoverable" >		
+        
+        <tr class="w3-light-grey">	
+        <th>Numero Ordine</th>
+        <th>Stato</th>
+        <th>Sottomesso da:</th>
+        <th>Sottomesso il:</th>
+        <th>Consegna prevista il:</th>
+        <th>Totale ordine</th>
+        <th></th>
+        <th></th>
+        </tr>
+        
+        	<%			
+     			for(OrdineB o: ordini){	
 	      						if(o.getStato().equals(OrdineB.ELABORAZIONE) || o.getStato().equals(OrdineB.SPEDIZIONE)){
 	      							areAttivi=true;
 	      				%>
-	      				<div align="center">
+	      				<tr>
+	      				<td><b><%= o.getN_fattura() %></b></td>
+                                         		
+                                         		<td> <%= o.getStato() %> </td>
+                                                <td><%= o.getUsername() %></td>
+                                                <td><%= o.getDate() %></td>
+                                                <td><%= o.getConsegna() %></td>
+                                                
+                                                
 	      									
-                                                   <b>  Ordine <%= o.getN_fattura() %></b>
+                                                 
                                                   
-                                                
-                                                <h5> <%= o.getStato() %> </h5>
-                                                <h6>Sottomesso da <%= o.getUsername() %></h6>
-                                                <h6>Sottomesso il <%= o.getDate() %></h6>
-                                                <h6>Consegna prevista il <%= o.getConsegna() %></h6>
-                                                
-                                                <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
-                                               <button id="carrello-button" class="btnn">
-				                              		<a class="text-light a-btt" style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura()%>">
-				                              			Dettagli
-				                              		</a>
+                                                <td>Totale <%= (float) o.getImporto() + "&euro;" %></td>
+                                             
+                                             <td><button id="carrello-button" class="btnn" >
+				                              		<a class="text-light a-btt" style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura()%>">Dettagli</a>
 				                          		</button>
-				                          		
-				                          		<button id="aggiornastato" class="btnn">
-				                              		<a class="text-light a-btt" style="color:white" href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>">
-				                              			Aggiorna stato
-				                              		</a>
-				                          		</button><br><br>
-				                </div>
+				                          		</td>
+				                          	
+				                          		<td><button id="aggiornastato" class="btnn">
+				                              <a class="text-light a-btt" style="color:white" href="AggiornaStato?what=write&numero=<%= o.getN_fattura() %>">Aggiorna stato</a>
+				                              </button>
+				                				</td>
+				                </tr>
+				                
 				                          		 <%
                         		}
-	      					}
+	      					}%></table>
 	      				
-	      					if(!areAttivi){ 
+	      			<% 		if(!areAttivi){ 
 	      				%>
 								<h4>Nessun ordine attivo</h4>
 	      				<% } %>
 	      				
-	      				
-	      				
-	      				<h1>Ordini chiusi</h1>
+	     <div class="w3-container">
+  		
+  		<h3>Ordini completati</h3>
+     	<table class="w3-table-all w3-hoverable" >		
+        
+        <tr class="w3-light-grey">	
+        <th>Numero Ordine</th>
+        <th>Stato</th>
+        <th>Sottomesso da:</th>
+        <th>Sottomesso il:</th>
+        <th>Consegna prevista il:</th>
+        <th>Totale ordine</th>
+        <th></th>
+        </tr>
 	      				
 	      				<%
 	      					for(OrdineB o: ordini){
@@ -84,33 +113,34 @@
 	      							areChiusi=true;
 	      				%>
 	      				
-	      				              <div align="center">
-                                                <h4>
-                                                  <a class="title-prod" href="#">
-                                                     Ordine <%= o.getN_fattura() %>
-                                                  </a>
-                                                </h4>
-                                                <h5> <%= o.getStato() %> </h5>
-                                                <h6>Sottomesso il <%= o.getDate() %></h6>
-                                                <h6>Sottomesso da <%= o.getUsername() %></h6>
-                                                <h6>Consegnato il <%= o.getConsegna() %></h6>
+	      				            <tr>
+                                    <td><%= o.getN_fattura() %></td>
+                                    <td> <%= o.getStato() %> </td>
+                                    <td>Sottomesso il <%= o.getDate() %></td>
+                                    <td>Sottomesso da <%= o.getUsername() %></td>
+                                    <td>Consegnato il <%= o.getConsegna() %></td>
+                                    <td>Totale <%= (float) o.getImporto() + "&euro;" %></td>
                                                 
-                                                <h4>Totale <%= (float) o.getImporto() + "&euro;" %></h4>
-                                                
-                                                <button id="carrello-button" class="btnn">
-				                              		<a class="text-light a-btt"  style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura() %>">
-				                              			Dettagli
-				                              		</a>
-				                          		</button>
-                                     </div>
+           							<td><button id="carrello-button" class="btnn">
+           							<a class="text-light a-btt"  style="color:white" href="Fattura?numeroOrdine=<%= o.getN_fattura() %>">	
+									Dettagli </a>	
+				                    </button>
+                                    </td>
+                                    </tr>
+                                  
                         <%
                         		}
 	      					}
+	      				%>
 	      				
-	      					if(!areChiusi){ 
+	      				</table>
+	      				<br>
+	      				<br>	
+	      					<%if(!areChiusi){ 
 	      				%>
 								<h4>Nessun ordine chiuso</h4>
 	      				<% } %>
+	      			
 <footer>
 		<%@ include file="Footer.jsp" %>
 </footer>
