@@ -96,7 +96,7 @@ public class CarrelloBTestCase extends TestCase {
 		assertTrue(temp.getQt()==2);
 		
 		//Caso errato
-		//Primo casp
+		//Primo caso
 		item.getProdotto().setId("");
 		carrello.addProdotto(item);
 		
