@@ -19,24 +19,21 @@ import beans.CarrelloB;
 public class SvuotaCarrello extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger log=Logger.getLogger("SvuotaCarrelloDebugger");
-    public SvuotaCarrello() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		synchronized(session) {
-			double ct =0.0;
+		
+			
 			log.info("Svuoto il carrello");
 			CarrelloB carrello=(CarrelloB) session.getAttribute("Carrello");
+			
 			if(carrello!=null)
 				carrello.svuotaCarrello();
-			session.setAttribute("costoTotale", ct);
+			
 			response.sendRedirect(request.getContextPath()+"/Carrello");
 		
 		}
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

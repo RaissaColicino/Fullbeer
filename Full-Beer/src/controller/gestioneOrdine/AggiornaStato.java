@@ -129,7 +129,7 @@ public class AggiornaStato extends HttpServlet {
 										log.info("Ordine aggiornato: " + ordineDaModificare.getN_fattura() 
 										+ ", stato: " + ordineDaModificare.getStato());
 				
-				redirectedPage="/OrdiniAttivi?order=sottomissione";
+				redirectedPage="/OrdiniAttivi";
 				response.sendRedirect(request.getContextPath() + redirectedPage);
 
 				}
