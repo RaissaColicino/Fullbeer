@@ -27,15 +27,20 @@ public void addProdotto(CarrelloItem carrelloItem){
 //permette di inserire un elemento nel carrello se già presente aumentandone la quantità
 public void reAddProdotto(CarrelloItem carrelloItem){
 	if(carrelloItem==null || carrelloItem.getProdotto()==null || carrelloItem.getQt()<1
-			|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
+	|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
 		return;
-	if(contains(carrelloItem)){
+
+
+
+	if(contains(carrelloItem)) {
+ 
 	for(CarrelloItem item:carrello){
 		if(item.equals(carrelloItem))
 			item.setQt(item.getQt()+1);
 	}
-}else
+	}else{
 		addProdotto(carrelloItem);
+	}
 }
 //permette di ottenere un elemento del carrello specificandone il codice
 public CarrelloItem getProdotto(String codiceProdotto){
@@ -125,5 +130,7 @@ public Set<CarrelloItem> getCarrello(){
 				}
 					}
 	}
- private Set<CarrelloItem> carrello;
+private Set<CarrelloItem> carrello;
+public static final String ACTION_PLUS="plus";
+public static final String ACTION_MINUS="minus";
 }
