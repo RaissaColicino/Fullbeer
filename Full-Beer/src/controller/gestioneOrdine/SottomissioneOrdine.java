@@ -81,6 +81,7 @@ public class SottomissioneOrdine extends HttpServlet {
 							log.info("Sottomissione ordine -> creo la composizone dell'ordine");
 						
 							ComposizioneB cb=new ComposizioneB();
+							
 							cb.setN_fattura(ordine.getN_fattura());
 							cb.setProdottoCodice(item.getProdotto().getId());
 							cb.setNome_prodotto(item.getProdotto().getNome());
@@ -94,15 +95,16 @@ public class SottomissioneOrdine extends HttpServlet {
 						
 						log.info("Sottomissione ordine -> aggiorno totale dell'ordine");
 						ordine.setImporto(totale);
-						try{
-						System.out.println(ordine.getImporto());
-						log.info("Sottomissione ordine -> salvo l'ordine per completare la sottomissione");
-						ordineDAO.doSave(ordine);
 						
-						}
-						catch(SQLException eOrdine){
-							eOrdine.printStackTrace();
-						}
+							try{
+									System.out.println(ordine.getImporto());
+									log.info("Sottomissione ordine -> salvo l'ordine per completare la sottomissione");
+									ordineDAO.doSave(ordine);
+						
+								}
+										catch(SQLException eOrdine){
+												eOrdine.printStackTrace();
+										}
 						log.info("Sottomissione ordine -> svuoto il carrello dopo la sottomissione");
 						carrello.svuotaCarrello();
 						

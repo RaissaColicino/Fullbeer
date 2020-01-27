@@ -77,7 +77,7 @@ public void doSave(OrdineB ordine) throws SQLException {
 		finally {
 			DriverManagerConnectionPool.releaseConnection(connection);
 		}
-	}
+	 }
 	log.info("OrdineDAO -> doSave terminato");
 }	
 
@@ -90,18 +90,15 @@ public void aggiornaStato(OrdineB ordine) throws SQLException {
 	
 	log.info("aggiornaStato -> verifico pre-condizioni");
 	if(ordine==null || ordine.getN_fattura()==null || ordine.getN_fattura().equals("")
-			|| ordine.getStato()==null || ordine.getStato().equals("")
-			||ordine.getConsegna()==null || ordine.getConsegna().equals("")
-			|| doRetrieveByNumero(ordine.getN_fattura())==null)
+					|| ordine.getStato()==null || ordine.getStato().equals("")
+					||ordine.getConsegna()==null || ordine.getConsegna().equals("")
+					|| doRetrieveByNumero(ordine.getN_fattura())==null)
 		return;
 	
 	
 	
 	log.info("aggiornaStato -> eseguo query");
-	String updateSQL="update " + OrdineDAO.TABLE_NAME + " "
-				  + " set Stato=? "
-				  + " consegna=? "
-				  + " where fattura=?";
+	String updateSQL="update " + OrdineDAO.TABLE_NAME + " set Stato=? , consegna=? where fattura=?";
 
 	try {
 		connection=DriverManagerConnectionPool.getConnection();

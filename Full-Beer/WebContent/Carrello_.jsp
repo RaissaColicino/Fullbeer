@@ -43,12 +43,16 @@
         						for(CarrelloItem i: items){
         						ProdottoB tp=i.getProdotto();
         						double initprezzo=tp.getPrezzo();
+        						
         						double prezzo=0;
         						
         						prezzo=initprezzo*i.getQt();
         						costoTotale+=prezzo;
-        						ct=(float)costoTotale;
         						}
+        						ct=(float)costoTotale;
+        						}else{
+        						
+        							ct=0;
         						} 	
         						session.setAttribute("costoTotale",ct);
         						%>

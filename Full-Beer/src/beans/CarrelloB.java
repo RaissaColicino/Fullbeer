@@ -29,7 +29,11 @@ public void reAddProdotto(CarrelloItem carrelloItem){
 	if(carrelloItem==null || carrelloItem.getProdotto()==null || carrelloItem.getQt()<1
 	|| carrelloItem.getProdotto().getId()==null || carrelloItem.getProdotto().getId().equals(""))
 		return;
+
+
+
 	if(contains(carrelloItem)) {
+ 
 	for(CarrelloItem item:carrello){
 		if(item.equals(carrelloItem))
 			item.setQt(item.getQt()+1);
@@ -38,7 +42,6 @@ public void reAddProdotto(CarrelloItem carrelloItem){
 		addProdotto(carrelloItem);
 	}
 }
-
 //permette di ottenere un elemento del carrello specificandone il codice
 public CarrelloItem getProdotto(String codiceProdotto){
 	if(codiceProdotto==null || codiceProdotto.equals(""))

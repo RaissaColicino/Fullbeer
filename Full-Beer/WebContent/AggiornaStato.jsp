@@ -29,7 +29,11 @@
 <title>Modifica stat ordini</title>
 </head>
 <body>
-	<form name='modifica-stato' action="AggiornaStato" method="post">
+   	<div class="main">
+			<div class="col-md-6 col-sm-12">
+            	<div class="login-form">
+
+	<form name='modifica-stato' action="AggiornaStato" method="get">
                		    <input type="hidden" name="what" value="save" />
                		
                			<h3>Ordine n° <%= ordineDaModificare.getN_fattura() %></h3>
@@ -56,7 +60,7 @@
 							    %>
   							</select>
   							
-  							<button type="submit" class="btnn">Modifica</button>
+  							<button  type="submit" class="btnn">Modifica</button>
                   		<button type="reset" >Annulla</button>
                   		<button>
                   			<%! String sttmDsc="sottomissione desc"; %>
@@ -64,6 +68,9 @@
 						</button>
   
               			</form>
+              			</div>
+              			</div>
+              			</div>
 <footer>
 		<%@ include file="Footer.jsp" %>
 </footer>
